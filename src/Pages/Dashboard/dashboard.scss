@@ -1,0 +1,16 @@
+.cards__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .cards {
+        background: var(--color-content);
+        width: 100%;
+        border-radius: var(--border-redius);
+        padding: 1rem;
+
+        &:not(:last-child){
+            margin-right: 1.5rem;
+        }
+    }
+}

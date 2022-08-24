@@ -2,15 +2,60 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 1.5rem;
 
     .cards {
         background: var(--color-content);
         width: 100%;
         border-radius: var(--border-redius);
-        padding: 1rem;
+        padding: 1.5rem;
 
-        &:not(:last-child){
+        &:not(:last-child) {
             margin-right: 1.5rem;
+        }
+
+        .cards__text {
+            color: var(--color-sidebar);
+        }
+
+        .cards__value {
+            font-size: 2.5rem;
+            font-weight: 400;
+        }
+
+        .chart__title {
+            display: flex;
+            flex-direction: row;
+
+            .chart__value {
+                margin-left: 0.5rem;
+                color: var(--color-text--light);
+            }
+        }
+
+        .chart__text {
+            margin-bottom: 0.75rem;
+        }
+
+        .chart {
+            margin-top: 0.5rem;
+        }
+
+        .card__title--box {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            select {
+                margin-bottom: 0.75rem;
+                background-color: transparent;
+                border: none;
+                font-family: inherit;
+                font-size: inherit;
+                cursor: inherit;
+                line-height: inherit;
+                border: none;
+            }
         }
     }
 }

@@ -16,6 +16,7 @@ const CustomNavLinks = ({text, link}) => (
     </NavLink>
 )
 
+
 function Sidebar({ children }) {
     return (
         <div className='container'>

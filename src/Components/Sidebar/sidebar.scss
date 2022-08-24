@@ -6,7 +6,7 @@
     background: var(--color-sidebar);
     color: var(--color-sidebar--text);
     height: fit-content;
-    min-width: 320px;
+    min-width: 300px;
     height: 100vh;
     position: sticky;
     overflow-y: scroll;
@@ -19,7 +19,6 @@
 
     &::-webkit-scrollbar-thumb {
         background: var( --color-text--light);
-        border-radius: 10px;
     }
 
     .sidebar__logo {
@@ -43,11 +42,15 @@
 
         .sidebar__link {
             color: var(--color-sidebar--text);
-            font-size: 1.25rem;
-            padding: 1rem 0.25rem;
+            font-size: 1rem;
+            padding: 0.75rem 0.25rem;
 
             .sidebar__link--text {
                 padding: 0.5rem;
+            }
+
+            &:last-child {
+                margin-bottom: 5rem;
             }
         }
     }

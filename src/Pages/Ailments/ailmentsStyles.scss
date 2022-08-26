@@ -1,0 +1,9 @@
+.chip__container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: var(--border-redius);
+    box-shadow: 0 0 2px var(--color-text--light);
+    justify-content: space-between;
+}

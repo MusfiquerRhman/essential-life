@@ -1,18 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import './Styles/formStyles.scss';
+@import './Styles/tableStyles.scss';
 
 :root {
-  --color-sidebar: #2E2F41;
-  --color-sidebar--text: #FFFFFF;
-  --color-content: #FFFFFF;
-  --color-background: #F0F2F6;
+  --color-sidebar: #2e2f41;
+  --color-sidebar--text: #ffffff;
+  --color-content: #ffffff;
+  --color-background: #f0f2f6;
   --color-text--light: #90a4ae;
   --color-text: #000000;
+  --color--highlight--text: #3D44F6;
 
-	--transition: all 400ms ease;
-  
+  --transition: all 400ms ease;
+
   --border-redius: 0.5rem;
 }
-
 
 * {
   margin: 0;
@@ -47,12 +49,69 @@ body {
 
 main {
   width: 100%;
-  margin: 3rem;
   border-radius: var(--border-redius);
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0.4rem;
+    background: var(--color-background);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-text--light);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+section {
+  margin: 3rem;
 }
 
 section > h1 {
   font-size: 1.5rem;
   font-weight: 400;
   margin-bottom: 1rem;
+}
+
+select {
+  margin-bottom: 0.75rem;
+  background-color: var(--color-background);
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  border: none;
+  padding: 0.5rem;
+  margin: auto;
+}
+
+input::placeholder {
+  font-family: "Poppins", sans-serif;
+  color: var(--color-sidebar);
+}
+
+textarea::placeholder {
+  font-family: "Poppins", sans-serif;
+  color: var(--color-sidebar)
+}
+
+
+.search__container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button {
+  color: var(--color-sidebar--text);
+}
+
+.full__length {
+  width: 100%;
 }

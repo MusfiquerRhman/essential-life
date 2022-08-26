@@ -6,7 +6,7 @@
     background: var(--color-sidebar);
     color: var(--color-sidebar--text);
     height: fit-content;
-    min-width: 300px;
+    min-width: 260px;
     height: 100vh;
     position: sticky;
     overflow-y: scroll;
@@ -35,7 +35,7 @@
     }
 
     .sidebar__links {
-        padding: 2rem 0 2rem 2rem;
+        padding: 2rem 0 2rem 1.25rem;
         display: flex;
         flex-direction: column;
         margin-top: 2rem;

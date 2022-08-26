@@ -45,8 +45,11 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            align-items: center;
+            width: 100%;
 
             select {
+                margin: 0;
                 margin-bottom: 0.75rem;
                 background-color: transparent;
                 border: none;
@@ -55,6 +58,7 @@
                 cursor: inherit;
                 line-height: inherit;
                 border: none;
+                width: fit-content;
             }
         }
     }

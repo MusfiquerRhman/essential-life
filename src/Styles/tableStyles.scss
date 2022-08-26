@@ -1,0 +1,27 @@
+.table__card {
+    width: 100%;
+    border-radius: var(--border-redius);
+    padding: 0.5rem;
+    margin-top: 2rem;
+}
+
+.table__icon {
+    font-size: 1.25rem;
+    margin: 0.2rem;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--color-text--light);
+    }
+}
+
+.table__name {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.table__userName {
+    color: var(--color--highlight--text);
+    font-size: 1rem;
+    font-weight: 600;
+}

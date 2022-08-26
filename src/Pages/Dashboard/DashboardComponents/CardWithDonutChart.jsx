@@ -8,7 +8,7 @@ export const data = {
     labels: ['Legacy (7345 - 9.10%)', 'Annual (52069 - 64.52%)', 'Active Trial (147 - 0.18%)', 'Inactive Trial (20057 - 24.85%)', 'Not yet selected (1082 - 1.34%)'],
     datasets: [
         {
-            label: '# of Votes',
+            label: '#',
             data: [12, 19, 3, 5, 2],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.4)',

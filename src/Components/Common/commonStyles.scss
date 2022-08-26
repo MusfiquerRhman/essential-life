@@ -1,0 +1,35 @@
+.search__box {
+    width: 25%;
+    height: 80%;
+    border-radius: 10rem;
+    background-color: var(--color-content);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-background);
+
+    .search__input {
+        flex: 1;
+        padding: 0.6rem;
+        border-radius: 10rem;
+    }
+
+    .search__icon {
+        width: 10%;
+        font-size: 1.2rem;
+        color: var(--color-text--light);
+    }
+}
+
+.action__group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.selected__actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

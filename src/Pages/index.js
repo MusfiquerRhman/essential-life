@@ -1,6 +1,7 @@
 // Ailments
 export { default as Ailments } from "./Ailments/Ailments";
 export { default as AddAilmentsForm } from "./Ailments/Components/AddAilmentsForm";
+export { default as EditAilmentForm } from "./Ailments/Components/EditAilmentForm";
 // Avaters
 export { default as Avaters } from "./Avaters/Avaters";
 // Blends

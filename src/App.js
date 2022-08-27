@@ -4,7 +4,7 @@ import NavBar from './Components/NavBar/NavBar';
 import Sidebar from './Components/Sidebar/Sidebar';
 import {
   AddAilmentsForm, AddContentSuggestion, AddUGCRecipeForm, AddUGCRemedyForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion,
-  Dashboard, EditUGCRecipeForm, EditUGCRemedyForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements, Symptoms, UGCRecipes,
+  Dashboard, EditAilmentForm, EditUGCRecipeForm, EditUGCRemedyForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements, Symptoms, UGCRecipes,
   UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
 } from './Pages';
 
@@ -36,6 +36,7 @@ function App() {
           {/* Ailments */}
           <Route exact path='/ailments' element={<Ailments />}/>
           <Route exact path='/ailments/new/' element={<AddAilmentsForm />}/>
+          <Route exact path='/ailments/:id/' element={<EditAilmentForm />}/>
 
           <Route exact path='/body-system' element={<BodySystem />}/>
 

@@ -7,3 +7,17 @@
     box-shadow: 0 0 2px var(--color-text--light);
     justify-content: space-between;
 }
+
+.solutions__container{
+    margin-top: 3rem;
+
+    .solutions__form{
+        display: flex;
+        flex-direction: row;
+
+        .solution__form--item{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

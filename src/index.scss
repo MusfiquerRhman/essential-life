@@ -112,6 +112,15 @@ textarea::placeholder {
   color: var(--color-sidebar--text);
 }
 
+.supportive__container {
+  
+}
+
 .full__length {
   width: 100%;
+}
+
+.flex__row {
+  display: flex;
+  flex-direction: row;
 }

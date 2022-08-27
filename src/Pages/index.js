@@ -2,12 +2,15 @@
 export { default as Ailments } from "./Ailments/Ailments";
 export { default as AddAilmentsForm } from "./Ailments/Components/AddAilmentsForm";
 export { default as EditAilmentForm } from "./Ailments/Components/EditAilmentForm";
+export { default as EditAilmentSolution } from "./Ailments/Components/Solutions Table/EditAilmentSolution";
+export { default as EditAilmentSupportiveSolution } from "./Ailments/Components/Supporting Solution Table/EditAilmentSupportiveSolution";
 // Avaters
 export { default as Avaters } from "./Avaters/Avaters";
 // Blends
 export { default as Blends } from "./Blends/Blends";
 // Body System
 export { default as BodySystem } from "./BodySystem/BodySystem";
+export { default as AddBodySystemForm} from "./BodySystem/Component/AddBodySystemForm"
 // Cards
 export { default as Cards } from "./Cards/Cards";
 // Category

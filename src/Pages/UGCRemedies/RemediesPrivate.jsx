@@ -29,7 +29,7 @@ function RemediesPrivate() {
       <div className='search__container'>
         <SearchBox />
         <Button startIcon={<AddIcon />} sx={{borderRadius: '2rem'}} variant="contained">
-          <NavLink to='/Remedy/new/private' className='button'>Create Remedy</NavLink>
+          <NavLink to='/ugcremedy/new/private' className='button'>Create Remedy</NavLink>
         </Button>
       </div>
       

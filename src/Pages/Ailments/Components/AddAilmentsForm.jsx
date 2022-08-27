@@ -71,7 +71,7 @@ function AddAilmentsForm() {
                 />
 
                 <div className='form__actions'>
-                    <Button className='form__button' startIcon={<AddIcon />} variant='contained' sx={{ borderRadius: '5rem' }}>Create Recipe</Button>
+                    <Button className='form__button' startIcon={<AddIcon />} variant='contained' sx={{ borderRadius: '5rem' }}>Create Ailment</Button>
                     <Button className='form__button' startIcon={<AddIcon />} variant='outlined' sx={{ borderRadius: '5rem' }}>Create and Add another</Button>
                 </div>
             </div>

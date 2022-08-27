@@ -10,56 +10,35 @@ import TableRow from '@mui/material/TableRow';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
-import '../../../index.scss';
+import { cup, hand, nose } from '../../../../assests';
+import '../../../../index.scss';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 
 import * as React from 'react';
 
-function createData(id, photo, name, public_recipe, user, status, rejection_reason, created_at) {
+function createData(id, type, name, description, isCupActive, isNoseActive, isHandActive) {
     return {
         id,
-        photo,
+        type,
         name,
-        public_recipe,
-        user,
-        status,
-        rejection_reason,
-        created_at
+        description,
+        isCupActive,
+        isNoseActive,
+        isHandActive
     };
 }
 
 const rows = [
-    createData(1 ,'--', 'wow1', '--', 'chef', 'Private', '--', 'Aug 11 2022'),
-    createData(2 ,'--', 'wow2', '--', 'chef', 'Private', '--', 'Aug 12 2022'),
-    createData(3 ,'--', 'wow3', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(4 ,'--', 'wow4', '--', 'ahef', 'Private', '--', 'Aug 13 2022'),
-    createData(5 ,'--', 'wow5', '--', 'chef', 'Private', '--', 'Aug 14 2022'),
-    createData(6 ,'--', 'wow6', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(7 ,'--', 'wow7', '--', 'fhef', 'Private', '--', 'Aug 13 2022'),
-    createData(8 ,'--', 'wow8', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(9 ,'--', 'wow9', '--', 'chef', 'Private', '--', 'Aug 10 2022'),
-    createData(10 ,'--', 'wow10', '--', 'vhef', 'Private', '--', 'Aug 13 2022'),
-    createData(11 ,'--', 'wow11', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(12 ,'--', 'wow12', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(13 ,'--', 'wow13', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
+    createData(1, 'Oil', 'DigestZen', 'Apply 1-2 drops to the abdomen. Take in a capsule or glass of water', true, false, true),
+    createData(2, 'Blend', 'Pepperment', 'Apply 1-2 drops to the abdomen. Take in a capsule or glass of water', false, false, true),
+    createData(3, 'Oil', 'Petitgrain', 'Apply 1-2 drops to the abdomen. Take in a capsule or glass of water', true, true, true),
+    createData(4, 'Oil', 'Ginger', 'Apply 1-2 drops to the abdomen. Take in a capsule or glass of water', true, false, true),
+    createData(5, 'Blend', 'DigestZen', 'Apply 1-2 drops to the abdomen. Take in a capsule or glass of water', false, false, true),
+    createData(6, 'Blend', 'Petitgrain', 'Apply 1-2 drops to the abdomen. Take in a capsule or glass of water', true, false, true),
+    createData(7, 'Suplement', 'Petitgrain', 'Apply 1-2 drops to the abdomen. Take in a capsule or glass of water', false, false, true),
 ];
 
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
 export default function EnhancedTable(props) {
     const [selected, setSelected] = React.useState([]);
@@ -77,11 +56,6 @@ export default function EnhancedTable(props) {
     const {
         setSelectedArray,
         handleSelectDeleteAll,
-        contentStatus,
-        setcontentStatus,
-        action,
-        setAction,
-        handleClickExecuteAction,
     } = props
 
 
@@ -139,11 +113,6 @@ export default function EnhancedTable(props) {
                 <EnhancedTableToolbar
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
-                    contentStatus={contentStatus}
-                    setcontentStatus={setcontentStatus}
-                    action={action}
-                    setAction={setAction}
-                    handleClickExecuteAction={handleClickExecuteAction}
                 />
 
                 <TableContainer>
@@ -162,7 +131,7 @@ export default function EnhancedTable(props) {
                         />
 
                         <TableBody>
-                            {rows.slice().sort(getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+                            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                                 const isItemSelected = isSelected(row.name);
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -185,7 +154,6 @@ export default function EnhancedTable(props) {
                                                 }}
                                             />
                                         </TableCell>
-                                        <TableCell align="center">{row.photo}</TableCell>
                                         <TableCell
                                             component="th"
                                             id={labelId}
@@ -196,16 +164,27 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <span className='table__name'>{row.name}</span>
-
+                                            <span className='table__name'>{`${row.type}: ${row.name}`}</span>
                                         </TableCell>
-                                        <TableCell align="left">{row.public_recipe}</TableCell>
-                                        <TableCell align="left"><span className='table__userName'>{row.user}</span> </TableCell>
-                                        <TableCell align="left">{row.status}</TableCell>
-                                        <TableCell align="left">{row.rejection_reason}</TableCell>
-                                        <TableCell align="left">{row.created_at}</TableCell>
+                                        <TableCell align="left">{row.description}</TableCell>
+                                        <TableCell align="left">
+                                            <div className='solution__usesicons--table'>
+                                                <img src={cup} alt="A glass"
+                                                    className='solution__usesicon--item'
+                                                    style={row.isCupActive ? { filter: 'grayscale(0%)' } : { filter: 'grayscale(100%)' }}
+                                                />
+                                                <img src={hand} alt="A hand"
+                                                    className='solution__usesicon--item'
+                                                    style={row.isHandActive ? { filter: 'grayscale(0%)' } : { filter: 'grayscale(100%)' }}
+                                                />
+                                                <img src={nose} alt="A nose"
+                                                    className='solution__usesicon--item'
+                                                    style={row.isNoseActive ? { filter: 'grayscale(0%)' } : { filter: 'grayscale(100%)' }}
+                                                />
+                                            </div>
+                                        </TableCell>
                                         <TableCell align='right'>
-                                            <NavLink to={`/ugcremedy/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/ailments/solution/edit/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </TableCell>
                                     </TableRow>

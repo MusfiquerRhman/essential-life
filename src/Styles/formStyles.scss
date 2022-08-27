@@ -5,19 +5,19 @@
     padding: 1rem;
     width: 100%;
     border-radius: var(--border-redius);
+}
 
-    .form__label {
-        margin: 0.5rem 0;
-    }
+.form__label {
+    margin: 0.5rem 0;
+}
 
-    .form__input {
-        padding: 1rem;
-        border-radius: var(--border-redius);
-        box-shadow: 0 0 2px var(--color-text--light);
+.form__input {
+    padding: 1rem;
+    border-radius: var(--border-redius);
+    box-shadow: 0 0 2px var(--color-text--light);
 
-        &:not(:last-child){
-            margin-bottom: 1.25rem;
-        }
+    &:not(:last-child){
+        margin-bottom: 1.25rem;
     }
 }
 

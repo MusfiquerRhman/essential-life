@@ -3,8 +3,8 @@ import './App.css';
 import NavBar from './Components/NavBar/NavBar';
 import Sidebar from './Components/Sidebar/Sidebar';
 import {
-  AddAilmentsForm, AddContentSuggestion, AddUGCRecipeForm, AddUGCRemedyForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion,
-  Dashboard, EditAilmentForm, EditUGCRecipeForm, EditUGCRemedyForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements, Symptoms, UGCRecipes,
+  AddAilmentsForm, AddBodySystemForm, AddContentSuggestion, AddUGCRecipeForm, AddUGCRemedyForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion,
+  Dashboard, EditAilmentForm, EditAilmentSolution, EditAilmentSupportiveSolution, EditUGCRecipeForm, EditUGCRemedyForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements, Symptoms, UGCRecipes,
   UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
 } from './Pages';
 
@@ -26,8 +26,8 @@ function App() {
           {/* UGC remedies */}
           <Route exact path='/ugcremedies' element={<UGCRemedies />}/>
           <Route exact path='/ugcremedies-private' element={<UGCRemediesPrivate />}/>
-          <Route exact path='/remedy/new/:status' element={<AddUGCRemedyForm />} />
-          <Route exact path='/remedy/:id' element={<EditUGCRemedyForm />} />
+          <Route exact path='/ugcremedy/new/:status' element={<AddUGCRemedyForm />} />
+          <Route exact path='/ugcremedy/:id' element={<EditUGCRemedyForm />} />
 
           {/* Content Suggestion */}
           <Route exact path='/content-suggestion' element={<ContentSuggestion />} />
@@ -37,8 +37,12 @@ function App() {
           <Route exact path='/ailments' element={<Ailments />}/>
           <Route exact path='/ailments/new/' element={<AddAilmentsForm />}/>
           <Route exact path='/ailments/:id/' element={<EditAilmentForm />}/>
+          <Route exact path='/ailments/solution/edit/:id' element={<EditAilmentSolution />}/>
+          <Route exact path='/ailments/solution/supportive/edit/:id' element={<EditAilmentSupportiveSolution />}/>
 
+          {/* Body System */}
           <Route exact path='/body-system' element={<BodySystem />}/>
+          <Route exact path='/body-system/new' element={<AddBodySystemForm />}/>
 
           <Route exact path='/remedies' element={<Remedies />} />
 

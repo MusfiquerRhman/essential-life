@@ -16,33 +16,27 @@ import EnhancedTableToolbar from './EnhancedTableToolbar';
 
 import * as React from 'react';
 
-function createData(id, photo, name, public_recipe, user, status, rejection_reason, created_at) {
+function createData(id, name, method, user, created_at, favourite_count) {
     return {
         id,
-        photo,
         name,
-        public_recipe,
+        method,
         user,
-        status,
-        rejection_reason,
-        created_at
+        created_at,
+        favourite_count
     };
 }
 
 const rows = [
-    createData(1 ,'--', 'wow1', '--', 'chef', 'Private', '--', 'Aug 11 2022'),
-    createData(2 ,'--', 'wow2', '--', 'chef', 'Private', '--', 'Aug 12 2022'),
-    createData(3 ,'--', 'wow3', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(4 ,'--', 'wow4', '--', 'ahef', 'Private', '--', 'Aug 13 2022'),
-    createData(5 ,'--', 'wow5', '--', 'chef', 'Private', '--', 'Aug 14 2022'),
-    createData(6 ,'--', 'wow6', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(7 ,'--', 'wow7', '--', 'fhef', 'Private', '--', 'Aug 13 2022'),
-    createData(8 ,'--', 'wow8', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(9 ,'--', 'wow9', '--', 'chef', 'Private', '--', 'Aug 10 2022'),
-    createData(10 ,'--', 'wow10', '--', 'vhef', 'Private', '--', 'Aug 13 2022'),
-    createData(11 ,'--', 'wow11', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(12 ,'--', 'wow12', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(13 ,'--', 'wow13', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
+    createData(1 ,'Allergies', 'Blend and apply one drop behind ears, temples, and thymus', '--', 'Aug 12 2022', 408),
+    createData(2 ,'Allergies', 'Blend and apply one drop behind ears, temples, and thymus', '--', 'Aug 12 2022', 409),
+    createData(3 ,'Allergies', 'Blend and apply one drop behind ears, temples, and thymus', '--', 'Aug 12 2022', 410),
+    createData(4 ,'Allergies', 'Blend and apply one drop behind ears, temples, and thymus', '--', 'Aug 12 2022', 458),
+    createData(5 ,'Allergies', 'Blend and apply one drop behind ears, temples, and thymus', '--', 'Aug 12 2022', 448),
+    createData(6 ,'Allergies', 'Blend and apply one drop behind ears, temples, and thymus', '--', 'Aug 12 2022', 488),
+    createData(7 ,'Allergies', 'Blend and apply one drop behind ears, temples, and thymus', '--', 'Aug 12 2022', 498),
+    createData(8 ,'Allergies', 'Blend and apply one drop behind ears, temples, and thymus', '--', 'Aug 12 2022', 908),
+    createData(9 ,'Allergies', 'Blend and apply one drop behind ears, temples, and thymus', '--', 'Aug 12 2022', 508),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -185,7 +179,6 @@ export default function EnhancedTable(props) {
                                                 }}
                                             />
                                         </TableCell>
-                                        <TableCell align="center">{row.photo}</TableCell>
                                         <TableCell
                                             component="th"
                                             id={labelId}
@@ -199,19 +192,17 @@ export default function EnhancedTable(props) {
                                             <span className='table__name'>{row.name}</span>
 
                                         </TableCell>
-                                        <TableCell align="left">{row.public_recipe}</TableCell>
-                                        <TableCell align="left"><span className='table__userName'>{row.user}</span> </TableCell>
-                                        <TableCell align="left">{row.status}</TableCell>
-                                        <TableCell align="left">{row.rejection_reason}</TableCell>
+                                        <TableCell align="left">{row.method}</TableCell>
+                                        <TableCell align="left">{row.user} </TableCell>
                                         <TableCell align="left">{row.created_at}</TableCell>
+                                        <TableCell align="left">{row.favourite_count}</TableCell>
                                         <TableCell align='right'>
-                                            <NavLink to={`/ugcremedy/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/remedy/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </TableCell>
                                     </TableRow>
                                 );
                             })}
-
                             {emptyRows > 0 && (
                                 <TableRow
                                     style={{

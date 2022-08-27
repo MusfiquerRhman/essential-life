@@ -32,7 +32,8 @@ function ContentSuggestion() {
       <div className='table__card'>
         <Table
           setSelectedArray={setSelected}
-          handleSelectDeleteAll={handleSelectDeleteAll}/>
+          handleSelectDeleteAll={handleSelectDeleteAll}
+        />
       </div>
     </section>
   )

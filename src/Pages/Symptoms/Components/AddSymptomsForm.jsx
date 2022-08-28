@@ -49,7 +49,7 @@ function AddSymptomsForm() {
 
     return (
         <section>
-            <h1>New Ailment</h1>
+            <h1>New Symptoms</h1>
             <div className='form__container'>
                 <SymptomsForm
                     bodySystemChip={bodySystemChip}

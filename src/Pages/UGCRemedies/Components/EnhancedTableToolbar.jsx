@@ -13,6 +13,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
+
 function EnhancedTableToolbar(props) {
     const {
         numSelected,
@@ -97,7 +98,13 @@ function EnhancedTableToolbar(props) {
                             value={action}
                             label="Select An Action"
                             onChange={handleChangeAction}
-                            sx={{ margin: '0' }}
+                            sx={{
+                                margin: '0',
+                                color: '#ffffff',
+                                '&.Mui-checked': {
+                                  color: '#FFFFFF',
+                                },
+                            }}
                         >
                             <MenuItem value={'approve'}>Approve</MenuItem>
                             <MenuItem value={'rejected'}>Rejected</MenuItem>

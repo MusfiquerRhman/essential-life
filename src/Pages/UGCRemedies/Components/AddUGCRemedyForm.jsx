@@ -18,6 +18,8 @@ function AddUGCRemedyForm() {
             reader.readAsDataURL(files[0]);
         }
     };
+
+    
     return (
         <section>
             <h1>New Remedy</h1>

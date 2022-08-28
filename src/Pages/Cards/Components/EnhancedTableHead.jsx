@@ -6,6 +6,8 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import React from 'react';
+import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
+
 
 const headCells = [
     {
@@ -36,12 +38,12 @@ function EnhancedTableHead(props) {
 
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
-      };
+    };
 
     return (
         <TableHead>
-            <TableRow>
-                <TableCell padding="checkbox">
+            <StyledTableRow>
+                <StyledTableCell padding="checkbox">
                     <Checkbox
                         color="primary"
                         indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -50,10 +52,16 @@ function EnhancedTableHead(props) {
                         inputProps={{
                             'aria-label': 'select all desserts',
                         }}
+                        sx={{
+                            color: '#ffffff',
+                            '&.Mui-checked': {
+                                color: '#FFFFFF',
+                            },
+                        }}
                     />
-                </TableCell>
+                </StyledTableCell>
                 {headCells.map((headCell) => (
-                    <TableCell
+                    <StyledTableCell
                         key={headCell.id}
                         align={'left'}
                         padding={'normal'}
@@ -62,6 +70,11 @@ function EnhancedTableHead(props) {
                             active={orderBy === headCell.id}
                             direction={orderBy === headCell.id ? order : 'asc'}
                             onClick={createSortHandler(headCell.id)}
+                            sx={{
+                                '&:hover':{
+                                    color: '#FFF'
+                                }
+                            }}
                         >
                             {headCell.label}
                             {orderBy === headCell.id ? (
@@ -70,10 +83,10 @@ function EnhancedTableHead(props) {
                                 </Box>
                             ) : null}
                         </TableSortLabel>
-                    </TableCell>
+                    </StyledTableCell>
                 ))}
-                <TableCell />
-            </TableRow>
+                <StyledTableCell />
+            </StyledTableRow>
         </TableHead>
     );
 }

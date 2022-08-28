@@ -3,13 +3,12 @@ import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 
@@ -155,7 +154,7 @@ export default function EnhancedTable(props) {
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
                                 return (
-                                    <TableRow
+                                    <StyledTableRow
                                         hover
                                         onClick={(event) => handleClick(event, row.id)}
                                         role="checkbox"
@@ -164,7 +163,7 @@ export default function EnhancedTable(props) {
                                         key={row.id}
                                         selected={isItemSelected}
                                     >
-                                        <TableCell padding="checkbox">
+                                        <StyledTableCell padding="checkbox">
                                             <Checkbox
                                                 color="primary"
                                                 checked={isItemSelected}
@@ -172,8 +171,8 @@ export default function EnhancedTable(props) {
                                                     'aria-labelledby': labelId,
                                                 }}
                                             />
-                                        </TableCell>
-                                        <TableCell
+                                        </StyledTableCell>
+                                        <StyledTableCell
                                             component="th"
                                             id={labelId}
                                             scope="row"
@@ -185,26 +184,26 @@ export default function EnhancedTable(props) {
                                         >
                                             <span className='table__name'>{row.name}</span>
 
-                                        </TableCell>
-                                        <TableCell align="left">{row.method}</TableCell>
-                                        <TableCell align="left">{row.user} </TableCell>
-                                        <TableCell align="left">{row.created_at}</TableCell>
-                                        <TableCell align="left">{row.favourite_count}</TableCell>
-                                        <TableCell align='right'>
+                                        </StyledTableCell>
+                                        <StyledTableCell align="left">{row.method}</StyledTableCell>
+                                        <StyledTableCell align="left">{row.user} </StyledTableCell>
+                                        <StyledTableCell align="left">{row.created_at}</StyledTableCell>
+                                        <StyledTableCell align="left">{row.favourite_count}</StyledTableCell>
+                                        <StyledTableCell align='right'>
                                             <NavLink to={`/remedy/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
-                                        </TableCell>
-                                    </TableRow>
+                                        </StyledTableCell>
+                                    </StyledTableRow>
                                 );
                             })}
                             {emptyRows > 0 && (
-                                <TableRow
+                                <StyledTableRow
                                     style={{
                                         height: 53 * emptyRows,
                                     }}
                                 >
-                                    <TableCell colSpan={7} />
-                                </TableRow>
+                                    <StyledTableCell colSpan={7} />
+                                </StyledTableRow>
                             )}
                         </TableBody>
 

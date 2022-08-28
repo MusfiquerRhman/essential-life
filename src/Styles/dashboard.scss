@@ -14,31 +14,9 @@
             margin-right: 1.5rem;
         }
 
-        .cards__text {
-            color: var(--color-sidebar);
-        }
-
         .cards__value {
             font-size: 2.5rem;
             font-weight: 400;
-        }
-
-        .chart__title {
-            display: flex;
-            flex-direction: row;
-
-            .chart__value {
-                margin-left: 0.5rem;
-                color: var(--color-text--light);
-            }
-        }
-
-        .chart__text {
-            margin-bottom: 0.75rem;
-        }
-
-        .chart {
-            margin-top: 0.5rem;
         }
 
         .card__title--box {
@@ -47,19 +25,71 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-
-            select {
-                margin: 0;
-                margin-bottom: 0.75rem;
-                background-color: transparent;
-                border: none;
-                font-family: inherit;
-                font-size: inherit;
-                cursor: inherit;
-                line-height: inherit;
-                border: none;
-                width: fit-content;
-            }
         }
+    }
+
+    .cards__line {
+        background: var(--color-content);
+        width: 100%;
+        border-radius: var(--border-redius);
+        overflow: hidden;
+        height: fit-content;
+
+        &:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+
+        .cards__value {
+            font-size: 2.5rem;
+            font-weight: 400;
+            padding: 0rem 1.5rem;
+        }
+
+        .card__title--box {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 1.5rem 1.5rem 0 1.5rem;
+
+        }
+    }
+
+    
+    .cards__text {
+        color: var(--color-sidebar);
+    }
+
+    .chart__title {
+        display: flex;
+        flex-direction: row;
+
+        .chart__value {
+            margin-left: 0.5rem;
+            color: var(--color-text--light);
+        }
+    }
+
+    .chart__text {
+        margin-bottom: 0.75rem;
+    }
+
+    .chart {
+        margin-top: 0.5rem;
+        transform: scale(1.03);
+    }
+
+    select {
+        margin: 0;
+        margin-bottom: 0.75rem;
+        background-color: transparent;
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        cursor: inherit;
+        line-height: inherit;
+        border: none;
+        width: fit-content;
     }
 }

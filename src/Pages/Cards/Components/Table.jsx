@@ -3,14 +3,12 @@ import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
-import '../../../index.scss';
+import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 
@@ -169,7 +167,7 @@ export default function EnhancedTable(props) {
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
                                 return (
-                                    <TableRow
+                                    <StyledTableRow
                                         hover
                                         onClick={(event) => handleClick(event, row.id)}
                                         role="checkbox"
@@ -178,7 +176,7 @@ export default function EnhancedTable(props) {
                                         key={row.id}
                                         selected={isItemSelected}
                                     >
-                                        <TableCell padding="checkbox">
+                                        <StyledTableCell padding="checkbox">
                                             <Checkbox
                                                 color="primary"
                                                 checked={isItemSelected}
@@ -186,8 +184,8 @@ export default function EnhancedTable(props) {
                                                     'aria-labelledby': labelId,
                                                 }}
                                             />
-                                        </TableCell>
-                                        <TableCell
+                                        </StyledTableCell>
+                                        <StyledTableCell
                                             component="th"
                                             id={labelId}
                                             scope="row"
@@ -198,27 +196,27 @@ export default function EnhancedTable(props) {
                                             }}
                                         >
                                             <span className='table__name'>{row.title}</span>
-                                        </TableCell>
-                                        <TableCell align="left"><div className='activity__balls' style={row.ios ? {background: "#3Ac073"} : {background: '#E74444'} }/></TableCell>
-                                        <TableCell align="left"><div className='activity__balls' style={row.android ? {background: "#3Ac073"} : {background: '#E74444'} }/></TableCell>
-                                        <TableCell align="left"><div className='activity__balls' style={row.active ? {background: "#3Ac073"} : {background: '#E74444'} }/></TableCell>
-                                        <TableCell align="left">{row.regions}</TableCell>
-                                        <TableCell align='right'>
+                                        </StyledTableCell>
+                                        <StyledTableCell align="center"><div className='activity__balls' style={row.ios ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>
+                                        <StyledTableCell align="center"><div className='activity__balls' style={row.android ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>
+                                        <StyledTableCell align="center"><div className='activity__balls' style={row.active ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>
+                                        <StyledTableCell align="left">{row.regions}</StyledTableCell>
+                                        <StyledTableCell align='right'>
                                             <NavLink to={`/cards/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
-                                        </TableCell>
-                                    </TableRow>
+                                        </StyledTableCell>
+                                    </StyledTableRow>
                                 );
                             })}
 
                             {emptyRows > 0 && (
-                                <TableRow
+                                <StyledTableRow
                                     style={{
                                         height: 53 * emptyRows,
                                     }}
                                 >
-                                    <TableCell colSpan={7} />
-                                </TableRow>
+                                    <StyledTableCell colSpan={7} />
+                                </StyledTableRow>
                             )}
                         </TableBody>
 

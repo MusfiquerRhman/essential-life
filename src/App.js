@@ -3,7 +3,7 @@ import './App.css';
 import NavBar from './Components/NavBar/NavBar';
 import Sidebar from './Components/Sidebar/Sidebar';
 import {
-  AddAilmentsForm, AddBodySystemForm, AddCardsForm, AddContentSuggestion, AddRemedyForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion,
+  AddAilmentsForm, AddBodySystemForm, AddCardsForm, AddCategoryForm, AddContentSuggestion, AddRemedyForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion,
   Dashboard, EditAilmentForm, EditAilmentSolution, EditAilmentSupportiveSolution, EditUGCRecipeForm, EditUGCRemedyForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements, Symptoms, UGCRecipes,
   UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
 } from './Pages';
@@ -58,6 +58,7 @@ function App() {
 
           {/* Categories */}
           <Route exact path='/categories' element={<Categories />} />
+          <Route exact path='/categories/new' element={<AddCategoryForm />} />
 
           {/* Recipes */}
           <Route exact path='/recipes' element={<Recipes />} />

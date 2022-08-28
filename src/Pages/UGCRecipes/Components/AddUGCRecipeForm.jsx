@@ -18,6 +18,7 @@ function AddUGCRecipeForm() {
             reader.readAsDataURL(files[0]);
         }
     };
+    
     return (
         <section>
             <h1>New Recipe</h1>

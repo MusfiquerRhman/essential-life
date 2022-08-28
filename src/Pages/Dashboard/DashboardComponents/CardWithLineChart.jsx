@@ -1,11 +1,11 @@
 import {
-    CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title,
+    CategoryScale, Chart as ChartJS, Filler, Legend, LinearScale, LineElement, PointElement, Title,
     Tooltip
 } from 'chart.js';
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 
-ChartJS.register( CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register( CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
 export const options = {
     responsive: true,
@@ -27,15 +27,16 @@ export const data = {
     datasets: [
         {
             data: [100, 74, 58, 55, 110, 74, 10, 50, 80, 50],
-            borderColor: 'rgba(54, 162, 235, 1)',
-            backgroundColor: 'rgba(54, 162, 235, 0.4)',
+            borderColor: ['rgba(54, 162, 235, 1)'],
+            fill: true,
+            backgroundColor: ['rgba(54, 162, 235, 0.4)'],
         }
     ],
 };
 
 function CardWithLineChart({text}) {
     return (
-        <div className='cards'>
+        <div className='cards__line'>
             <div className='card__title--box'>
                 <p className='cards__text chart__text'>{text}</p>
                 <select name="Days" id="days">
@@ -50,7 +51,7 @@ function CardWithLineChart({text}) {
                 <Line
                     data={data}
                     height={100}
-                    width={400}
+                    width={410}
                     options={{
                         maintainAspectRatio: false,
                         plugins: {
@@ -68,7 +69,7 @@ function CardWithLineChart({text}) {
                                 },
                                 grid: {
                                     display: false,
-                                    //drawBorder: false,
+                                    drawBorder: false,
                                 },
                             },
                             y: {
@@ -77,10 +78,15 @@ function CardWithLineChart({text}) {
                                 },
                                 grid: {
                                     display: false,
-                                    //drawBorder: false,
+                                    drawBorder: false,
                                 }
                             }
-                        }
+                        },
+                        layout: {
+                            padding: {
+                              bottom: -100
+                            }
+                        },
                     }}
                 />
             </div>

@@ -1,8 +1,11 @@
 import React from 'react'
+import Dashboard from "../Dashboard/Dashboard"
 
 function Users() {
   return (
-    <div>Users</div>
+    <div>
+      <Dashboard />
+    </div>
   )
 }
 

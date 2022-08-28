@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
-import '../../../index.scss';
+import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 
@@ -167,7 +167,7 @@ export default function EnhancedTable(props) {
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
                                 return (
-                                    <TableRow
+                                    <StyledTableRow
                                         hover
                                         onClick={(event) => handleClick(event, row.id)}
                                         role="checkbox"
@@ -176,7 +176,7 @@ export default function EnhancedTable(props) {
                                         key={row.id}
                                         selected={isItemSelected}
                                     >
-                                        <TableCell padding="checkbox">
+                                        <StyledTableCell padding="checkbox">
                                             <Checkbox
                                                 color="primary"
                                                 checked={isItemSelected}
@@ -184,9 +184,13 @@ export default function EnhancedTable(props) {
                                                     'aria-labelledby': labelId,
                                                 }}
                                             />
-                                        </TableCell>
-                                        <TableCell align="center">{row.photo}</TableCell>
-                                        <TableCell
+                                        </StyledTableCell>
+                                        {row.photo === '--' ? (
+                                            <StyledTableCell align="center">{row.photo}</StyledTableCell>
+                                        ) : (
+                                            <StyledTableCell align="center"><img className='table__img' src={row.photo} alt='product'/></StyledTableCell>
+                                        )}
+                                        <StyledTableCell
                                             component="th"
                                             id={labelId}
                                             scope="row"
@@ -197,28 +201,28 @@ export default function EnhancedTable(props) {
                                             }}
                                         >
                                             <span className='table__name'>{row.name}</span>
-                                        </TableCell>
-                                        <TableCell align="left">{row.public_recipe}</TableCell>
-                                        <TableCell align="left"><span className='table__userName'>{row.user}</span> </TableCell>
-                                        <TableCell align="left">{row.status}</TableCell>
-                                        <TableCell align="left">{row.rejection_reason}</TableCell>
-                                        <TableCell align="left">{row.created_at}</TableCell>
-                                        <TableCell align='right'>
+                                        </StyledTableCell>
+                                        <StyledTableCell align="left">{row.public_recipe}</StyledTableCell>
+                                        <StyledTableCell align="left"><span className='table__userName'>{row.user}</span> </StyledTableCell>
+                                        <StyledTableCell align="left">{row.status}</StyledTableCell>
+                                        <StyledTableCell align="left">{row.rejection_reason}</StyledTableCell>
+                                        <StyledTableCell align="left">{row.created_at}</StyledTableCell>
+                                        <StyledTableCell align='right'>
                                             <NavLink to={`/ugcremedy/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
-                                        </TableCell>
-                                    </TableRow>
+                                        </StyledTableCell>
+                                    </StyledTableRow>
                                 );
                             })}
 
                             {emptyRows > 0 && (
-                                <TableRow
+                                <StyledTableCell
                                     style={{
                                         height: 53 * emptyRows,
                                     }}
                                 >
-                                    <TableCell colSpan={7} />
-                                </TableRow>
+                                    <StyledTableCell colSpan={7} />
+                                </StyledTableCell>
                             )}
                         </TableBody>
 

@@ -16,6 +16,7 @@ export { default as Cards } from "./Cards/Cards";
 export { default as AddCardsForm } from "./Cards/Components/AddCardsForm";
 // Category
 export { default as Categories } from "./Categories/Categories";
+export { default as AddCategoryForm } from "./Categories/Components/AddCategoryForm";
 // Constituents
 export { default as Constituents } from "./Constituents/Constituents";
 // Content Suggestion

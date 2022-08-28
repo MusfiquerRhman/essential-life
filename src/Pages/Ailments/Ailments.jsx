@@ -7,7 +7,6 @@ import Table from './Components/Table';
 
 function Ailments() {
   const [selected, setSelected] = useState([]);
-  const [contentStatus, setcontentStatus] = React.useState('--');
   const [action, setAction] = React.useState('');
 
   // useEffect(() => {
@@ -38,8 +37,6 @@ function Ailments() {
           selected={selected}
           setSelectedArray={setSelected}
           handleSelectDeleteAll={handleSelectDeleteAll}
-          contentStatus={contentStatus}
-          setcontentStatus={setcontentStatus}
           action={action}
           setAction={setAction}
           handleClickExecuteAction={handleClickExecuteAction} 

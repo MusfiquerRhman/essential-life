@@ -16,33 +16,27 @@ import EnhancedTableToolbar from './EnhancedTableToolbar';
 
 import * as React from 'react';
 
-function createData(id, photo, name, public_recipe, user, status, rejection_reason, created_at) {
+function createData(id, title, ios, android, active, regions) {
     return {
         id,
-        photo,
-        name,
-        public_recipe,
-        user,
-        status,
-        rejection_reason,
-        created_at
+        title,
+        ios,
+        android,
+        active,
+        regions,
     };
 }
 
 const rows = [
-    createData(1 ,'--', 'wow1', '--', 'chef', 'Private', '--', 'Aug 11 2022'),
-    createData(2 ,'--', 'wow2', '--', 'chef', 'Private', '--', 'Aug 12 2022'),
-    createData(3 ,'--', 'wow3', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(4 ,'--', 'wow4', '--', 'ahef', 'Private', '--', 'Aug 13 2022'),
-    createData(5 ,'--', 'wow5', '--', 'chef', 'Private', '--', 'Aug 14 2022'),
-    createData(6 ,'--', 'wow6', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(7 ,'--', 'wow7', '--', 'fhef', 'Private', '--', 'Aug 13 2022'),
-    createData(8 ,'--', 'wow8', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(9 ,'--', 'wow9', '--', 'chef', 'Private', '--', 'Aug 10 2022'),
-    createData(10 ,'--', 'wow10', '--', 'vhef', 'Private', '--', 'Aug 13 2022'),
-    createData(11 ,'--', 'wow11', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(12 ,'--', 'wow12', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(13 ,'--', 'wow13', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
+    createData(1 ,'Best Products Best Prices at OilLife.com', true, false, true, 'Australia, Canada, China, Costa Rica, EU, Guatemala, Hong Kong, Japan, Korea, Malaysia, Mexico, New Zealand, Singapore, Taiwan, US'),
+    createData(2 ,'Best Products Best Prices at OilLife.com', true, false, true, 'Australia, Canada, China, Costa Rica, EU, Guatemala, Hong Kong, Japan, Korea, Malaysia, Mexico, New Zealand, Singapore, Taiwan, US'),
+    createData(3 ,'Best Products Best Prices at OilLife.com', false, true, false, 'Australia, Canada, China, Costa Rica, EU, Guatemala, Hong Kong, Japan, Korea, Malaysia, Mexico, New Zealand, Singapore, Taiwan, US'),
+    createData(4 ,'Best Products Best Prices at OilLife.com', true, false, true, 'Australia, Canada, China, Costa Rica, EU, Guatemala, Hong Kong, Japan, Korea, Malaysia, Mexico, New Zealand, Singapore, Taiwan, US'),
+    createData(5 ,'Best Products Best Prices at OilLife.com', true, false, true, 'Australia, Canada, China, Costa Rica, EU, Guatemala, Hong Kong, Japan, Korea, Malaysia, Mexico, New Zealand, Singapore, Taiwan, US'),
+    createData(6 ,'Best Products Best Prices at OilLife.com', true, true, false, 'Australia, Canada, China, Costa Rica, EU, Guatemala, Hong Kong, Japan, Korea, Malaysia, Mexico, New Zealand, Singapore, Taiwan, US'),
+    createData(7 ,'Best Products Best Prices at OilLife.com', true, false, true, 'Australia, Canada, China, Costa Rica, EU, Guatemala, Hong Kong, Japan, Korea, Malaysia, Mexico, New Zealand, Singapore, Taiwan, US'),
+    createData(8 ,'Best Products Best Prices at OilLife.com', false, true, true, 'Australia, Canada, China, Costa Rica, EU, Guatemala, Hong Kong, Japan, Korea, Malaysia, Mexico, New Zealand, Singapore, Taiwan, US'),
+    createData(9 ,'Best Products Best Prices at OilLife.com', true, true, true, 'Australia, Canada, China, Costa Rica, EU, Guatemala, Hong Kong, Japan, Korea, Malaysia, Mexico, New Zealand, Singapore, Taiwan, US'),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -77,10 +71,14 @@ export default function EnhancedTable(props) {
     const {
         setSelectedArray,
         handleSelectDeleteAll,
-        contentStatus,
-        setcontentStatus,
-        action,
-        setAction,
+        visibleInRegion,
+        setVisibleInregion,
+        showForIOS,
+        setShowForIOS,
+        isActive,
+        setIsActive,
+        showForAndroid,
+        setShowForAndroid,
         handleClickExecuteAction,
     } = props
 
@@ -139,10 +137,14 @@ export default function EnhancedTable(props) {
                 <EnhancedTableToolbar
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
-                    contentStatus={contentStatus}
-                    setcontentStatus={setcontentStatus}
-                    action={action}
-                    setAction={setAction}
+                    visibleInRegion={visibleInRegion}
+                    setVisibleInregion={setVisibleInregion}
+                    showForIOS={showForIOS}
+                    setShowForIOS={setShowForIOS}
+                    isActive={isActive}
+                    setIsActive={setIsActive}
+                    showForAndroid={showForAndroid}
+                    setShowForAndroid={setShowForAndroid}
                     handleClickExecuteAction={handleClickExecuteAction}
                 />
 
@@ -185,7 +187,6 @@ export default function EnhancedTable(props) {
                                                 }}
                                             />
                                         </TableCell>
-                                        <TableCell align="center">{row.photo}</TableCell>
                                         <TableCell
                                             component="th"
                                             id={labelId}
@@ -196,15 +197,14 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <span className='table__name'>{row.name}</span>
+                                            <span className='table__name'>{row.title}</span>
                                         </TableCell>
-                                        <TableCell align="left">{row.public_recipe}</TableCell>
-                                        <TableCell align="left"><span className='table__userName'>{row.user}</span> </TableCell>
-                                        <TableCell align="left">{row.status}</TableCell>
-                                        <TableCell align="left">{row.rejection_reason}</TableCell>
-                                        <TableCell align="left">{row.created_at}</TableCell>
+                                        <TableCell align="left"><div className='activity__balls' style={row.ios ? {background: "#3Ac073"} : {background: '#E74444'} }/></TableCell>
+                                        <TableCell align="left"><div className='activity__balls' style={row.android ? {background: "#3Ac073"} : {background: '#E74444'} }/></TableCell>
+                                        <TableCell align="left"><div className='activity__balls' style={row.active ? {background: "#3Ac073"} : {background: '#E74444'} }/></TableCell>
+                                        <TableCell align="left">{row.regions}</TableCell>
                                         <TableCell align='right'>
-                                            <NavLink to={`/ugcremedy/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/cards/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </TableCell>
                                     </TableRow>

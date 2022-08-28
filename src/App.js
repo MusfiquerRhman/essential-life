@@ -3,7 +3,7 @@ import './App.css';
 import NavBar from './Components/NavBar/NavBar';
 import Sidebar from './Components/Sidebar/Sidebar';
 import {
-  AddAilmentsForm, AddBodySystemForm, AddContentSuggestion, AddUGCRecipeForm, AddUGCRemedyForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion,
+  AddAilmentsForm, AddBodySystemForm, AddCardsForm, AddContentSuggestion, AddRemedyForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion,
   Dashboard, EditAilmentForm, EditAilmentSolution, EditAilmentSupportiveSolution, EditUGCRecipeForm, EditUGCRemedyForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements, Symptoms, UGCRecipes,
   UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
 } from './Pages';
@@ -44,36 +44,50 @@ function App() {
           <Route exact path='/body-system' element={<BodySystem />}/>
           <Route exact path='/body-system/new' element={<AddBodySystemForm />}/>
 
+          {/* Remedies */}
           <Route exact path='/remedies' element={<Remedies />} />
+          <Route exact path='/remedies/new' element={<AddRemedyForm />} />
 
+          {/* Symptoms */}
           <Route exact path='/symptoms' element={<Symptoms />} />
+          <Route exact path='/symptoms/new/' element={<AddSymptomsForm />} />
 
+          {/* Cards */}
           <Route exact path='/cards' element={<Cards />} />
+          <Route exact path='/card/new' element={<AddCardsForm />} />
 
+          {/* Categories */}
           <Route exact path='/categories' element={<Categories />} />
 
+          {/* Recipes */}
           <Route exact path='/recipes' element={<Recipes />} />
 
+          {/* Blends */}
           <Route exact path='/blends' element={<Blends />} />
 
+          {/* Oil */}
           <Route exact path='/oil' element={<Oil />} />
 
+          {/* Suplements */}
           <Route exact path='/supplements' element={<Supplements />} />
 
+          {/* Constituents */}
           <Route exact path='/constituents' element={<Constituents />} />
 
+          {/* Properties */}
           <Route exact path='/properties' element={<Properties />} />
 
+          {/* Avaters */}
           <Route exact path='/avaters' element={<Avaters />} />
 
+          {/* users */}
           <Route exact path='/users' element={<Users />} />
 
+          {/* Global Status */}
           <Route exact path='/global-status' element={<GlobalStatus />} />
 
+          {/* Seed Download */}
           <Route exact path='/seed-download' element={<SeedDownload />} />
-
-
-
 
         </Routes>
       </Sidebar>

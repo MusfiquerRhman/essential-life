@@ -62,7 +62,7 @@ function EnhancedTableToolbar(props) {
                     id="tableTitle"
                     component="div"
                 >
-                    Ailments
+                    Symptoms
                 </Typography>
             )}
 

@@ -18,7 +18,7 @@ const names = [
     'Kelly Snyder',
 ];
 
-function AilmentForm(props) {
+function SymptomsForm(props) {
     const {
         bodySystemChip,
         handleChangeBodySystem,
@@ -26,9 +26,9 @@ function AilmentForm(props) {
         relatedBodySystemChip,
         handleDeleteRelatedBodySystem,
         handleChangeRelatedBodySystem,
-        handleDeleteSymptoms,
-        handleChangeSymptoms,
-        symptoms,
+        handleDeleteAilments,
+        handleChangeAilments,
+        ailments,
         setName,
         name,
         type,
@@ -91,8 +91,8 @@ function AilmentForm(props) {
             <label htmlFor="type" className='form__label'>Type</label>
             <select name="Days" id="type" className='full__length form__select' onChange={onChangeType} value={type}>
                 <option disabled value="">Choose an option</option>
-                <option value="ailment">Ailment</option>
                 <option value="symptom">Symptom</option>
+                <option value="ailment">Ailment</option>
             </select>
 
             <label htmlFor="Description" className='form__label' style={{ marginTop: '2rem' }}>Short Description</label>
@@ -184,14 +184,14 @@ function AilmentForm(props) {
                 </div>
             </div>
 
-            <label htmlFor="Systems" className='form__label' style={{ marginTop: '2rem' }}>Symptoms</label>
+            <label htmlFor="Ailments" className='form__label' style={{ marginTop: '2rem' }}>Ailments</label>
             <div className='chip__container'>
                 <div className='chips'>
-                    {symptoms.map((value) => (
+                    {ailments.map((value) => (
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }} 
                             key={value} 
                             label={value} 
-                            onDelete={() => handleDeleteSymptoms(value)} 
+                            onDelete={() => handleDeleteAilments(value)} 
                         />
                     ))}
                 </div>
@@ -217,7 +217,7 @@ function AilmentForm(props) {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeSymptoms(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAilments(item)}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>
@@ -226,4 +226,4 @@ function AilmentForm(props) {
     )
 }
 
-export default AilmentForm
+export default SymptomsForm

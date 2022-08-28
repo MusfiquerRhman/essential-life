@@ -10,39 +10,33 @@ import TableRow from '@mui/material/TableRow';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
-import '../../../index.scss';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 
 import * as React from 'react';
 
-function createData(id, photo, name, public_recipe, user, status, rejection_reason, created_at) {
+function createData(id, name, short_description) {
     return {
         id,
-        photo,
         name,
-        public_recipe,
-        user,
-        status,
-        rejection_reason,
-        created_at
+        short_description,
     };
 }
 
 const rows = [
-    createData(1 ,'--', 'wow1', '--', 'chef', 'Private', '--', 'Aug 11 2022'),
-    createData(2 ,'--', 'wow2', '--', 'chef', 'Private', '--', 'Aug 12 2022'),
-    createData(3 ,'--', 'wow3', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(4 ,'--', 'wow4', '--', 'ahef', 'Private', '--', 'Aug 13 2022'),
-    createData(5 ,'--', 'wow5', '--', 'chef', 'Private', '--', 'Aug 14 2022'),
-    createData(6 ,'--', 'wow6', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(7 ,'--', 'wow7', '--', 'fhef', 'Private', '--', 'Aug 13 2022'),
-    createData(8 ,'--', 'wow8', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(9 ,'--', 'wow9', '--', 'chef', 'Private', '--', 'Aug 10 2022'),
-    createData(10 ,'--', 'wow10', '--', 'vhef', 'Private', '--', 'Aug 13 2022'),
-    createData(11 ,'--', 'wow11', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(12 ,'--', 'wow12', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
-    createData(13 ,'--', 'wow13', '--', 'chef', 'Private', '--', 'Aug 13 2022'),
+    createData(1 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(2 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(3 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(4 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(5 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(6 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(7 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(8 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(9 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(10 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(11 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(12 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(13 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -77,8 +71,6 @@ export default function EnhancedTable(props) {
     const {
         setSelectedArray,
         handleSelectDeleteAll,
-        contentStatus,
-        setcontentStatus,
         action,
         setAction,
         handleClickExecuteAction,
@@ -127,7 +119,7 @@ export default function EnhancedTable(props) {
     };
 
 
-    const isSelected = (id) => selected.indexOf(id) !== -1;
+    const isSelected = (name) => selected.indexOf(name) !== -1;
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -139,8 +131,6 @@ export default function EnhancedTable(props) {
                 <EnhancedTableToolbar
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
-                    contentStatus={contentStatus}
-                    setcontentStatus={setcontentStatus}
                     action={action}
                     setAction={setAction}
                     handleClickExecuteAction={handleClickExecuteAction}
@@ -185,7 +175,6 @@ export default function EnhancedTable(props) {
                                                 }}
                                             />
                                         </TableCell>
-                                        <TableCell align="center">{row.photo}</TableCell>
                                         <TableCell
                                             component="th"
                                             id={labelId}
@@ -197,14 +186,11 @@ export default function EnhancedTable(props) {
                                             }}
                                         >
                                             <span className='table__name'>{row.name}</span>
+
                                         </TableCell>
-                                        <TableCell align="left">{row.public_recipe}</TableCell>
-                                        <TableCell align="left"><span className='table__userName'>{row.user}</span> </TableCell>
-                                        <TableCell align="left">{row.status}</TableCell>
-                                        <TableCell align="left">{row.rejection_reason}</TableCell>
-                                        <TableCell align="left">{row.created_at}</TableCell>
+                                        <TableCell align="left">{row.short_description}</TableCell>
                                         <TableCell align='right'>
-                                            <NavLink to={`/ugcremedy/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/ailments/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </TableCell>
                                     </TableRow>

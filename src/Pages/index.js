@@ -10,9 +10,10 @@ export { default as Avaters } from "./Avaters/Avaters";
 export { default as Blends } from "./Blends/Blends";
 // Body System
 export { default as BodySystem } from "./BodySystem/BodySystem";
-export { default as AddBodySystemForm} from "./BodySystem/Component/AddBodySystemForm"
+export { default as AddBodySystemForm } from "./BodySystem/Component/AddBodySystemForm";
 // Cards
 export { default as Cards } from "./Cards/Cards";
+export { default as AddCardsForm } from "./Cards/Components/AddCardsForm";
 // Category
 export { default as Categories } from "./Categories/Categories";
 // Constituents
@@ -30,6 +31,7 @@ export { default as Oil } from "./Oil/Oil";
 export { default as Properties } from "./Properties/Properties";
 // Recipes
 export { default as Recipes } from "./Recipes/Recipes";
+export { default as AddRemedyForm } from "./Remedies/Components/AddRemedyForm";
 // Remedies
 export { default as Remedies } from "./Remedies/Remedies";
 // Seed Download
@@ -37,6 +39,7 @@ export { default as SeedDownload } from "./SeedDownload/SeedDownload";
 // Suplements
 export { default as Supplements } from "./Supplements/Supplements";
 // Symptoms
+export { default as AddSymptomsForm } from "./Symptoms/Components/AddSymptomsForm";
 export { default as Symptoms } from "./Symptoms/Symptoms";
 // UGCRecipes
 export { default as AddUGCRecipeForm } from "./UGCRecipes/Components/AddUGCRecipeForm";

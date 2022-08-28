@@ -1,5 +1,4 @@
 import React from 'react'
-import "../dashboard.scss"
 
 function Cards({text, value}) {
   return (

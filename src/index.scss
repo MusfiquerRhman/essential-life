@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 @import './Styles/formStyles.scss';
 @import './Styles/tableStyles.scss';
+@import './Styles/ailmentsStyles.scss';
+@import './Styles/dashboard.scss';
 
 :root {
   --color-sidebar: #2e2f41;
@@ -14,6 +16,11 @@
   --transition: all 400ms ease;
 
   --border-redius: 0.5rem;
+}
+
+.light__text {
+  color: var(--color-text--light);
+  font-size: 0.8rem;
 }
 
 * {
@@ -112,10 +119,6 @@ textarea::placeholder {
   color: var(--color-sidebar--text);
 }
 
-.supportive__container {
-  
-}
-
 .full__length {
   width: 100%;
 }
@@ -123,4 +126,18 @@ textarea::placeholder {
 .flex__row {
   display: flex;
   flex-direction: row;
+}
+
+.switch__box {
+  background: var(--color-background);
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.activity__balls {
+  width: 1rem;
+  height: 1rem; 
+  border-radius: 1rem;
 }

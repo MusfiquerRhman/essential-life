@@ -1,15 +1,15 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import { default as React, useState } from 'react';
-import AilmentForm from './AilmentForm';
+import SymptomsForm from './SymptomsForm';
 
-function AddAilmentsForm() {
+function AddSymptomsForm() {
     const [name, setName] = useState('')
-    const [type, setType] = useState('ailment');
+    const [type, setType] = useState('symptom');
     const [description, setDescription] = useState('');
     const [bodySystemChip, setBodySystemChip] = React.useState([]);
     const [relatedBodySystemChip, setRelatedBodySystemChip] = React.useState([]);
-    const [symptoms, setSymptoms] = React.useState([]);
+    const [ailments, setAilments] = React.useState([]);
 
     const handleChangeRelatedBodySystem = (value) => {
         let exist = relatedBodySystemChip.indexOf(value);
@@ -35,32 +35,32 @@ function AddAilmentsForm() {
         setBodySystemChip(previousChips => previousChips.filter(name => name !== selectedName))
     };
 
-    const handleChangeSymptoms = (value) => {
-        let exist = symptoms.indexOf(value);
+    const handleChangeAilments = (value) => {
+        let exist = ailments.indexOf(value);
 
         if (exist === -1) {
-            setSymptoms(oldValues => [...oldValues, value]);
+            setAilments(oldValues => [...oldValues, value]);
         }
     };
 
-    const handleDeleteSymptoms = (selectedName) => {
-        setSymptoms(previousChips => previousChips.filter(name => name !== selectedName))
+    const handleDeleteAilments = (selectedName) => {
+        setAilments(previousChips => previousChips.filter(name => name !== selectedName))
     };
 
     return (
         <section>
             <h1>New Ailment</h1>
             <div className='form__container'>
-                <AilmentForm
+                <SymptomsForm
                     bodySystemChip={bodySystemChip}
                     handleChangeBodySystem={handleChangeBodySystem}
                     handleDeleteBodySystem={handleDeleteBodySystem}
                     relatedBodySystemChip={relatedBodySystemChip}
                     handleDeleteRelatedBodySystem={handleDeleteRelatedBodySystem}
                     handleChangeRelatedBodySystem={handleChangeRelatedBodySystem}
-                    handleDeleteSymptoms={handleDeleteSymptoms}
-                    handleChangeSymptoms={handleChangeSymptoms}
-                    symptoms={symptoms}
+                    handleDeleteAilments={handleDeleteAilments}
+                    handleChangeAilments={handleChangeAilments}
+                    ailments={ailments}
                     setName={setName}
                     name={name}
                     type={type}
@@ -70,7 +70,7 @@ function AddAilmentsForm() {
                 />
 
                 <div className='form__actions'>
-                    <Button className='form__button' startIcon={<AddIcon />} variant='contained' sx={{ borderRadius: '5rem' }}>Create Ailment</Button>
+                    <Button className='form__button' startIcon={<AddIcon />} variant='contained' sx={{ borderRadius: '5rem' }}>Create Symptoms</Button>
                     <Button className='form__button' startIcon={<AddIcon />} variant='outlined' sx={{ borderRadius: '5rem' }}>Create and Add another</Button>
                 </div>
             </div>
@@ -79,4 +79,4 @@ function AddAilmentsForm() {
     )
 }
 
-export default AddAilmentsForm
+export default AddSymptomsForm

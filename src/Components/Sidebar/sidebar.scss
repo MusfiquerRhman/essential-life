@@ -13,12 +13,12 @@
     overflow-x: hidden;
 
     &::-webkit-scrollbar {
-        width: 0.4rem;
+        width: 0.35rem;
         background: var(--color-background);
     }
 
     &::-webkit-scrollbar-thumb {
-        background: var( --color-text--light);
+        background: var(--color-text--light);
     }
 
     .sidebar__logo {

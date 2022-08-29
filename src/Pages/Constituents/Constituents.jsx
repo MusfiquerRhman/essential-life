@@ -25,7 +25,7 @@ function Constituents() {
       <div className='search__container'>
         <SearchBox />
         <Button startIcon={<AddIcon />} sx={{ borderRadius: '2rem' }} variant="contained">
-          <NavLink to='/Constituents/new' className='button'>Create Constituents</NavLink>
+          <NavLink to='/constituents/new' className='button'>Create Constituents</NavLink>
         </Button>
       </div>
 

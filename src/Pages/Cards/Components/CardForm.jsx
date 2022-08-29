@@ -1,12 +1,17 @@
 import Button from '@mui/material/Button';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { default as React, useReducer } from 'react';
-import { ACTION_TYPE, cardReducer, INITIAL_STATE } from '../../../Reducer/cardReducer';
 import IOSSwitch from '../../../Styles/iOSSwitch';
 
 
 function CardForm(props) {
-    const [state, dispatch] = useReducer(cardReducer, INITIAL_STATE)
+
+    const {
+        state,
+        dispatch,
+        ACTION_TYPE,
+    } = props;
+
 
     const handleChangeCheck = (event) => {
         dispatch({
@@ -348,7 +353,7 @@ function CardForm(props) {
 
             <label htmlFor="backgroundColor" className='form__label' style={{ marginTop: '2rem' }}>Background Color</label>
             <input type="text"
-                placeholder='Button Text'
+                placeholder='Background Color'
                 id='backgroundColor'
                 className='form__input'
                 onChange={onChangeInput}

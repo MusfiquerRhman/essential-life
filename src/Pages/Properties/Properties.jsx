@@ -25,7 +25,7 @@ function Properties() {
     <div className='search__container'>
       <SearchBox />
       <Button startIcon={<AddIcon />} sx={{ borderRadius: '2rem' }} variant="contained">
-        <NavLink to='/Constituents/new' className='button'>Create Properties</NavLink>
+        <NavLink to='/properties/new' className='button'>Create Properties Tag</NavLink>
       </Button>
     </div>
 

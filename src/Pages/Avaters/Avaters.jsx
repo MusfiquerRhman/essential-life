@@ -24,7 +24,7 @@ function Avaters() {
     <div className='search__container'>
       <SearchBox />
       <Button startIcon={<AddIcon />} sx={{ borderRadius: '2rem' }} variant="contained">
-        <NavLink to='/Constituents/new' className='button'>Create Avaters</NavLink>
+        <NavLink to='/avaters/new' className='button'>Create Avaters</NavLink>
       </Button>
     </div>
 

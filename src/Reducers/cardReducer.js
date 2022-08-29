@@ -26,7 +26,7 @@ export const ACTION_TYPE = {
     LOAD_DATA: "LOAD_DATA"
 }
 
-export const cardReducer = (state, action) => {
+export const cardReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
         case ACTION_TYPE.CHANGE_INPUT:
             return {

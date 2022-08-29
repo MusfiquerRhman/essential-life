@@ -27,7 +27,7 @@ function Oil() {
     <div className='search__container'>
       <SearchBox />
       <Button startIcon={<AddIcon />} sx={{ borderRadius: '2rem' }} variant="contained">
-        <NavLink to='/categories/new' className='button'>Create Oil</NavLink>
+        <NavLink to='/oil/new' className='button'>Create Oil</NavLink>
       </Button>
     </div>
 

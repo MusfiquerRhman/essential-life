@@ -29,7 +29,7 @@ function Blends() {
       <div className='search__container'>
         <SearchBox />
         <Button startIcon={<AddIcon />} sx={{ borderRadius: '2rem' }} variant="contained">
-          <NavLink to='/categories/new' className='button'>Create Blends</NavLink>
+          <NavLink to='/blends/new' className='button'>Create Blends</NavLink>
         </Button>
       </div>
 

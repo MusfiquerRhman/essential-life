@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import SearchBox from '../../Components/Common/SearchBox';
 import Table from './Components/Table';
 
-
 function Supplements() {
   const [selected, setSelected] = useState([]);
   const [action, setAction] = React.useState('');
@@ -29,7 +28,7 @@ function Supplements() {
       <div className='search__container'>
         <SearchBox />
         <Button startIcon={<AddIcon />} sx={{ borderRadius: '2rem' }} variant="contained">
-          <NavLink to='/categories/new' className='button'>Create Supplements</NavLink>
+          <NavLink to='/supplements/new' className='button'>Create Supplements</NavLink>
         </Button>
       </div>
 

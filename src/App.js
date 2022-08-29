@@ -2,11 +2,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import NavBar from './Components/NavBar/NavBar';
 import Sidebar from './Components/Sidebar/Sidebar';
+
 import {
-  AddAilmentsForm, AddBodySystemForm, AddCardsForm, AddCategoryForm, AddContentSuggestion, AddRemedyForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion,
+  AddAilmentsForm, AddAvaterForm, AddBlendsForm, AddBodySystemForm, AddCardsForm, AddCategoryForm, AddConstituentsFrom, AddContentSuggestion, AddOilForm, AddPropertiesForm, AddRecipesForm, AddRemedyForm, AddSuplementsForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion,
   Dashboard, EditAilmentForm, EditAilmentSolution, EditAilmentSupportiveSolution, EditUGCRecipeForm, EditUGCRemedyForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements, Symptoms, UGCRecipes,
   UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
 } from './Pages';
+
 
 function App() {
   return (
@@ -62,24 +64,31 @@ function App() {
 
           {/* Recipes */}
           <Route exact path='/recipes' element={<Recipes />} />
-
+          <Route exact path='/recipes/new' element={<AddRecipesForm />} />
+s
           {/* Blends */}
           <Route exact path='/blends' element={<Blends />} />
+          <Route exact path='/blends/new' element={<AddBlendsForm />} />
 
           {/* Oil */}
           <Route exact path='/oil' element={<Oil />} />
+          <Route exact path='/oil/new' element={<AddOilForm />} />
 
           {/* Suplements */}
           <Route exact path='/supplements' element={<Supplements />} />
+          <Route exact path='/supplements/new' element={<AddSuplementsForm />} />
 
           {/* Constituents */}
           <Route exact path='/constituents' element={<Constituents />} />
+          <Route exact path='/constituents/new' element={<AddConstituentsFrom />} />
 
           {/* Properties */}
           <Route exact path='/properties' element={<Properties />} />
+          <Route exact path='/properties/new' element={<AddPropertiesForm />} />
 
           {/* Avaters */}
           <Route exact path='/avaters' element={<Avaters />} />
+          <Route exact path='/avaters/new' element={<AddAvaterForm />} />
 
           {/* users */}
           <Route exact path='/users' element={<Users />} />

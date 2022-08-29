@@ -8,9 +8,9 @@ import TablePagination from '@mui/material/TablePagination';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
+import ToolBarForceUpdateUGC from '../../../Components/TablesToolBars/ToolBarForceUpdateUGC';
 import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
-import EnhancedTableHead from './EnhancedTableHead';
-import EnhancedTableToolbar from './EnhancedTableToolbar';
 
 import * as React from 'react';
 
@@ -19,6 +19,30 @@ function createData(id, name, method, user, created_at, favourite_count) {
         id, name, method, user, created_at, favourite_count
     };
 }
+
+const headCells = [
+    {
+        id: 'name',
+        label: 'Name',
+    },
+    {
+        id: 'method',
+        label: 'Method',
+    },
+    {
+        id: 'user',
+        label: 'User',
+    },
+    {
+        id: 'created_at',
+        label: 'Created At',
+    },
+    {
+        id: 'favourite_count',
+        label: 'Favourite Count',
+    },
+];
+
 
 const rows = [
     createData(1 ,'Allergies', 'Blend and apply one drop behind ears, temples, and thymus', '--', 'Aug 12 2022', 408),
@@ -123,7 +147,8 @@ export default function EnhancedTable(props) {
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-                <EnhancedTableToolbar
+                <ToolBarForceUpdateUGC
+                    title={"Remedies"}
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
                     contentStatus={contentStatus}
@@ -139,13 +164,14 @@ export default function EnhancedTable(props) {
                         aria-labelledby="tableTitle"
                         size={'medium'}
                     >
-                        <EnhancedTableHead
+                        <TableHeadNoPhoto
                             numSelected={selected.length}
                             onSelectAllClick={handleSelectAllClick}
                             rowCount={rows.length}
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
+                            headCells={headCells}
                         />
 
                         <TableBody>

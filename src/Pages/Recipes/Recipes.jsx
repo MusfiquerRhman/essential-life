@@ -9,6 +9,7 @@ import Table from './Components/Table';
 function Recipes() {
   const [selected, setSelected] = useState([]);
   const [action, setAction] = React.useState('');
+  const [contentStatus, setcontentStatus] = React.useState('--');
 
   // useEffect(() => {
   //   console.log(selected, contentStatus, action)
@@ -38,6 +39,8 @@ function Recipes() {
         <Table
         selected={selected}
         setSelectedArray={setSelected}
+        contentStatus={contentStatus}
+        setcontentStatus={setcontentStatus}
         handleSelectDeleteAll={handleSelectDeleteAll}
         action={action}
         setAction={setAction}

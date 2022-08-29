@@ -13,8 +13,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-function EnhancedTableToolbar(props) {
+function ToolBarForceUpdateUGC(props) {
     const {
+        title,
         numSelected,
         handleSelectDeleteAll,
         contentStatus,
@@ -80,7 +81,7 @@ function EnhancedTableToolbar(props) {
                     id="tableTitle"
                     component="div"
                 >
-                    Remedies
+                    {title}
                 </Typography>
             )}
             
@@ -193,4 +194,4 @@ function EnhancedTableToolbar(props) {
     );
 }
 
-export default EnhancedTableToolbar
+export default ToolBarForceUpdateUGC

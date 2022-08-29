@@ -4,29 +4,21 @@ import TableHead from '@mui/material/TableHead';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import React from 'react';
-import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
+import { StyledTableCell, StyledTableRow } from '../../Styles/StylesTableRowAndCell';
 
-const headCells = [
-    {
-        id: 'name',
-        label: 'Name',
-    },
-];
-
-
-function EnhancedTableHead(props) {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+function TableHeadWithPhoto(props) {
+    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headCells } = props;
 
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
-    };
+      };
 
     return (
         <TableHead>
             <StyledTableRow>
                 <StyledTableCell padding="checkbox">
                     <Checkbox
-                        color="primary"
+                        // color="primary"
                         indeterminate={numSelected > 0 && numSelected < rowCount}
                         checked={rowCount > 0 && numSelected === rowCount}
                         onChange={onSelectAllClick}
@@ -36,10 +28,13 @@ function EnhancedTableHead(props) {
                         sx={{
                             color: '#ffffff',
                             '&.Mui-checked': {
-                                color: '#FFFFFF',
+                              color: '#FFFFFF',
                             },
                         }}
                     />
+                </StyledTableCell>
+                <StyledTableCell align='center'>
+                    Photo
                 </StyledTableCell>
                 {headCells.map((headCell) => (
                     <StyledTableCell
@@ -72,4 +67,4 @@ function EnhancedTableHead(props) {
     );
 }
 
-export default EnhancedTableHead
+export default TableHeadWithPhoto

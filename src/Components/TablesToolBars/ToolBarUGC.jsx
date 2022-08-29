@@ -13,9 +13,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-
-function EnhancedTableToolbar(props) {
+function ToolBarUGC(props) {
     const {
+        title,
         numSelected,
         handleSelectDeleteAll,
         contentStatus,
@@ -81,7 +81,7 @@ function EnhancedTableToolbar(props) {
                     id="tableTitle"
                     component="div"
                 >
-                    Remedies
+                    {title}
                 </Typography>
             )}
             
@@ -98,13 +98,7 @@ function EnhancedTableToolbar(props) {
                             value={action}
                             label="Select An Action"
                             onChange={handleChangeAction}
-                            sx={{
-                                margin: '0',
-                                color: '#ffffff',
-                                '&.Mui-checked': {
-                                  color: '#FFFFFF',
-                                },
-                            }}
+                            sx={{ margin: '0' }}
                         >
                             <MenuItem value={'approve'}>Approve</MenuItem>
                             <MenuItem value={'rejected'}>Rejected</MenuItem>
@@ -203,4 +197,4 @@ function EnhancedTableToolbar(props) {
     );
 }
 
-export default EnhancedTableToolbar
+export default ToolBarUGC

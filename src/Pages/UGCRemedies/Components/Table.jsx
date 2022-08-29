@@ -3,18 +3,42 @@ import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
+import * as React from 'react';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import TableHeadWithPhoto from '../../../Components/TableHeads/TableHeadWithPhoto';
+import ToolBarUGC from '../../../Components/TablesToolBars/ToolBarUGC';
 import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
-import EnhancedTableHead from './EnhancedTableHead';
-import EnhancedTableToolbar from './EnhancedTableToolbar';
 
-import * as React from 'react';
+const headCells = [
+    {
+        id: 'name',
+        label: 'Name',
+    },
+    {
+        id: 'public_recipe',
+        label: 'Public Remedy',
+    },
+    {
+        id: 'user',
+        label: 'User',
+    },
+    {
+        id: 'status',
+        label: 'Status',
+    },
+    {
+        id: 'rejection_reason',
+        label: 'Rejection Reason',
+    },
+    {
+        id: 'created_at',
+        label: 'Created At',
+    },
+];
 
 function createData(id, photo, name, public_recipe, user, status, rejection_reason, created_at) {
     return {
@@ -136,7 +160,8 @@ export default function EnhancedTable(props) {
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-                <EnhancedTableToolbar
+                <ToolBarUGC
+                    title={'Remedies'}
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
                     contentStatus={contentStatus}
@@ -152,13 +177,14 @@ export default function EnhancedTable(props) {
                         aria-labelledby="tableTitle"
                         size={'medium'}
                     >
-                        <EnhancedTableHead
+                        <TableHeadWithPhoto
                             numSelected={selected.length}
                             onSelectAllClick={handleSelectAllClick}
                             rowCount={rows.length}
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
+                            headCells={headCells}
                         />
 
                         <TableBody>

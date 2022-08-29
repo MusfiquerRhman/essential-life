@@ -8,11 +8,36 @@ import TablePagination from '@mui/material/TablePagination';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
 import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
-import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 
 import * as React from 'react';
+
+const headCells = [
+    {
+        id: 'title',
+        label: 'Title',
+    },
+    {
+        id: 'ios',
+        label: 'Show For iOS',
+    },
+    {
+        id: 'android',
+        label: 'Show for Android',
+    },
+    {
+        id: 'active',
+        label: 'Active',
+    },
+    {
+        id: 'visibility',
+        label: 'Region Visibility',
+    },
+];
+
+
 
 function createData(id, title, ios, android, active, regions) {
     return {
@@ -152,13 +177,14 @@ export default function EnhancedTable(props) {
                         aria-labelledby="tableTitle"
                         size={'medium'}
                     >
-                        <EnhancedTableHead
+                        <TableHeadNoPhoto
                             numSelected={selected.length}
                             onSelectAllClick={handleSelectAllClick}
                             rowCount={rows.length}
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
+                            headCells={headCells}
                         />
 
                         <TableBody>

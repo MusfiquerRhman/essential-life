@@ -9,11 +9,19 @@ import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
 import { hand } from "../../../assests";
+import TableHeadWithPhoto from "../../../Components/TableHeads/TableHeadWithPhoto";
+import ToolBarJustDelete from '../../../Components/TablesToolBars/ToolBarJustDelete';
 import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
-import EnhancedTableHead from './EnhancedTableHead';
-import EnhancedTableToolbar from './EnhancedTableToolbar';
 
 import * as React from 'react';
+
+const headCells = [
+    {
+        id: 'created',
+        label: 'Created At'
+    }
+];
+
 
 function createData(id, photo, created_at) {
     return {
@@ -122,7 +130,8 @@ export default function EnhancedTable(props) {
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-                <EnhancedTableToolbar
+                <ToolBarJustDelete
+                    title="Avaters"
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
                 />
@@ -133,13 +142,14 @@ export default function EnhancedTable(props) {
                         aria-labelledby="tableTitle"
                         size={'medium'}
                     >
-                        <EnhancedTableHead
+                        <TableHeadWithPhoto
                             numSelected={selected.length}
                             onSelectAllClick={handleSelectAllClick}
                             rowCount={rows.length}
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
+                            headCells={headCells}
                         />
 
                         <TableBody>

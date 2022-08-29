@@ -8,11 +8,28 @@ import TablePagination from '@mui/material/TablePagination';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import TableHeadWithPhoto from '../../../Components/TableHeads/TableHeadWithPhoto';
+import ToolBarForceUpdate from '../../../Components/TablesToolBars/ToolBarForceUpdate';
 import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
-import EnhancedTableHead from './EnhancedTableHead';
-import EnhancedTableToolbar from './EnhancedTableToolbar';
 
 import * as React from 'react';
+
+const headCells = [
+    {
+        id: 'name',
+        label: 'Name',
+    },
+    {
+        id: 'fact',
+        label: 'Fact',
+    },
+    {
+        id: 'featured',
+        label: "Featured"
+    }
+];
+
+
 
 function createData(id, photo, name, fact, featured) {
     return {
@@ -126,7 +143,8 @@ export default function EnhancedTable(props) {
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-                <EnhancedTableToolbar
+                <ToolBarForceUpdate
+                    title="Supplements"
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
                     action={action}
@@ -140,13 +158,14 @@ export default function EnhancedTable(props) {
                         aria-labelledby="tableTitle"
                         size={'medium'}
                     >
-                        <EnhancedTableHead
+                        <TableHeadWithPhoto
                             numSelected={selected.length}
                             onSelectAllClick={handleSelectAllClick}
                             rowCount={rows.length}
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
+                            headCells={headCells}
                         />
 
                         <TableBody>

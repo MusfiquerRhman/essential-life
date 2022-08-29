@@ -1,40 +1,14 @@
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
-import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import React from 'react';
-import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
+import { StyledTableCell, StyledTableRow } from '../../Styles/StylesTableRowAndCell';
 
 
-const headCells = [
-    {
-        id: 'title',
-        label: 'Title',
-    },
-    {
-        id: 'ios',
-        label: 'Show For iOS',
-    },
-    {
-        id: 'android',
-        label: 'Show for Android',
-    },
-    {
-        id: 'active',
-        label: 'Active',
-    },
-    {
-        id: 'visibility',
-        label: 'Region Visibility',
-    },
-];
-
-
-function EnhancedTableHead(props) {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+function TableHeadNoPhoto(props) {
+    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headCells } = props;
 
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
@@ -91,4 +65,4 @@ function EnhancedTableHead(props) {
     );
 }
 
-export default EnhancedTableHead
+export default TableHeadNoPhoto

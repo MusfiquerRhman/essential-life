@@ -8,11 +8,18 @@ import TablePagination from '@mui/material/TablePagination';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import TableHeadNoPhoto from '../../../../Components/TableHeads/TableHeadNoPhoto';
+import ToolBarJustDelete from '../../../../Components/TablesToolBars/ToolBarJustDelete';
 import { StyledTableCell, StyledTableRow } from '../../../../Styles/StylesTableRowAndCell';
-import EnhancedTableHead from './EnhancedTableHead';
-import EnhancedTableToolbar from './EnhancedTableToolbar';
 
 import * as React from 'react';
+
+const headCells = [
+    {
+        id: 'type',
+        label: 'Solution',
+    },
+];
 
 function createData(id, type, name, description, isCupActive, isNoseActive, isHandActive) {
     return {
@@ -104,7 +111,8 @@ export default function SupportingEnhancedTable(props) {
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-                <EnhancedTableToolbar
+                <ToolBarJustDelete
+                    title="Supporting Solutions"
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
                 />
@@ -115,13 +123,14 @@ export default function SupportingEnhancedTable(props) {
                         aria-labelledby="tableTitle"
                         size={'medium'}
                     >
-                        <EnhancedTableHead
+                        <TableHeadNoPhoto
                             numSelected={selected.length}
                             onSelectAllClick={handleSelectAllClick}
                             rowCount={rows.length}
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
+                            headCells={headCells}
                         />
 
                         <TableBody>

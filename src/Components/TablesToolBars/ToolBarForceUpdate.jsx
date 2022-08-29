@@ -12,8 +12,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-function EnhancedTableToolbar(props) {
+function ToolBarForceUpdate(props) {
     const {
+        title,
         numSelected,
         handleSelectDeleteAll,
         action,
@@ -62,7 +63,7 @@ function EnhancedTableToolbar(props) {
                     id="tableTitle"
                     component="div"
                 >
-                    Symptoms
+                    {title}
                 </Typography>
             )}
 
@@ -138,4 +139,4 @@ function EnhancedTableToolbar(props) {
     );
 }
 
-export default EnhancedTableToolbar
+export default ToolBarForceUpdate

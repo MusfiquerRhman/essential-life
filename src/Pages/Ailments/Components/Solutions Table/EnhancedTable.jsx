@@ -9,11 +9,27 @@ import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
 import { cup, hand, nose } from '../../../../assests';
+import TableHeadNoPhoto from '../../../../Components/TableHeads/TableHeadNoPhoto';
+import ToolBarJustDelete from '../../../../Components/TablesToolBars/ToolBarJustDelete';
 import { StyledTableCell, StyledTableRow } from '../../../../Styles/StylesTableRowAndCell';
-import EnhancedTableHead from './EnhancedTableHead';
-import EnhancedTableToolbar from './EnhancedTableToolbar';
 
 import * as React from 'react';
+
+const headCells = [
+    {
+        id: 'type',
+        label: 'Solution',
+    },
+    {
+        id: 'name',
+        label: 'Description',
+    },
+    {
+        id: 'content',
+        label: 'Uses icons',
+    },
+];
+
 
 function createData(id, type, name, description, isCupActive, isNoseActive, isHandActive) {
     return {
@@ -108,7 +124,8 @@ export default function EnhancedTable(props) {
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-                <EnhancedTableToolbar
+                <ToolBarJustDelete
+                    title="Effective Solutions"
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
                 />
@@ -119,13 +136,14 @@ export default function EnhancedTable(props) {
                         aria-labelledby="tableTitle"
                         size={'medium'}
                     >
-                        <EnhancedTableHead
+                        <TableHeadNoPhoto
                             numSelected={selected.length}
                             onSelectAllClick={handleSelectAllClick}
                             rowCount={rows.length}
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
+                            headCells={headCells}
                         />
 
                         <TableBody>

@@ -4,9 +4,11 @@ import NavBar from './Components/NavBar/NavBar';
 import Sidebar from './Components/Sidebar/Sidebar';
 
 import {
-  AddAilmentsForm, AddAvaterForm, AddBlendsForm, AddBodySystemForm, AddCardsForm, AddCategoryForm, AddConstituentsFrom, AddContentSuggestion, AddOilForm, AddPropertiesForm, AddRecipesForm, AddRemedyForm, AddSuplementsForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, AddUserForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion,
-  Dashboard, EditAilmentForm, EditAilmentSolution, EditAilmentSupportiveSolution, EditUGCRecipeForm, EditUGCRemedyForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements, Symptoms, UGCRecipes,
-  UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
+  AddAilmentsForm, AddAvaterForm, AddBlendsForm, AddBodySystemForm, AddCardsForm, AddCategoryForm, AddConstituentsFrom, AddContentSuggestion, AddOilForm,
+  AddPropertiesForm, AddRecipesForm, AddRemedyForm, AddSuplementsForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, AddUserForm, Ailments, Avaters,
+  Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion, Dashboard, EditAilmentForm, EditAilmentSolution, EditAilmentSupportiveSolution,
+  EditAvaterForm, EditConstituentsFrom, EditPropertyForm, EditUGCRecipeForm, EditUGCRemedyForm, EditUserFavourite, EditUserForm, GlobalStatus, Oil, Properties,
+  Recipes, Remedies, SeedDownload, Supplements, Symptoms, UGCRecipes, UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
 } from './Pages';
 
 
@@ -16,26 +18,26 @@ function App() {
       <Sidebar>
         <NavBar />
         <Routes>
-          {/* Dashboard */}
+          {/* Dashboard -----*/}
           <Route exact path='/' element={<Dashboard />}/>
 
-          {/* UGC Recipes */}
+          {/* UGC Recipes -----*/}
           <Route exact path='/ugcrecipes' element={<UGCRecipes />}/>
           <Route exact path='/ugcrecipes-private' element={<UGCRecipesPrivate />}/>
           <Route exact path='/recipe/new/:status' element={<AddUGCRecipeForm />} />
           <Route exact path='/recipe/:id' element={<EditUGCRecipeForm />} />
 
-          {/* UGC remedies */}
+          {/* UGC remedies -----*/}
           <Route exact path='/ugcremedies' element={<UGCRemedies />}/>
           <Route exact path='/ugcremedies-private' element={<UGCRemediesPrivate />}/>
           <Route exact path='/ugcremedy/new/:status' element={<AddUGCRemedyForm />} />
           <Route exact path='/ugcremedy/:id' element={<EditUGCRemedyForm />} />
 
-          {/* Content Suggestion */}
+          {/* Content Suggestion -----*/}
           <Route exact path='/content-suggestion' element={<ContentSuggestion />} />
           <Route exact path='/content-suggestion/new/' element={<AddContentSuggestion />} />
 
-          {/* Ailments */}
+          {/* Ailments -----*/}
           <Route exact path='/ailments' element={<Ailments />}/>
           <Route exact path='/ailments/new/' element={<AddAilmentsForm />}/>
           <Route exact path='/ailments/:id/' element={<EditAilmentForm />}/>
@@ -78,26 +80,32 @@ s
           <Route exact path='/supplements' element={<Supplements />} />
           <Route exact path='/supplements/new' element={<AddSuplementsForm />} />
 
-          {/* Constituents */}
+          {/* Constituents -----*/}
           <Route exact path='/constituents' element={<Constituents />} />
           <Route exact path='/constituents/new' element={<AddConstituentsFrom />} />
+          <Route exact path='/constituents/:id' element={<EditConstituentsFrom />} />
 
-          {/* Properties */}
+          {/* Properties -----*/}
           <Route exact path='/properties' element={<Properties />} />
           <Route exact path='/properties/new' element={<AddPropertiesForm />} />
+          <Route exact path='/properties/:id' element={<EditPropertyForm />} />
 
-          {/* Avaters */}
+          {/* Avaters ----- */}
           <Route exact path='/avaters' element={<Avaters />} />
           <Route exact path='/avaters/new' element={<AddAvaterForm />} />
+          <Route exact path='/avaters/:id' element={<EditAvaterForm />} />
+          
 
-          {/* users */}
+          {/* users -----*/}
           <Route exact path='/users' element={<Users />} />
           <Route exact path='/users/new' element={<AddUserForm />} />
+          <Route exact path='/users/:id' element={<EditUserForm />} />
+          <Route exact path='/users/:id/favourite/:favId' element={<EditUserFavourite />} />
 
-          {/* Global Status */}
+          {/* Global Status -----*/}
           <Route exact path='/global-status' element={<GlobalStatus />} />
 
-          {/* Seed Download */}
+          {/* Seed Download -----*/}
           <Route exact path='/seed-download' element={<SeedDownload />} />
 
         </Routes>

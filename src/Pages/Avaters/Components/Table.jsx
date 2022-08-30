@@ -179,7 +179,7 @@ export default function EnhancedTable(props) {
                                         <StyledTableCell align="center"><img className='table__img' src={row.photo} alt='product'/></StyledTableCell>
                                         <StyledTableCell align="left">{row.created_at}</StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/recipe/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/avaters/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>

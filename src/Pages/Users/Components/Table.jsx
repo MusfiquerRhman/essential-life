@@ -236,7 +236,7 @@ export default function EnhancedTable(props) {
                                         <StyledTableCell align="left">{row.Subscription_expires_at}</StyledTableCell>
                                         <StyledTableCell align="left"><div className='activity__balls' style={row.Subscription_active ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/ugcremedy/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/users/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>

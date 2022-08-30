@@ -7,6 +7,7 @@ export { default as EditAilmentSupportiveSolution } from "./Ailments/Components/
 // Avaters
 export { default as Avaters } from "./Avaters/Avaters";
 export { default as AddAvaterForm } from "./Avaters/Components/AddAvaterForm";
+export { default as EditAvaterForm } from "./Avaters/Components/EditAvaterForm";
 // Blends
 export { default as Blends } from "./Blends/Blends";
 export { default as AddBlendsForm } from "./Blends/Components/AddBlendsForm";
@@ -21,6 +22,7 @@ export { default as Categories } from "./Categories/Categories";
 export { default as AddCategoryForm } from "./Categories/Components/AddCategoryForm";
 // Constituents
 export { default as AddConstituentsFrom } from "./Constituents/Components/AddConstituentsFrom";
+export { default as EditConstituentsFrom } from "./Constituents/Components/EditConstituentsFrom";
 export { default as Constituents } from "./Constituents/Constituents";
 // Content Suggestion
 export { default as AddContentSuggestion } from "./ContentSuggestion/Components/AddContentSuggestion";
@@ -34,6 +36,7 @@ export { default as AddOilForm } from "./Oil/Components/AddOilForm";
 export { default as Oil } from "./Oil/Oil";
 // Properties
 export { default as AddPropertiesForm } from "./Properties/Components/AddPropertiesForm";
+export { default as EditPropertyForm } from "./Properties/Components/EditPropertyForm";
 export { default as Properties } from "./Properties/Properties";
 // Recipes
 export { default as AddRecipesForm } from "./Recipes/Components/AddRecipesForm";
@@ -61,5 +64,7 @@ export { default as UGCRemedies } from "./UGCRemedies/Remedies";
 export { default as UGCRemediesPrivate } from "./UGCRemedies/RemediesPrivate";
 //user
 export { default as AddUserForm } from "./Users/Components/AddUserForm";
+export { default as EditUserForm } from "./Users/Components/EditUserForm";
+export { default as EditUserFavourite } from "./Users/Components/Favourites/EditUserFavourite";
 export { default as Users } from "./Users/Users";
 

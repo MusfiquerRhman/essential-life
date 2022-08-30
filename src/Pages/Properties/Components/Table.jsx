@@ -193,7 +193,7 @@ export default function EnhancedTable(props) {
                                         </StyledTableCell>
                                         <StyledTableCell>{row.description}</StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/recipe/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/properties/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>

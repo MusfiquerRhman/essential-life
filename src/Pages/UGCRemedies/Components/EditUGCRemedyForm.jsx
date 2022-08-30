@@ -124,7 +124,6 @@ function EditUGCRemedyForm(props) {
                         imageSelectHandeler(e.target.files);
                     }} />
                 </div>
-
             </div>
 
             <div className='form__table--box'>

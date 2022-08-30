@@ -7,62 +7,48 @@ import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
-import { NavLink } from 'react-router-dom';
-import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
-import ToolBarJustDelete from '../../../Components/TablesToolBars/ToolBarJustDelete';
-import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
+import { NavLink, useParams } from 'react-router-dom';
+import TableHeadNoPhoto from '../../../../Components/TableHeads/TableHeadNoPhoto';
+import ToolBarJustDelete from '../../../../Components/TablesToolBars/ToolBarJustDelete';
+import { StyledTableCell, StyledTableRow } from '../../../../Styles/StylesTableRowAndCell';
 
 import * as React from 'react';
 
 const headCells = [
     {
-        id: 'name',
-        label: 'Name',
+        id: 'type',
+        label: 'Favourite Resources',
     },
 ];
 
-function createData(id, name) {
+function createData(id, type, name, description, isCupActive, isNoseActive, isHandActive) {
     return {
         id,
+        type,
         name,
+        description,
     };
 }
 
 const rows = [
-    createData(1,'DDR Prime'),
-    createData(2,'DDR Prime'),
-    createData(3,'DDR Prime'),
-    createData(4,'DDR Prime'),
-    createData(5,'DDR Prime'),
-    createData(6,'DDR Prime'),
-    createData(7,'DDR Prime'),
-    createData(8,'DDR Prime'),
-    createData(9,'DDR Prime'),
+    createData(1, 'Oil', 'DigestZen'),
+    createData(2, 'Blend', 'Pepperment'),
+    createData(3, 'Oil', 'Petitgrain'),
+    createData(4, 'Oil', 'Ginger'),
+    createData(5, 'Blend', 'DigestZen'),
+    createData(6, 'Blend', 'Petitgrain'),
+    createData(7, 'Suplement', 'Petitgrain'),
 ];
 
 
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-export default function EnhancedTable(props) {
+export default function FavouriteTable(props) {
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(15);
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
+    const {id} = useParams();
+    console.log(id)
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -71,8 +57,8 @@ export default function EnhancedTable(props) {
     };
 
     const {
-        setSelectedArray,
-        handleSelectDeleteAll,
+        setSelectedFavourite,
+        handleSelectDeleteAllFavourites,
     } = props
 
 
@@ -80,11 +66,11 @@ export default function EnhancedTable(props) {
         if (event.target.checked) {
             const newSelected = rows.map((n) => n.id);
             setSelected(newSelected);
-            setSelectedArray(newSelected)
+            setSelectedFavourite(newSelected)
             return;
         }
         setSelected([]);
-        setSelectedArray([]);
+        setSelectedFavourite([]);
     };
 
     const handleClick = (event, id) => {
@@ -105,7 +91,7 @@ export default function EnhancedTable(props) {
         }
 
         setSelected(newSelected);
-        setSelectedArray(newSelected);
+        setSelectedFavourite(newSelected);
     };
 
     const handleChangePage = (event, newPage) => {
@@ -128,9 +114,9 @@ export default function EnhancedTable(props) {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <ToolBarJustDelete
-                    title="Constituents"
+                    title="Favourites"
                     numSelected={selected.length}
-                    handleSelectDeleteAll={handleSelectDeleteAll}
+                    handleSelectDeleteAll={handleSelectDeleteAllFavourites}
                 />
 
                 <TableContainer>
@@ -150,7 +136,7 @@ export default function EnhancedTable(props) {
                         />
 
                         <TableBody>
-                            {rows.slice().sort(getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+                            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                                 const isItemSelected = isSelected(row.id);
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -183,10 +169,10 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <span className='table__name'>{row.name}</span>
+                                            <span className='table__name'>{`${row.type}: ${row.name}`}</span>
                                         </StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/constituents/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/users/${id}/favourite/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>

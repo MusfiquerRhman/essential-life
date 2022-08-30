@@ -34,14 +34,13 @@ const ContituentsForm = (props) => {
                 id="type"
                 className='full__length form__select'
                 onChange={onChangeInput}
-                value={state.safety_information}
+                value={state.type}
             >
                 <option disabled value="">Choose an option</option>
                 <option value="property">Property</option>
-                 <option value="constituents">Constituents</option>
+                <option value="constituents">Constituents</option>
             </select>
         </>
-
     )
 }
 

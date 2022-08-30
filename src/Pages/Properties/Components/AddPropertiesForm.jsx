@@ -38,7 +38,6 @@ function AddPropertiesForm() {
                     </Button>
                 </div>
             </div>
-
         </section>
     )
 }

@@ -1,0 +1,26 @@
+.global-status__container {
+    box-shadow: 0 0 3px 1px #ddd;
+    border-radius: 0.5rem;
+
+    &:not(:last-child){
+        margin-bottom: 5rem;
+    }
+
+    .globalStatus__top {
+        padding: 1.5rem;
+        background: var(--color-content);
+        border-radius: 0.5rem;
+        align-items: center;
+    }
+
+    .globalStatus__bottom {
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--color-background);
+        padding: 1.5rem;
+    }
+}
+

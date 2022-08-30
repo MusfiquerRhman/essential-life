@@ -20,9 +20,7 @@ export const INITIAL_STATE = {
 
 export const ACTION_TYPE = {
     CHANGE_INPUT: "CHANGE_INPUT",
-    CHANGE_SWITCH: "CHANGE_SWITCH",
     TOGGLE_REGION: "TOGGLE_REGION",
-    FILE_CHANGE: "FILE_CHANGE",
     LOAD_DATA: "LOAD_DATA"
 }
 
@@ -32,12 +30,6 @@ export const cardReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 [action.payload.name]:action.payload.value
-            }
-
-        case ACTION_TYPE.CHANGE_SWITCH:
-            return {
-                ...state,
-                [action.payload.name]:action.payload.checked
             }
 
         case ACTION_TYPE.TOGGLE_REGION:
@@ -53,12 +45,6 @@ export const cardReducer = (state = INITIAL_STATE, action) => {
             }
             return {
                 ...state, regionsVisible: newRegion
-            }
-
-        case ACTION_TYPE.FILE_CHANGE: 
-            return {
-                ...state,
-                [action.payload.name]:action.payload.image
             }
 
         case ACTION_TYPE.LOAD_DATA:

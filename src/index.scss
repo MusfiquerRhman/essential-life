@@ -3,6 +3,7 @@
 @import './Styles/tableStyles.scss';
 @import './Styles/ailmentsStyles.scss';
 @import './Styles/dashboard.scss';
+@import './Styles/globalStatusStyle.scss';
 
 :root {
   --color-sidebar: #2e2f41;
@@ -12,6 +13,7 @@
   --color-text--light: #90a4ae;
   --color-text: #000000;
   --color--highlight--text: #3D44F6;
+  --color-text-note: #455a64;
 
   --transition: all 400ms ease;
 
@@ -19,8 +21,8 @@
 }
 
 .light__text {
-  color: var(--color-text--light);
-  font-size: 0.8rem;
+  color: var(--color-text-note);
+  font-size: 0.85rem;
 }
 
 * {
@@ -156,3 +158,4 @@ textarea::placeholder {
   color: #fff !important
 
 }
+

@@ -14,9 +14,7 @@ export const ACTION_TYPE = {
     DELETE_CATEGORY: "DELETE_CATEGORY",
     ADD_RELETED_RECIPES: "ADD_RELETED_RECIPES",
     DELETE_RELETED_RECIPES: "DELETE_RELETED_RECIPES",
-    CHANGE_SWITCH: "CHANGE_SWITCH",
     LOAD_DATA: "LOAD_DATA",
-    FILE_CHANGE: "FILE_CHANGE"
 }
 
 export const recipeReducer = (state = INITIAL_STATE, action) => {
@@ -25,12 +23,6 @@ export const recipeReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 [action.payload.name]:action.payload.value
-            }
-
-        case ACTION_TYPE.CHANGE_SWITCH:
-            return {
-                ...state,
-                [action.payload.name]:action.payload.checked
             }
 
         case ACTION_TYPE.ADD_CATEGORY: 
@@ -72,13 +64,7 @@ export const recipeReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 related_recipes: state.related_recipes.filter(name => name !== action.payload.value)
             }
-
-        case ACTION_TYPE.FILE_CHANGE: 
-            return {
-                ...state,
-                [action.payload.name]:action.payload.image
-            }
-
+            
         default:
             return state;
     }

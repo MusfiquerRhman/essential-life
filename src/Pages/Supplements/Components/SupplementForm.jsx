@@ -11,10 +11,10 @@ const SupplementForm = (props) => {
 
     const handleChangeCheck = (event) => {
         dispatch({
-            type: ACTION_TYPE.CHANGE_SWITCH,
+            type: ACTION_TYPE.CHANGE_INPUT,
             payload: {
                 name: event.target.name,
-                checked: event.target.checked
+                value: event.target.checked
             }
         })
     };
@@ -31,10 +31,10 @@ const SupplementForm = (props) => {
 
     const imageSelectHandeler = (event) => {
         dispatch({
-            type: ACTION_TYPE.FILE_CHANGE,
+            type: ACTION_TYPE.CHANGE_INPUT,
             payload: {
                 name: event.target.name,
-                image: event.target.files
+                value: event.target.files
             }
         })
     };

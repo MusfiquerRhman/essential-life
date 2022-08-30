@@ -14,9 +14,7 @@ export const ACTION_TYPE = {
     CHANGE_INPUT: "CHANGE_INPUT",
     ADD_INGRIDIANT: "ADD_INGRIDIANT",
     DELETE_INGRIDIANT: "DELETE_INGRIDIANT",
-    CHANGE_SWITCH: "CHANGE_SWITCH",
     LOAD_DATA: "LOAD_DATA",
-    FILE_CHANGE: "FILE_CHANGE"
 }
 
 
@@ -26,12 +24,6 @@ export const blendReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 [action.payload.name]:action.payload.value
-            }
-
-        case ACTION_TYPE.CHANGE_SWITCH:
-            return {
-                ...state,
-                [action.payload.name]:action.payload.checked
             }
 
         case ACTION_TYPE.ADD_INGRIDIANT: 
@@ -52,12 +44,6 @@ export const blendReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 ingredients: state.ingredients.filter(name => name !== action.payload.value)
-            }
-
-        case ACTION_TYPE.FILE_CHANGE: 
-            return {
-                ...state,
-                [action.payload.name]:action.payload.image
             }
 
         default:

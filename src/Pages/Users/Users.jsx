@@ -39,7 +39,7 @@ function Users() {
         <div className='search__container'>
           <SearchBox />
           <Button startIcon={<AddIcon />} sx={{ borderRadius: '2rem' }} variant="contained">
-            <NavLink to='/ugcremedy/new/public' className='button'>Create Users</NavLink>
+            <NavLink to='/users/new' className='button'>Create Users</NavLink>
           </Button>
         </div>
 

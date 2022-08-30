@@ -4,7 +4,7 @@ import NavBar from './Components/NavBar/NavBar';
 import Sidebar from './Components/Sidebar/Sidebar';
 
 import {
-  AddAilmentsForm, AddAvaterForm, AddBlendsForm, AddBodySystemForm, AddCardsForm, AddCategoryForm, AddConstituentsFrom, AddContentSuggestion, AddOilForm, AddPropertiesForm, AddRecipesForm, AddRemedyForm, AddSuplementsForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion,
+  AddAilmentsForm, AddAvaterForm, AddBlendsForm, AddBodySystemForm, AddCardsForm, AddCategoryForm, AddConstituentsFrom, AddContentSuggestion, AddOilForm, AddPropertiesForm, AddRecipesForm, AddRemedyForm, AddSuplementsForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, AddUserForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion,
   Dashboard, EditAilmentForm, EditAilmentSolution, EditAilmentSupportiveSolution, EditUGCRecipeForm, EditUGCRemedyForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements, Symptoms, UGCRecipes,
   UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
 } from './Pages';
@@ -92,6 +92,7 @@ s
 
           {/* users */}
           <Route exact path='/users' element={<Users />} />
+          <Route exact path='/users/new' element={<AddUserForm />} />
 
           {/* Global Status */}
           <Route exact path='/global-status' element={<GlobalStatus />} />

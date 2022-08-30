@@ -60,5 +60,6 @@ export { default as EditUGCRemedyForm } from "./UGCRemedies/Components/EditUGCRe
 export { default as UGCRemedies } from "./UGCRemedies/Remedies";
 export { default as UGCRemediesPrivate } from "./UGCRemedies/RemediesPrivate";
 //user
+export { default as AddUserForm } from "./Users/Components/AddUserForm";
 export { default as Users } from "./Users/Users";
 

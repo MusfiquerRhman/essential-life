@@ -89,3 +89,9 @@ input::file-selector-button {
     box-shadow: 0 0 2px var(--color-text--light);
     background-color: var(--color-content);
 }
+
+.form__aditional--fields {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

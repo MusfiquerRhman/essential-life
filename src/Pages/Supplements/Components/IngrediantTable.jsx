@@ -5,72 +5,53 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
+import * as React from 'react';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
-import { NavLink } from 'react-router-dom';
-import TableHeadWithPhoto from '../../../Components/TableHeads/TableHeadWithPhoto';
-import ToolBarForceUpdate from '../../../Components/TablesToolBars/ToolBarForceUpdate';
+import { NavLink, useParams } from 'react-router-dom';
+import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
+import ToolBarJustDelete from '../../../Components/TablesToolBars/ToolBarJustDelete';
 import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
-
-import * as React from 'react';
 
 const headCells = [
     {
-        id: 'name',
-        label: 'Name',
+        id: 'quantity',
+        label: 'Quantity',
     },
     {
-        id: 'fact',
-        label: 'Fact',
+        id: 'measure',
+        label: 'Measure',
     },
     {
-        id: 'featured',
-        label: "Featured"
-    }
+        id: 'custom_name',
+        label: 'Custom name (instead of related oil/blend)',
+    },
+    {
+        id: 'related',
+        label: 'Related Oil/Blend',
+    },
 ];
 
-
-
-function createData(id, photo, name, fact, featured) {
+function createData(id, quantity, measure, custom_name, related) {
     return {
         id,
-        photo,
-        name,
-        fact,
-        featured
+        quantity,
+        measure,
+        custom_name,
+        related
     };
 }
 
 const rows = [
-    createData(1,'--', 'DDR Prime', 'Cellular damage from free radicals is an underlying contributor to many of today’s diseases. This powerful antioxidant blend helps promote cellular health and protect long-term wellness.', true),
-    createData(2,'--', 'DDR Prime', 'Cellular damage from free radicals is an underlying contributor to many of today’s diseases. This powerful antioxidant blend helps promote cellular health and protect long-term wellness.', false),
-    createData(3,'--', 'DDR Prime', 'Cellular damage from free radicals is an underlying contributor to many of today’s diseases. This powerful antioxidant blend helps promote cellular health and protect long-term wellness.', true),
-    createData(4,'--', 'DDR Prime', 'Cellular damage from free radicals is an underlying contributor to many of today’s diseases. This powerful antioxidant blend helps promote cellular health and protect long-term wellness.', true),
-    createData(5,'--', 'DDR Prime', 'Cellular damage from free radicals is an underlying contributor to many of today’s diseases. This powerful antioxidant blend helps promote cellular health and protect long-term wellness.', false),
-    createData(6,'--', 'DDR Prime', 'Cellular damage from free radicals is an underlying contributor to many of today’s diseases. This powerful antioxidant blend helps promote cellular health and protect long-term wellness.', true),
-    createData(7,'--', 'DDR Prime', 'Cellular damage from free radicals is an underlying contributor to many of today’s diseases. This powerful antioxidant blend helps promote cellular health and protect long-term wellness.', true),
-    createData(8,'--', 'DDR Prime', 'Cellular damage from free radicals is an underlying contributor to many of today’s diseases. This powerful antioxidant blend helps promote cellular health and protect long-term wellness.', true),
-    createData(9,'--', 'DDR Prime', 'Cellular damage from free radicals is an underlying contributor to many of today’s diseases. This powerful antioxidant blend helps promote cellular health and protect long-term wellness.', true),
+    createData(1, 3, 'drop', 'custom name', 'related date'),
+    createData(2, 4, 'drop', 'custom name', 'related date'),
+    createData(3, 7, 'drop', 'custom name', 'related date'),
+    createData(4, 9, 'drop', 'custom name', 'related date'),
+    createData(5, 1, 'drop', 'custom name', 'related date'),
 ];
 
-
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-export default function EnhancedTable(props) {
+const IngrediantTable = (props) => {
+    const {id} = useParams()
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(15);
@@ -84,11 +65,8 @@ export default function EnhancedTable(props) {
     };
 
     const {
-        setSelectedArray,
+        setSupportiveSelectedArray,
         handleSelectDeleteAll,
-        action,
-        setAction,
-        handleClickExecuteAction,
     } = props
 
 
@@ -96,11 +74,11 @@ export default function EnhancedTable(props) {
         if (event.target.checked) {
             const newSelected = rows.map((n) => n.id);
             setSelected(newSelected);
-            setSelectedArray(newSelected)
+            setSupportiveSelectedArray(newSelected)
             return;
         }
         setSelected([]);
-        setSelectedArray([]);
+        setSupportiveSelectedArray([]);
     };
 
     const handleClick = (event, id) => {
@@ -121,7 +99,7 @@ export default function EnhancedTable(props) {
         }
 
         setSelected(newSelected);
-        setSelectedArray(newSelected);
+        setSupportiveSelectedArray(newSelected);
     };
 
     const handleChangePage = (event, newPage) => {
@@ -139,17 +117,14 @@ export default function EnhancedTable(props) {
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-
+    
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-                <ToolBarForceUpdate
-                    title="Supplements"
+                <ToolBarJustDelete
+                    title="Ingredients"
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
-                    action={action}
-                    setAction={setAction}
-                    handleClickExecuteAction={handleClickExecuteAction}
                 />
 
                 <TableContainer>
@@ -158,7 +133,7 @@ export default function EnhancedTable(props) {
                         aria-labelledby="tableTitle"
                         size={'medium'}
                     >
-                        <TableHeadWithPhoto
+                        <TableHeadNoPhoto
                             numSelected={selected.length}
                             onSelectAllClick={handleSelectAllClick}
                             rowCount={rows.length}
@@ -169,7 +144,7 @@ export default function EnhancedTable(props) {
                         />
 
                         <TableBody>
-                            {rows.slice().sort(getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+                            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                                 const isItemSelected = isSelected(row.id);
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -192,27 +167,12 @@ export default function EnhancedTable(props) {
                                                 }}
                                             />
                                         </StyledTableCell>
-                                        {row.photo === '--' ? (
-                                            <StyledTableCell align="center">{row.photo}</StyledTableCell>
-                                        ) : (
-                                            <StyledTableCell align="center"><img className='table__img' src={row.photo} alt='product'/></StyledTableCell>
-                                        )}
-                                        <StyledTableCell
-                                            component="th"
-                                            id={labelId}
-                                            scope="row"
-                                            padding="none"
-                                            align="left"
-                                            sx={{
-                                                fontWaight: '500'
-                                            }}
-                                        >
-                                            <span className='table__name'>{row.name}</span>
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">{row.fact}</StyledTableCell>
-                                        <StyledTableCell align="center"><div className='activity__balls' style={row.featured ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>
+                                        <StyledTableCell>{row.quantity}</StyledTableCell>
+                                        <StyledTableCell>{row.measure}</StyledTableCell>
+                                        <StyledTableCell>{row.custom_name}</StyledTableCell>
+                                        <StyledTableCell>{row.related}</StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/supplements/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/supplements/${id}/ingredients/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>
@@ -246,3 +206,5 @@ export default function EnhancedTable(props) {
         </Box>
     );
 }
+
+export default IngrediantTable;

@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import { default as React, useState } from 'react';
 import SolutionType from '../../../../Components/Common/SolutionType';
 
-function EditAilmentSupportiveSolution() {
+function EditOilFoundIn() {
     const [solution, setSolution] = useState('')
     const [oil, setOil] = useState('')
     const [blend, setBlend] = useState('')
@@ -22,8 +22,8 @@ function EditAilmentSupportiveSolution() {
     return (
         <section>
             <div className='form__header'>
-                <h1 className='header__title'>Edit Ailment Solution</h1>
-                <Button className='form__button' variant='contained' sx={{ borderRadius: '5rem' }} onClick={updateSupportiveSolution}>Update Ailment Secondary Solution</Button>
+                <h1 className='header__title'>Edit Found In</h1>
+                <Button className='form__button' variant='contained' sx={{ borderRadius: '5rem' }} onClick={updateSupportiveSolution}>Update Found In</Button>
             </div>
 
             <div className='form__container'>
@@ -54,4 +54,4 @@ function EditAilmentSupportiveSolution() {
     )
 }
 
-export default EditAilmentSupportiveSolution
+export default EditOilFoundIn

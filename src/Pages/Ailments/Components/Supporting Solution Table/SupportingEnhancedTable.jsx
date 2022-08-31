@@ -21,12 +21,11 @@ const headCells = [
     },
 ];
 
-function createData(id, type, name, description, isCupActive, isNoseActive, isHandActive) {
+function createData(id, type, name) {
     return {
         id,
         type,
         name,
-        description,
     };
 }
 

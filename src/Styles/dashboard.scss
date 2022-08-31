@@ -77,7 +77,7 @@
 
     .chart {
         margin-top: 0.5rem;
-        transform: scale(1.03);
+        transform: scaleX(1.03) scaleY(1.1);
     }
 
     select {

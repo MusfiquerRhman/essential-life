@@ -7,8 +7,9 @@ import {
   AddAilmentsForm, AddAvaterForm, AddBlendsForm, AddBodySystemForm, AddCardsForm, AddCategoryForm, AddConstituentsFrom, AddContentSuggestion, AddOilForm,
   AddPropertiesForm, AddRecipesForm, AddRemedyForm, AddSuplementsForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, AddUserForm, Ailments, Avaters,
   Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion, Dashboard, EditAilmentForm, EditAilmentSolution, EditAilmentSupportiveSolution,
-  EditAvaterForm, EditConstituentsFrom, EditPropertyForm, EditUGCRecipeForm, EditUGCRemedyForm, EditUserFavourite, EditUserForm, GlobalStatus, Oil, Properties,
-  Recipes, Remedies, SeedDownload, Supplements, Symptoms, UGCRecipes, UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
+  EditAvaterForm, EditBlends, EditBlendsRegionalData, EditBlendsTopUses, EditConstituentsFrom, EditIngrediantFrom, EditOil, EditOilFoundIn, EditOilTopUses,
+  EditPropertyForm, EditRegionalData, EditSupplementsForm, EditTopUses, EditUGCRecipeForm, EditUGCRemedyForm, EditUserFavourite, EditUserForm, GlobalStatus,
+  Oil, Properties, Recipes, Remedies, SeedDownload, Supplements, Symptoms, UGCRecipes, UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
 } from './Pages';
 
 
@@ -71,15 +72,25 @@ s
           {/* Blends */}
           <Route exact path='/blends' element={<Blends />} />
           <Route exact path='/blends/new' element={<AddBlendsForm />} />
+          <Route exact path='/blends/:id' element={<EditBlends />} />
+          <Route exact path='/blends/:id/topuses/:usesId' element={<EditBlendsTopUses />} />
+          <Route exact path='/blends/:id/regionname:regionid' element={<EditBlendsRegionalData />} />
 
-          {/* Oil */}
+          {/* Oil */} 
           <Route exact path='/oil' element={<Oil />} />
           <Route exact path='/oil/new' element={<AddOilForm />} />
+          <Route exact path='/oil/:id' element={<EditOil />} />
+          <Route exact path='/oil/:id/topuses/:usesId' element={<EditOilTopUses />} />
+          <Route exact path='/oil/:id/foundin/:foundId' element={<EditOilFoundIn />} />
 
           {/* Suplements */}
           <Route exact path='/supplements' element={<Supplements />} />
           <Route exact path='/supplements/new' element={<AddSuplementsForm />} />
-
+          <Route exact path='/supplements/:id' element={<EditSupplementsForm />} />
+          <Route exact path='/supplements/:id/regionname/:regionId' element={<EditRegionalData />} />
+          <Route exact path='/supplements/:id/topuses/:usesId' element={<EditTopUses />} />
+          <Route exact path='/supplements/:id/ingredients/:usesId' element={<EditIngrediantFrom />} />
+          
           {/* Constituents -----*/}
           <Route exact path='/constituents' element={<Constituents />} />
           <Route exact path='/constituents/new' element={<AddConstituentsFrom />} />

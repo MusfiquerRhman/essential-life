@@ -210,7 +210,7 @@ const BlendsForm = (props) => {
                 </div>
             </div>
 
-            <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem' }}>Background Image</label>
+            <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem' }}>Image</label>
             <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
                 imageSelectHandeler(e);
             }} />

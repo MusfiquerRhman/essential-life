@@ -6,18 +6,18 @@ import { nose } from "../../../assests";
 
 function EditAvaterForm(props) {
     const [displayImage, setDisplayImage] = useState(nose);
-    const [image, setImage] = useState('')
+    const [image, setImage] = useState('');
 
-    const imageSelectHandeler = (files) => {
-        setImage(files[0]);
+    const imageSelectHandeler = (event) => {
+        setImage(event.target.files[0]);
         const reader = new FileReader();
         reader.onload = () => {
             if (reader.readyState === 2) {
                 setDisplayImage(reader.result);
             }
         };
-        if (files[0] && files[0].type.match("image.*")) {
-            reader.readAsDataURL(files[0]);
+        if (event.target.files[0] && event.target.files[0].type.match("image.*")) {
+            reader.readAsDataURL(event.target.files[0]);
         }
     };
 

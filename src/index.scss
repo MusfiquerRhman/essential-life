@@ -168,14 +168,20 @@ textarea::placeholder {
   border-radius: 0.5rem;
 }
 
+.image__option {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
 
 .img__container {
   margin: 2rem 1rem;
   .img__box {
-    height: 20rem;
-    width: 20rem;
+    height: 22rem;
+    width: 22rem;
     border-radius: 0.5rem;
-    padding: 2rem;
+    padding: 1rem;
     box-shadow: 1px 1px 3px 0 var(--color-text-note);
   
     .avater__img {
@@ -185,4 +191,12 @@ textarea::placeholder {
     }
   }
   
+}
+
+.third__length {
+  width: 30%;
+
+  &:not(:last-child){
+    margin-right: 3%;
+  }
 }

@@ -8,9 +8,9 @@ import TablePagination from '@mui/material/TablePagination';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import TableHeadWithPhoto from '../../../Components/TableHeads/TableHeadWithPhoto';
 import ToolBarForceUpdate from '../../../Components/TablesToolBars/ToolBarForceUpdate';
 import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
-import TableHeadWithPhoto from '../../../Components/TableHeads/TableHeadWithPhoto';
 
 import * as React from 'react';
 
@@ -213,7 +213,7 @@ export default function EnhancedTable(props) {
                                         <StyledTableCell align="left">{row.fact}</StyledTableCell>
                                         <StyledTableCell align="center"><div className='activity__balls' style={row.featured ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/recipe/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/blends/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>

@@ -7,7 +7,7 @@ import {
   AddAilmentsForm, AddAvaterForm, AddBlendsForm, AddBodySystemForm, AddCardsForm, AddCategoryForm, AddConstituentsFrom, AddContentSuggestion, AddOilForm,
   AddPropertiesForm, AddRecipesForm, AddRemedyForm, AddSuplementsForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, AddUserForm, Ailments, Avaters,
   Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion, Dashboard, EditAilmentForm, EditAilmentSolution, EditAilmentSupportiveSolution,
-  EditAvaterForm, EditBlends, EditBlendsRegionalData, EditBlendsTopUses, EditCardsForm, EditCategoryFrom, EditConstituentsFrom, EditIngrediantFrom, EditOil,
+  EditAvaterForm, EditBlends, EditBlendsRegionalData, EditBlendsTopUses, EditBodySystem, EditBodySystemSolution, EditCardsForm, EditCategoryFrom, EditConstituentsFrom, EditIngrediantFrom, EditOil,
   EditOilFoundIn, EditOilTopUses, EditPanelFrom, EditPropertyForm, EditRecipeFrom, EditRecipeIngrediant, EditRegionalData, EditSupplementsForm, EditTopTipsFrom,
   EditTopUses, EditUGCRecipeForm, EditUGCRemedyForm, EditUserFavourite, EditUserForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements,
   Symptoms, UGCRecipes, UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
@@ -49,6 +49,9 @@ function App() {
           {/* Body System */}
           <Route exact path='/body-system' element={<BodySystem />}/>
           <Route exact path='/body-system/new' element={<AddBodySystemForm />}/>
+          <Route exact path='/body-system/:id' element={<EditBodySystem />}/>
+          <Route exact path='/body-system/:id/solutions/:solutionId' element={<EditBodySystemSolution />}/>
+
 
           {/* Remedies */}
           <Route exact path='/remedies' element={<Remedies />} />

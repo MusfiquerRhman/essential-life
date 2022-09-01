@@ -253,7 +253,8 @@ function EditAilmentForm() {
                     handleSelectDeleteAll={handleSelectDeleteAllSupportiveSolution}
                 />
             </div>
-
+            
+            <h1 style={{marginTop: '5rem'}}>Links</h1>
             <div className='form__container'>
                 <p>Internal deep link:</p>
                 <p className='link'><b>essentiallife://resource/Ailment/04dfe2f8-51f1-4e60-bcf0-2da6301c2ad2</b></p>

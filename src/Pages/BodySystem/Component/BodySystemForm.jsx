@@ -20,97 +20,157 @@ const names = [
 
 function BodySystemForm(props) {
     const {
-        RemediesChip,
-        handleChangeRemedyTips,
-        handleDeleteRemedyTips,
-        ailmentAndSymptoms,
-        handleDeleteAilmentAndSymptoms,
-        handleChangeAilmentAndSymptoms,
-        handleDeleteAssociatedProperties,
-        handleChangeAssociatedProperties,
-        associatedProperties,
-        setName,
-        name,
-        description,
-        setDescription,
-        tip,
-        setTip,
-        setDisplayImage,
-        setImage
+        state,
+        dispatch,
+        ACTION_TYPE,
     } = props;
 
     const [anchorElRemedy, setAnchorElRemedy] = React.useState(null);
+    const [anchorElAilmentAndSymptoms, setAnchorElAilmentAndSymptoms] = useState(null);
+    const [anchorElAssociatedProperties, setAnchorElAssociatedProperties] = React.useState(null);
+    const [displayImage, setDisplayImage] = useState("");
+
     const openRemedy = Boolean(anchorElRemedy);
+    const openAilmentAndSymptoms = Boolean(anchorElAilmentAndSymptoms);
+    const openAssociatedProperties = Boolean(anchorElAssociatedProperties);
 
     const handleClickRemedy = (event) => {
         setAnchorElRemedy(event.currentTarget);
+    };
+
+    const handleClickAilmentAndSymptoms = (event) => {
+        setAnchorElAilmentAndSymptoms(event.currentTarget);
+    };
+
+    const handleClickAssociatedProperties = (event) => {
+        setAnchorElAssociatedProperties(event.currentTarget);
     };
 
     const handleCloseRemedy = () => {
         setAnchorElRemedy(null);
     };
 
-    const [anchorElAilmentAndSymptoms, setAnchorElAilmentAndSymptoms] = useState(null);
-    const openAilmentAndSymptoms = Boolean(anchorElAilmentAndSymptoms);
-
-    const handleClickAilmentAndSymptoms = (event) => {
-        setAnchorElAilmentAndSymptoms(event.currentTarget);
-    };
-
     const handleCloseAilmentAndSymptoms = () => {
         setAnchorElAilmentAndSymptoms(null);
-    };
-
-    const [anchorElAssociatedProperties, setAnchorElAssociatedProperties] = React.useState(null);
-    const openAssociatedProperties = Boolean(anchorElAssociatedProperties);
-
-    const handleClickAssociatedProperties = (event) => {
-        setAnchorElAssociatedProperties(event.currentTarget);
     };
 
     const handleCloseAssociatedProperties = () => {
         setAnchorElAssociatedProperties(null);
     };
 
-    const onChangeName = (e) => {
-        setName(e.target.value)
+    const onChangeInput = (event) => {
+        dispatch({
+            type: ACTION_TYPE.CHANGE_INPUT,
+            payload: {
+                name: event.target.name,
+                value: event.target.value
+            }
+        })
     }
 
-    const onChangeDescription = (e) => {
-        setDescription(e.target.value)
+    const handleDeleteRemedyTips = (value) => {
+        dispatch({
+            type: ACTION_TYPE.DELETE_REMEDIES,
+            payload: {
+                value: value
+            }
+        })
     }
 
-    const onChangeTip = (e) => {
-        setTip(e.target.value)
+    const handleChangeRemedyTips = (value) => {
+        dispatch({
+            type: ACTION_TYPE.ADD_REMEDIES,
+            payload: {
+                value: value
+            }
+        })
     }
 
-    const imageSelectHandeler = (files) => {
-        setImage(files[0]);
+    const handleDeleteAilmentAndSymptoms = (value) => {
+        dispatch({
+            type: ACTION_TYPE.DELETE_AILMENT,
+            payload: {
+                value: value
+            }
+        })
+    }
+
+    const handleChangeAilmentAndSymptoms = (value) => {
+        dispatch({
+            type: ACTION_TYPE.ADD_AILMENT,
+            payload: {
+                value: value
+            }
+        })
+    }
+
+    const handleDeleteAssociatedProperties = (value) => {
+        dispatch({
+            type: ACTION_TYPE.DELETE_PROPERTY,
+            payload: {
+                value: value
+            }
+        })
+    }
+
+    const handleChangeAssociatedProperties = (value) => {
+        dispatch({
+            type: ACTION_TYPE.ADD_PROPERTY,
+            payload: {
+                value: value
+            }
+        })  
+    }
+
+    const imageSelectHandeler = (event) => {
+        dispatch({
+            type: ACTION_TYPE.CHANGE_INPUT,
+            payload: {
+                name: event.target.name,
+                value: event.target.files[0]
+            }
+        })
         const reader = new FileReader();
         reader.onload = () => {
             if (reader.readyState === 2) {
                 setDisplayImage(reader.result);
             }
         };
-        if (files[0] && files[0].type.match("image.*")) {
-            reader.readAsDataURL(files[0]);
+        if (event.target.files[0] && event.target.files[0].type.match("image.*")) {
+            reader.readAsDataURL(event.target.files[0]);
         }
     };
 
+    let imageSelected = "";
+    if (displayImage !== "") {
+        imageSelected = (
+            <div className='img__container'>
+                <img src={displayImage} className="img__box" alt="product" />
+            </div>
+        );
+    }
 
     return (
         <>
             <label htmlFor="name" className='form__label'>Name</label>
-            <input type="text" placeholder='Name' id='#name' className='form__input' onChange={onChangeName} value={name} />
+            <input type="text" 
+                placeholder='name' 
+                id='name' 
+                className='form__input' 
+                onChange={onChangeInput} 
+                value={state.name} 
+                name='name'
+            />
 
             <label htmlFor="Description" className='form__label' style={{ marginTop: '2rem' }}>Short Description</label>
             <textarea type="text"
                 placeholder='Short Description'
-                id='#Description'
+                id='Description'
                 className='form__input'
                 rows="10"
-                value={description}
-                onChange={onChangeDescription}
+                value={state.description}
+                onChange={onChangeInput}
+                name='description'
             />
 
             <label htmlFor="Tip" className='form__label' style={{ marginTop: '2rem' }}>Usage Tip</label>
@@ -119,14 +179,15 @@ function BodySystemForm(props) {
                 id='#Tip'
                 className='form__input'
                 rows="10"
-                value={tip}
-                onChange={onChangeTip}
+                value={state.tip}
+                onChange={onChangeInput}
+                name='tip'
             />
 
             <label htmlFor="Systems" className='form__label'>Remedies</label>
             <div className='chip__container'>
                 <div className='chips'>
-                    {RemediesChip.map((value) => (
+                    {state.remedies.map((value) => (
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
@@ -166,7 +227,7 @@ function BodySystemForm(props) {
             <label htmlFor="Systems" className='form__label' style={{ marginTop: '2rem' }}>Ailments &amp; Symptoms</label>
             <div className='chip__container'>
                 <div className='chips'>
-                    {ailmentAndSymptoms.map((value) => (
+                    {state.ailmentAndSymptoms.map((value) => (
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
@@ -202,10 +263,10 @@ function BodySystemForm(props) {
                 </div>
             </div>
 
-            <label htmlFor="Systems" className='form__label'>Symptoms</label>
+            <label htmlFor="Systems" className='form__label'>Associated propertiesname</label>
             <div className='chip__container'>
                 <div className='chips'>
-                    {associatedProperties.map((value) => (
+                    {state.associatedProperties.map((value) => (
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
@@ -240,10 +301,17 @@ function BodySystemForm(props) {
                     </Menu>
                 </div>
             </div>
-            <label className='form__label' htmlFor="myfile">Select an Image:</label>
-                <input className='file__input' type="file" id="myfile" name="myfile" onChange={(e) => {
-                    imageSelectHandeler(e.target.files);
-                }} />
+            <div className='image__option flex__row'>
+                <div>
+                    <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem', marginRight: '2rem' }}>Image</label>
+                    <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
+                        imageSelectHandeler(e);
+                    }} />
+                </div>
+
+
+                {imageSelected}
+            </div>
         </>
     )
 }

@@ -17,6 +17,8 @@ export { default as EditBlendsTopUses } from "./Blends/Components/TopUsesTable/E
 // Body System
 export { default as BodySystem } from "./BodySystem/BodySystem";
 export { default as AddBodySystemForm } from "./BodySystem/Component/AddBodySystemForm";
+export { default as EditBodySystem } from "./BodySystem/Component/EditBodySystem";
+export { default as EditBodySystemSolution } from "./BodySystem/Component/SolutionTable/EditBodySystemSolution";
 // Cards
 export { default as Cards } from "./Cards/Cards";
 export { default as AddCardsForm } from "./Cards/Components/AddCardsForm";

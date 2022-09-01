@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { default as React, useReducer } from 'react';
+import { default as React } from 'react';
 import IOSSwitch from '../../../Styles/iOSSwitch';
 
 
@@ -51,9 +51,6 @@ function CardForm(props) {
             }
         })
     };
-
-
-    console.log(state)
 
     return (
         <>

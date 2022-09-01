@@ -5,50 +5,33 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
+import React, { useEffect, useState } from 'react';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
-import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
-import ToolBarForceUpdate from '../../../Components/TablesToolBars/ToolBarForceUpdate';
-import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
-
-import * as React from 'react';
-
-function createData(id, name, short_description) {
-    return {
-        id,
-        name,
-        short_description,
-    };
-}
+import { StyledTableCell, StyledTableRow } from '../../Styles/StylesTableRowAndCell';
+import TableHeadNoPhoto from '../TableHeads/TableHeadNoPhoto';
+import ToolBarUGC from '../TablesToolBars/ToolBarUGC';
 
 const headCells = [
     {
         id: 'name',
-        label: 'NAME',
+        label: 'Name',
     },
     {
-        id: 'short_description',
-        label: 'SHORT DESCRIPTION',
+        id: 'description',
+        label: 'Description',
     },
 ];
 
 
-const rows = [
-    createData(1 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(2 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(3 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(4 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(5 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(6 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(7 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(8 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(9 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(10 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(11 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(12 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(13 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-];
+function createData(id, name, description) {
+    return {
+        id,
+        name,
+        description,
+    };
+}
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -66,7 +49,23 @@ function getComparator(order, orderBy) {
         : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-export default function EnhancedTable(props) {
+export default function QuickEditTable(props) {
+    const [rows, setrows] = useState([
+        createData( 1, 'wow1', 'Detailed Description for quick edit'),
+        createData( 2, 'wow2', 'Detailed Description for quick edit'),
+        createData( 3, 'wow3', 'Detailed Description for quick edit'),
+        createData( 4, 'wow4', 'Detailed Description for quick edit'),
+        createData( 5, 'wow5', 'Detailed Description for quick edit'),
+        createData( 6, 'wow6', 'Detailed Description for quick edit'),
+        createData( 7, 'wow7', 'Detailed Description for quick edit'),
+        createData( 8, 'wow8', 'Detailed Description for quick edit'),
+        createData( 9, 'wow9', 'Detailed Description for quick edit'),
+        createData(10, 'wow10','Detailed Description for quick edit'),
+        createData(11, 'wow11','Detailed Description for quick edit'),
+        createData(12, 'wow12','Detailed Description for quick edit'),
+        createData(13, 'wow13','Detailed Description for quick edit'),
+    ])
+
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(15);
@@ -82,43 +81,36 @@ export default function EnhancedTable(props) {
     const {
         setSelectedArray,
         handleSelectDeleteAll,
+        contentStatus,
+        setcontentStatus,
         action,
         setAction,
         handleClickExecuteAction,
     } = props
 
+    console.log(rows)
 
-    const handleSelectAllClick = (event) => {
-        if (event.target.checked) {
-            const newSelected = rows.map((n) => n.id);
-            setSelected(newSelected);
-            setSelectedArray(newSelected)
-            return;
-        }
-        setSelected([]);
-        setSelectedArray([]);
-    };
+    const handleChangeName = (e, id) => {
+        const newArr = rows.map(obj => {
+            if(obj.id === id){
+                return { ...obj, name: e.target.value}
+            }
+            return obj;
+        })
+        setrows(newArr)
+    }
 
-    const handleClick = (event, id) => {
-        const selectedIndex = selected.indexOf(id);
-        let newSelected = [];
+    const handleChangeDescription = (e, id) => {
+        const newArr = rows.map(obj => {
+            if(obj.id === id){
+                return { ...obj, description: e.target.value}
+            }
+            return obj;
+        })
+        setrows(newArr)
+    }
 
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
 
-        setSelected(newSelected);
-        setSelectedArray(newSelected);
-    };
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -130,7 +122,7 @@ export default function EnhancedTable(props) {
     };
 
 
-    const isSelected = (name) => selected.indexOf(name) !== -1;
+    const isSelected = (id) => selected.indexOf(id) !== -1;
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -139,10 +131,12 @@ export default function EnhancedTable(props) {
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-                <ToolBarForceUpdate
-                    title={'Symptoms'}
+                <ToolBarUGC
+                    title={'Quick Edit'}
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
+                    contentStatus={contentStatus}
+                    setcontentStatus={setcontentStatus}
                     action={action}
                     setAction={setAction}
                     handleClickExecuteAction={handleClickExecuteAction}
@@ -156,7 +150,6 @@ export default function EnhancedTable(props) {
                     >
                         <TableHeadNoPhoto
                             numSelected={selected.length}
-                            onSelectAllClick={handleSelectAllClick}
                             rowCount={rows.length}
                             order={order}
                             orderBy={orderBy}
@@ -172,7 +165,6 @@ export default function EnhancedTable(props) {
                                 return (
                                     <StyledTableRow
                                         hover
-                                        onClick={(event) => handleClick(event, row.id)}
                                         role="checkbox"
                                         aria-checked={isItemSelected}
                                         tabIndex={-1}
@@ -198,12 +190,25 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <span className='table__name'>{row.name}</span>
-
+                                            <input value={row.name} 
+                                                type="text" 
+                                                placeholder='Name' 
+                                                className='form__input full__length' 
+                                                onChange={(e) => handleChangeName(e, row.id)}
+                                            />
+        
                                         </StyledTableCell>
-                                        <StyledTableCell align="left">{row.short_description}</StyledTableCell>
+                                        <StyledTableCell align="left">
+                                            <textarea value={row.description} 
+                                                type="text" 
+                                                placeholder='Name' 
+                                                className='form__input full__length' 
+                                                rows={10}
+                                                onChange={(e) => handleChangeDescription(e, row.id)}
+                                            />
+                                        </StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/symptoms/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/ugcrecipes/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>

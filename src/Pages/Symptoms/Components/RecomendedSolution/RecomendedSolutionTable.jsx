@@ -7,71 +7,47 @@ import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
-import { NavLink } from 'react-router-dom';
-import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
-import ToolBarForceUpdate from '../../../Components/TablesToolBars/ToolBarForceUpdate';
-import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
+import { NavLink, useParams } from 'react-router-dom';
+import TableHeadNoPhoto from '../../../../Components/TableHeads/TableHeadNoPhoto';
+import ToolBarJustDelete from '../../../../Components/TablesToolBars/ToolBarJustDelete';
+import { StyledTableCell, StyledTableRow } from '../../../../Styles/StylesTableRowAndCell';
 
 import * as React from 'react';
 
-function createData(id, name, short_description) {
+const headCells = [
+    {
+        id: 'solution',
+        label: 'Solution',
+    },
+];
+
+
+function createData(id, type, solution) {
     return {
         id,
-        name,
-        short_description,
+        type,
+        solution,
     };
 }
 
-const headCells = [
-    {
-        id: 'name',
-        label: 'NAME',
-    },
-    {
-        id: 'short_description',
-        label: 'SHORT DESCRIPTION',
-    },
-];
-
-
 const rows = [
-    createData(1 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(2 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(3 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(4 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(5 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(6 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(7 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(8 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(9 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(10 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(11 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(12 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
-    createData(13 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
+    createData(1, 'Oil', 'DigestZen', ),
+    createData(2, 'Blend', 'Pepperment',),
+    createData(3, 'Oil','Petitgrain'),
+    createData(4, 'Oil','Ginger'),
+    createData(5, 'Blend', 'DigestZen'),
+    createData(6, 'Blend', 'Petitgrain'),
+    createData(7, 'Suplement', 'Petitgrain'),
 ];
 
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
 
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-export default function EnhancedTable(props) {
+export default function RecomendedSolutionTable(props) {
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(15);
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
+    const { id } = useParams();
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -82,9 +58,6 @@ export default function EnhancedTable(props) {
     const {
         setSelectedArray,
         handleSelectDeleteAll,
-        action,
-        setAction,
-        handleClickExecuteAction,
     } = props
 
 
@@ -130,7 +103,7 @@ export default function EnhancedTable(props) {
     };
 
 
-    const isSelected = (name) => selected.indexOf(name) !== -1;
+    const isSelected = (id) => selected.indexOf(id) !== -1;
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -139,13 +112,10 @@ export default function EnhancedTable(props) {
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-                <ToolBarForceUpdate
-                    title={'Symptoms'}
+                <ToolBarJustDelete
+                    title="Recommended Solutions"
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
-                    action={action}
-                    setAction={setAction}
-                    handleClickExecuteAction={handleClickExecuteAction}
                 />
 
                 <TableContainer>
@@ -165,7 +135,7 @@ export default function EnhancedTable(props) {
                         />
 
                         <TableBody>
-                            {rows.slice().sort(getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+                            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                                 const isItemSelected = isSelected(row.id);
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -198,12 +168,10 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <span className='table__name'>{row.name}</span>
-
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">{row.short_description}</StyledTableCell>
+                                            <span className='table__name'>{`${row.type}: ${row.solution}`}</span>
+                                        </StyledTableCell>        
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/symptoms/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/symptoms/${id}/solution/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>

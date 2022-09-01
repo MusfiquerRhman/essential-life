@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+
 import { default as React, useState } from 'react';
 
 const names = [
@@ -20,21 +21,9 @@ const names = [
 
 function SymptomsForm(props) {
     const {
-        bodySystemChip,
-        handleChangeBodySystem,
-        handleDeleteBodySystem,
-        relatedBodySystemChip,
-        handleDeleteRelatedBodySystem,
-        handleChangeRelatedBodySystem,
-        handleDeleteAilments,
-        handleChangeAilments,
-        ailments,
-        setName,
-        name,
-        type,
-        setType,
-        description,
-        setDescription,
+        state,
+        dispatch,
+        ACTION_TYPE,
     } = props;
 
     const [anchorElBodySystem, setAnchorElBodySystem] = React.useState(null);
@@ -70,45 +59,116 @@ function SymptomsForm(props) {
         setAnchorElSymptoms(null);
     };
 
-    const onChangeName = (e) => {
-        setName(e.target.value)
+    const onChangeInput = (event) => {
+        dispatch({
+            type: ACTION_TYPE.CHANGE_INPUT,
+            payload: {
+                name: event.target.name,
+                value: event.target.value
+            }
+        })
     }
 
-    const onChangeType = (e) => {
-        setType(e.target.value)
+    const handleDeleteBodySystem = (value) => {
+        dispatch({
+            type: ACTION_TYPE.DELETE_BODY_SYSTEM,
+            payload: {
+                value: value
+            }
+        })
     }
 
-    const onChangeDescription = (e) => {
-        setDescription(e.target.value)
+    const handleChangeBodySystem = (value) => {
+        dispatch({
+            type: ACTION_TYPE.ADD_BODY_SYSTEM,
+            payload: {
+                value: value
+            }
+        })
     }
+
+    const handleDeleteRelatedBodySystem = (value) => {
+        dispatch({
+            type: ACTION_TYPE.DELETE_RELETED_BODY_SYSTEM,
+            payload: {
+                value: value
+            }
+        })
+    }
+
+    const handleChangeRelatedBodySystem = (value) => {
+        dispatch({
+            type: ACTION_TYPE.ADD_RELETED_BODY_SYSTEM,
+            payload: {
+                value: value
+            }
+        })
+    }
+
+    const handleDeleteAilments = (value) => {
+        dispatch({
+            type: ACTION_TYPE.DELETE_AILMENT,
+            payload: {
+                value: value
+            }
+        })
+    }
+
+    const handleChangeAilments = (value) => {
+        dispatch({
+            type: ACTION_TYPE.ADD_AILMENT,
+            payload: {
+                value: value
+            }
+        })
+    }
+
 
 
     return (
         <>
             <label htmlFor="name" className='form__label'>Name</label>
-            <input type="text" placeholder='Name' id='#name' className='form__input' onChange={onChangeName} value={name}/>
+            <input type="text" 
+                placeholder='Name' 
+                id='name' 
+                className='form__input' 
+                onChange={onChangeInput} 
+                value={state.name}
+                name='name'
+            />
 
             <label htmlFor="type" className='form__label'>Type</label>
-            <select name="Days" id="type" className='full__length form__select' onChange={onChangeType} value={type}>
+            <select id="type" 
+                className='full__length form__select' 
+                onChange={onChangeInput} 
+                value={state.type}
+                name='type'
+            >
                 <option disabled value="">Choose an option</option>
                 <option value="symptom">Symptom</option>
                 <option value="ailment">Ailment</option>
             </select>
 
-            <label htmlFor="Description" className='form__label' style={{ marginTop: '2rem' }}>Short Description</label>
+            <label htmlFor="Description" 
+                className='form__label' 
+                style={{ marginTop: '2rem' }}
+            >
+                Short Description
+            </label>
             <textarea type="text" 
                 placeholder='Short Description' 
-                id='#Description' 
+                id='description' 
                 className='form__input' 
                 rows="10" 
-                value={description} 
-                onChange={onChangeDescription}
+                value={state.description} 
+                onChange={onChangeInput}
+                name='description'
             />
 
             <label htmlFor="Systems" className='form__label'>Body Systems</label>
             <div className='chip__container'>
                 <div className='chips'>
-                    {bodySystemChip.map((value) => (
+                    {state.bodySystem.map((value) => (
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }} 
                             key={value} 
                             label={value} 
@@ -145,10 +205,15 @@ function SymptomsForm(props) {
             </div>
 
 
-            <label htmlFor="Systems" className='form__label' style={{ marginTop: '2rem' }}>Related Body Systems</label>
+            <label htmlFor="Systems" 
+                className='form__label' 
+                style={{ marginTop: '2rem' }}
+            >
+                Related Body Systems
+            </label>
             <div className='chip__container'>
                 <div className='chips'>
-                    {relatedBodySystemChip.map((value) => (
+                    {state.relatedBodySystem.map((value) => (
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }} 
                             key={value} 
                             label={value} 
@@ -184,10 +249,15 @@ function SymptomsForm(props) {
                 </div>
             </div>
 
-            <label htmlFor="Ailments" className='form__label' style={{ marginTop: '2rem' }}>Ailments</label>
+            <label htmlFor="Ailments" 
+                className='form__label' 
+                style={{ marginTop: '2rem' }}
+            >
+                Ailments
+            </label>
             <div className='chip__container'>
                 <div className='chips'>
-                    {ailments.map((value) => (
+                    {state.ailments.map((value) => (
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }} 
                             key={value} 
                             label={value} 

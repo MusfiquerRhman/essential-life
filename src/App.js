@@ -1,16 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import NavBar from './Components/NavBar/NavBar';
+import QuickEditTable from './Components/QuickEdit/QuickEditTable';
 import Sidebar from './Components/Sidebar/Sidebar';
 
 import {
-  AddAilmentsForm, AddAvaterForm, AddBlendsForm, AddBodySystemForm, AddCardsForm, AddCategoryForm, AddConstituentsFrom, AddContentSuggestion, AddOilForm,
-  AddPropertiesForm, AddRecipesForm, AddRemedyForm, AddSuplementsForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, AddUserForm, Ailments, Avaters,
-  Blends, BodySystem, Cards, Categories, Constituents, ContentSuggestion, Dashboard, EditAilmentForm, EditAilmentSolution, EditAilmentSupportiveSolution,
-  EditAvaterForm, EditBlends, EditBlendsRegionalData, EditBlendsTopUses, EditBodySystem, EditBodySystemSolution, EditCardsForm, EditCategoryFrom, EditConstituentsFrom, EditIngrediantFrom, EditOil,
-  EditOilFoundIn, EditOilTopUses, EditPanelFrom, EditPropertyForm, EditRecipeFrom, EditRecipeIngrediant, EditRegionalData, EditSupplementsForm, EditTopTipsFrom,
-  EditTopUses, EditUGCRecipeForm, EditUGCRemedyForm, EditUserFavourite, EditUserForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements,
-  Symptoms, UGCRecipes, UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
+  AddAilmentsForm, AddAvaterForm, AddBlendsForm, AddBodySystemForm, AddCardsForm, AddCategoryForm, AddConstituentsFrom, AddContentSuggestion, AddOilForm, AddPropertiesForm,
+  AddRecipesForm, AddRemedyForm, AddSuplementsForm, AddSymptomsForm, AddUGCRecipeForm, AddUGCRemedyForm, AddUserForm, Ailments, Avaters, Blends, BodySystem, Cards, Categories,
+  Constituents, ContentSuggestion, Dashboard, EditAilmentForm, EditAilmentSolution, EditAilmentSupportiveSolution, EditAvaterForm, EditBlends, EditBlendsRegionalData, EditBlendsTopUses,
+  EditBodySystem, EditBodySystemSolution, EditCardsForm, EditCategoryFrom, EditConstituentsFrom, EditIngrediantFrom, EditOil, EditOilFoundIn, EditOilTopUses, EditPanelFrom,
+  EditPropertyForm, EditRecipeFrom, EditRecipeIngrediant, EditRecomendedSolutionSymptoms, EditRegionalData, EditRemedyForm, EditRemedyIngrediantFrom, EditSupplementsForm,
+  EditSymptoms, EditTopTipsFrom, EditTopUses, EditUGCRecipeForm, EditUGCRemedyForm, EditUserFavourite, EditUserForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload,
+  Supplements, Symptoms, UGCRecipes, UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
 } from './Pages';
 
 
@@ -41,27 +42,31 @@ function App() {
 
           {/* Ailments -----*/}
           <Route exact path='/ailments' element={<Ailments />}/>
-          <Route exact path='/ailments/new/' element={<AddAilmentsForm />}/>
-          <Route exact path='/ailments/:id/' element={<EditAilmentForm />}/>
+          <Route exact path='/ailments/new' element={<AddAilmentsForm />}/>
+          <Route exact path='/ailments/:id' element={<EditAilmentForm />}/>
           <Route exact path='/ailments/solution/edit/:id' element={<EditAilmentSolution />}/>
           <Route exact path='/ailments/solution/supportive/edit/:id' element={<EditAilmentSupportiveSolution />}/>
 
-          {/* Body System */}
+          {/* Body System  -----*/}
           <Route exact path='/body-system' element={<BodySystem />}/>
           <Route exact path='/body-system/new' element={<AddBodySystemForm />}/>
           <Route exact path='/body-system/:id' element={<EditBodySystem />}/>
           <Route exact path='/body-system/:id/solutions/:solutionId' element={<EditBodySystemSolution />}/>
 
 
-          {/* Remedies */}
+          {/* Remedies  -----*/}
           <Route exact path='/remedies' element={<Remedies />} />
           <Route exact path='/remedies/new' element={<AddRemedyForm />} />
+          <Route exact path='/remedies/:id' element={<EditRemedyForm />} />
+          <Route exact path='/remedies/:id/ingredients/:ingId' element={<EditRemedyIngrediantFrom />} />
 
-          {/* Symptoms */}
+          {/* Symptoms */} 
           <Route exact path='/symptoms' element={<Symptoms />} />
-          <Route exact path='/symptoms/new/' element={<AddSymptomsForm />} />
+          <Route exact path='/symptoms/new' element={<AddSymptomsForm />} />
+          <Route exact path='/symptoms/:id' element={<EditSymptoms />} />
+          <Route exact path='/symptoms/:id/solution/:solutionId' element={<EditRecomendedSolutionSymptoms />} />
 
-          {/* Cards */}
+          {/* Cards  -----*/} 
           <Route exact path='/cards' element={<Cards />} />
           <Route exact path='/cards/new' element={<AddCardsForm />} />
           <Route exact path='/cards/:id' element={<EditCardsForm />} />
@@ -128,6 +133,9 @@ function App() {
 
           {/* Seed Download -----*/}
           <Route exact path='/seed-download' element={<SeedDownload />} />
+
+          <Route exact path='/QuickEditTable' element={<QuickEditTable />} />
+
 
         </Routes>
       </Sidebar>

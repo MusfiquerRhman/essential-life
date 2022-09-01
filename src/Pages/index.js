@@ -1,3 +1,4 @@
+// Sorted in Ascending order of path name
 // Ailments
 export { default as Ailments } from "./Ailments/Ailments";
 export { default as AddAilmentsForm } from "./Ailments/Components/AddAilmentsForm";
@@ -50,6 +51,7 @@ export { default as Oil } from "./Oil/Oil";
 export { default as AddPropertiesForm } from "./Properties/Components/AddPropertiesForm";
 export { default as EditPropertyForm } from "./Properties/Components/EditPropertyForm";
 export { default as Properties } from "./Properties/Properties";
+
 // Recipes
 export { default as AddRecipesForm } from "./Recipes/Components/AddRecipesForm";
 export { default as EditRecipeFrom } from "./Recipes/Components/EditRecipeFrom";
@@ -57,6 +59,8 @@ export { default as EditRecipeIngrediant } from "./Recipes/Components/Ingrediant
 export { default as Recipes } from "./Recipes/Recipes";
 // Remedies
 export { default as AddRemedyForm } from "./Remedies/Components/AddRemedyForm";
+export { default as EditRemedyForm } from "./Remedies/Components/EditRemedyForm";
+export { default as EditRemedyIngrediantFrom } from "./Remedies/Components/IngrideantTable/EditRemedyIngrediantFrom";
 export { default as Remedies } from "./Remedies/Remedies";
 // Seed Download
 export { default as SeedDownload } from "./SeedDownload/SeedDownload";
@@ -69,6 +73,8 @@ export { default as EditTopUses } from "./Supplements/Components/TopUsesTable/Ed
 export { default as Supplements } from "./Supplements/Supplements";
 // Symptoms
 export { default as AddSymptomsForm } from "./Symptoms/Components/AddSymptomsForm";
+export { default as EditSymptoms } from "./Symptoms/Components/EditSymptoms";
+export { default as EditRecomendedSolutionSymptoms } from "./Symptoms/Components/RecomendedSolution/EditRecomendedSolution";
 export { default as Symptoms } from "./Symptoms/Symptoms";
 // UGCRecipes
 export { default as AddUGCRecipeForm } from "./UGCRecipes/Components/AddUGCRecipeForm";

@@ -6,31 +6,97 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
+import { FiEdit } from 'react-icons/fi';
+import { RiDeleteBinLine } from 'react-icons/ri';
+import { NavLink } from 'react-router-dom';
+import TableHeadWithPhoto from '../../../Components/TableHeads/TableHeadWithPhoto';
 import ToolBarJustDelete from '../../../Components/TablesToolBars/ToolBarJustDelete';
 import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
-import EnhancedTableHead from './EnhancedTableHead';
 
 import * as React from 'react';
 
-function createData(id, photo, type, name, content) {
+const headCells = [
+    {
+        id: 'type',
+        label: 'Type',
+    },
+    {
+        id: 'name',
+        label: 'Name',
+    },
+    {
+        id: 'content',
+        label: 'Content',
+    },
+    {
+        id: 'association',
+        label: "Association"
+    },
+    {
+        id: 'user',
+        label: 'User'
+    },
+    {
+        id: 'created_at',
+        label: 'Created At'
+    }
+];
+
+
+function createData(id, photo, type, name, content, association, user, created_at) {
     return {
         id,
         photo,
         type,
         name,
         content,
+        association,
+        user,
+        created_at
     };
 }
 
 const rows = [
-    createData(1 ,'--', 'Recipe Category', 'Home', 'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'),
-    createData(2 ,'--', 'Recipe Category', 'Home', 'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'),
-    createData(3 ,'--', 'Recipe Category', 'Home', 'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'),
-    createData(4 ,'--', 'Recipe Category', 'Home', 'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'),
-    createData(5 ,'--', 'Recipe Category', 'Home', 'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'),
-    createData(6 ,'--', 'Recipe Category', 'Home', 'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'),
-    createData(7 ,'--', 'Recipe Category', 'Home', 'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'),
-    createData(8 ,'--', 'Recipe Category', 'Home', 'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'),
+    createData(1, '--', 'Recipe Category', 'Home',
+        'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'
+        , '--', 'hwinters', 'Jun 07 2019'
+    ),
+
+    createData(2, '--', 'Recipe Category', 'Home',
+        'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'
+        , '--', 'hwinters', 'Jun 07 2019'
+    ),
+
+    createData(3, '--', 'Recipe Category', 'Home',
+        'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'
+        , '--', 'hwinters', 'Jun 07 2019'
+    ),
+
+    createData(4, '--', 'Recipe Category', 'Home',
+        'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'
+        , '--', 'hwinters', 'Jun 07 2019'
+    ),
+
+    createData(5, '--', 'Recipe Category', 'Home',
+        'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'
+
+        , '--', 'hwinters', 'Jun 07 2019'
+    ),
+
+    createData(6, '--', 'Recipe Category', 'Home',
+        'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'
+        , '--', 'hwinters', 'Jun 07 2019'
+    ),
+
+    createData(7, '--', 'Recipe Category', 'Home',
+        'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'
+        , '--', 'hwinters', 'Jun 07 2019'
+    ),
+
+    createData(8, '--', 'Recipe Category', 'Home',
+        'Absolutely loving this app! I also have the book but thoroughly enjoy having these on the go and at my finger tips! One of the main reasons I use EO is to support my emotions. They are so powerful and it would be great to have recipes easily available for this.'
+        , '--', 'hwinters', 'Jun 07 2019'
+    ),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -131,13 +197,14 @@ export default function EnhancedTable(props) {
                         aria-labelledby="tableTitle"
                         size={'medium'}
                     >
-                        <EnhancedTableHead
+                        <TableHeadWithPhoto
                             numSelected={selected.length}
                             onSelectAllClick={handleSelectAllClick}
                             rowCount={rows.length}
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
+                            headCells={headCells}
                         />
 
                         <TableBody>
@@ -167,7 +234,7 @@ export default function EnhancedTable(props) {
                                         {row.photo === '--' ? (
                                             <StyledTableCell align="center">{row.photo}</StyledTableCell>
                                         ) : (
-                                            <StyledTableCell align="center"><img className='table__img' src={row.photo} alt='product'/></StyledTableCell>
+                                            <StyledTableCell align="center"><img className='table__img' src={row.photo} alt='product' /></StyledTableCell>
                                         )}
                                         <StyledTableCell
                                             component="th"
@@ -184,6 +251,13 @@ export default function EnhancedTable(props) {
                                         </StyledTableCell>
                                         <StyledTableCell align="left"><span className='table__userName'>{row.name}</span> </StyledTableCell>
                                         <StyledTableCell align="left">{row.content}</StyledTableCell>
+                                        <StyledTableCell align="left">{row.association}</StyledTableCell>
+                                        <StyledTableCell align="left">{row.user}</StyledTableCell>
+                                        <StyledTableCell align="left">{row.created_at}</StyledTableCell>
+                                        <StyledTableCell align='right'>
+                                            {/* <NavLink to={`/oil/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink> */}
+                                            <RiDeleteBinLine className='table__icon' />
+                                        </StyledTableCell>
                                     </StyledTableRow>
                                 );
                             })}

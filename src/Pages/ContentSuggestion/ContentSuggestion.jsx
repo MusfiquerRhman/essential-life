@@ -24,9 +24,9 @@ function ContentSuggestion() {
       <h1>Content Suggestions</h1>
       <div className='search__container'>
         <SearchBox />
-        <Button startIcon={<AddIcon />} sx={{borderRadius: '2rem'}} variant="contained">
+        {/* <Button startIcon={<AddIcon />} sx={{borderRadius: '2rem'}} variant="contained">
           <NavLink to='/content-suggestion/new/' className='button'>Create Content Suggestions</NavLink>
-        </Button>
+        </Button> */}
       </div>
       
       <div className='table__card'>

@@ -1,4 +1,5 @@
 import AddIcon from '@mui/icons-material/Add';
+import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button';
 import { default as React, useReducer, useState } from 'react';
 import { ACTION_TYPE, blendReducer, INITIAL_STATE } from '../../../Reducers/blendReducer';
@@ -41,6 +42,16 @@ const EditBlends = () => {
 
     }
 
+    const [action, setAction] = useState('');
+
+    const handleChangeAction = (event) => {
+        setAction(event.target.value);
+    };
+
+    const handleClickExecuteAction = () => {
+        // TODO
+    }
+
 
     return (
         <section>
@@ -53,6 +64,26 @@ const EditBlends = () => {
                         onClick={updateSupplement}
                     >
                         Update Blend
+                    </Button>
+
+                    <select name="Days" id="days" defaultValue={action} onChange={handleChangeAction}>
+                        <option disabled value="">Select an Action</option>
+                        <option value="force">Force Update</option>
+                    </select>
+
+                    <Button
+                        id="action-button"
+                        aria-haspopup="true"
+                        onClick={handleClickExecuteAction}
+                        variant='contained'
+                        sx={{
+                            padding: '0.5rem',
+                            borderRadius: '2rem',
+                            marginLeft: '1rem'
+                        }}
+                        disabled={action === '' ? true : false}
+                    >
+                        <DoneIcon />
                     </Button>
                 </div>
             </div>

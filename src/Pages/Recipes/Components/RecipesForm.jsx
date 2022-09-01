@@ -7,7 +7,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import { default as React } from 'react';
+import { default as React, useState } from 'react';
 import IOSSwitch from '../../../Styles/iOSSwitch';
 
 const names = [
@@ -129,15 +129,35 @@ const RecipeForm = (props) => {
         })
     }
 
+    const [displayImage, setDisplayImage] = useState("");
+
     const imageSelectHandeler = (event) => {
         dispatch({
             type: ACTION_TYPE.CHANGE_INPUT,
             payload: {
                 name: event.target.name,
-                value: event.target.files
+                value: event.target.files[0]
             }
         })
+        const reader = new FileReader();
+        reader.onload = () => {
+            if (reader.readyState === 2) {
+                setDisplayImage(reader.result);
+            }
+        };
+        if (event.target.files[0] && event.target.files[0].type.match("image.*")) {
+            reader.readAsDataURL(event.target.files[0]);
+        }
     };
+
+    let imageSelected = "";
+    if (displayImage !== "") {
+        imageSelected = (
+            <div className='img__container'>
+                <img src={displayImage} className="img__box" alt="product" />
+            </div>
+        );
+    }
 
 
     return (
@@ -277,10 +297,17 @@ const RecipeForm = (props) => {
                 />
             </Stack>
 
-            <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem' }}>Background Image</label>
-            <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
-                imageSelectHandeler(e);
-            }} />
+            <div className='image__option flex__row'>
+                <div>
+                    <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem', marginRight: '2rem' }}>Image</label>
+                    <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
+                        imageSelectHandeler(e);
+                    }} />
+                </div>
+
+
+                {imageSelected}
+            </div>
         </>
     )
 }

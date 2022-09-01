@@ -123,8 +123,7 @@ function EditAilmentForm() {
 
                     <select name="Days" id="days" defaultValue={action} onChange={handleChangeAction}>
                         <option disabled value="">Select an Action</option>
-                        <option value="approve">Approve</option>
-                        <option value="rejected">Rejected</option>
+                        <option value="force">Force Update</option>
                     </select>
 
                     <Button

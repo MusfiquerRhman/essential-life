@@ -15,27 +15,27 @@ import { StyledTableCell, StyledTableRow } from '../../../../Styles/StylesTableR
 
 const headCells = [
     {
-        id: 'name',
-        label: 'Name',
-    },
+        id: 'description',
+        label: 'Description'
+    }
 ];
 
-function createData(id, name) {
+function createData(id, description) {
     return {
         id,
-        name,
+        description
     };
 }
 
 const rows = [
-    createData(1, 'DigestZen'),
-    createData(2, 'Pepperment'),
-    createData(3, 'Petitgrain'),
-    createData(4, 'Ginger'),
-    createData(5, 'DigestZen'),
+    createData(1, 'detailed description'),
+    createData(2, 'detailed description'),
+    createData(3, 'detailed description'),
+    createData(4, 'detailed description'),
+    createData(5, 'detailed description'),
 ];
 
-const TopUsesTable = (props) => {
+const TopTipsTable = (props) => {
     const {id} = useParams()
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
@@ -107,7 +107,7 @@ const TopUsesTable = (props) => {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <ToolBarJustDelete
-                    title="Top Uses"
+                    title="Top Tips"
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
                 />
@@ -152,9 +152,9 @@ const TopUsesTable = (props) => {
                                                 }}
                                             />
                                         </StyledTableCell>
-                                        <StyledTableCell>{row.name}</StyledTableCell>
+                                        <StyledTableCell>{row.description}</StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/supplements/${id}/topuses/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/categories/${id}/toptips/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>
@@ -189,4 +189,4 @@ const TopUsesTable = (props) => {
     );
 }
 
-export default TopUsesTable;
+export default TopTipsTable;

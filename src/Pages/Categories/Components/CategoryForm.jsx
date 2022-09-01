@@ -64,6 +64,15 @@ function CategoryForm(props) {
         setName(e.target.value)
     }
 
+    let imageSelected = "";
+    if (displayImage !== "") {
+        imageSelected = (
+            <div className='img__container'>
+                <img src={displayImage} className="img__box" alt="product" />
+            </div>
+        );
+    }
+
     return (
         <>
             <label htmlFor="name" className='form__label'>Name</label>
@@ -118,10 +127,17 @@ function CategoryForm(props) {
                 </div>
             </div>
 
-            <label className='form__label' htmlFor="myfile">Select an Image:</label>
-            <input className='file__input' type="file" id="myfile" name="myfile" onChange={(e) => {
-                imageSelectHandeler(e.target.files);
-            }} />
+            <div className='image__option flex__row'>
+                <div>
+                    <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem', marginRight: '2rem' }}>Image</label>
+                    <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
+                        imageSelectHandeler(e);
+                    }} />
+                </div>
+
+
+                {imageSelected}
+            </div>
         </>
     )
 }

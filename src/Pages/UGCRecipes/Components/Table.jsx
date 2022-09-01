@@ -236,7 +236,7 @@ export default function EnhancedTable(props) {
                                         <StyledTableCell align="left">{row.rejection_reason}</StyledTableCell>
                                         <StyledTableCell align="left">{row.created_at}</StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/recipe/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/ugcrecipes/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>

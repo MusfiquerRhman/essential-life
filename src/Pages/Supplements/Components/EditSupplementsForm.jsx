@@ -9,6 +9,7 @@ import RegionalNameFrom from "./RegionalNameFrom";
 import SupplementForm from "./SupplementForm";
 import TopUsesForm from './TopUsesForm';
 import TopUsesTable from "./TopUsesTable/TopUsesTable";
+import DoneIcon from '@mui/icons-material/Done';
 
 function EditSupplementsForm() {
     const [state, dispatch] = useReducer(supplementsReducer, INITIAL_STATE)
@@ -54,6 +55,20 @@ function EditSupplementsForm() {
 
     }
 
+    const addIngrediant = () => {
+        
+    }
+
+    const [action, setAction] = useState('');
+
+    const handleChangeAction = (event) => {
+        setAction(event.target.value);
+    };
+
+    const handleClickExecuteAction = () => {
+        // TODO
+    }
+
     return (
         <section>
             <div className='form__header'>
@@ -65,6 +80,26 @@ function EditSupplementsForm() {
                         onClick={updateSupplement}
                     >
                         Update Supplement
+                    </Button>
+
+                    <select name="Days" id="days" defaultValue={action} onChange={handleChangeAction}>
+                        <option disabled value="">Select an Action</option>
+                        <option value="force">Force Update</option>
+                    </select>
+
+                    <Button
+                        id="action-button"
+                        aria-haspopup="true"
+                        onClick={handleClickExecuteAction}
+                        variant='contained'
+                        sx={{
+                            padding: '0.5rem',
+                            borderRadius: '2rem',
+                            marginLeft: '1rem'
+                        }}
+                        disabled={action === '' ? true : false}
+                    >
+                        <DoneIcon />
                     </Button>
                 </div>
             </div>
@@ -156,7 +191,7 @@ function EditSupplementsForm() {
                     variant='contained'
                     sx={{ borderRadius: '5rem', marginTop: '1rem' }}
                     startIcon={<AddIcon />}
-                    onClick={addTopUses}
+                    onClick={addIngrediant}
                     style={{ float: 'right', width: 'fit-content', marginLeft: 'auto' }}
                 >
                     Add Ingrediant

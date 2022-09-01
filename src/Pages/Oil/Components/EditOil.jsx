@@ -1,4 +1,5 @@
 import AddIcon from '@mui/icons-material/Add';
+import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button';
 import { default as React, useReducer, useState } from 'react';
 import SolutionType from '../../../Components/Common/SolutionType';
@@ -56,6 +57,17 @@ function EditOil() {
 
     }
 
+    const [action, setAction] = useState('');
+
+    const handleChangeAction = (event) => {
+        setAction(event.target.value);
+    };
+
+    const handleClickExecuteAction = () => {
+        // TODO
+    }
+
+
     return (
         <section>
             <div className='form__header'>
@@ -67,6 +79,26 @@ function EditOil() {
                         onClick={updateSupplement}
                     >
                         Update Oil
+                    </Button>
+
+                    <select name="Days" id="days" defaultValue={action} onChange={handleChangeAction}>
+                        <option disabled value="">Select an Action</option>
+                        <option value="force">Force Update</option>
+                    </select>
+
+                    <Button
+                        id="action-button"
+                        aria-haspopup="true"
+                        onClick={handleClickExecuteAction}
+                        variant='contained'
+                        sx={{
+                            padding: '0.5rem',
+                            borderRadius: '2rem',
+                            marginLeft: '1rem'
+                        }}
+                        disabled={action === '' ? true : false}
+                    >
+                        <DoneIcon />
                     </Button>
                 </div>
             </div>

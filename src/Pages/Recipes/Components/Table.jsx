@@ -237,7 +237,7 @@ export default function EnhancedTable(props) {
                                         <StyledTableCell align="left">{row.created_at}</StyledTableCell>
                                         <StyledTableCell align="left">{row.favourite_count}</StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/recipe/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/recipes/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>

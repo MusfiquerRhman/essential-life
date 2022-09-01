@@ -20,9 +20,13 @@ export { default as AddBodySystemForm } from "./BodySystem/Component/AddBodySyst
 // Cards
 export { default as Cards } from "./Cards/Cards";
 export { default as AddCardsForm } from "./Cards/Components/AddCardsForm";
+export { default as EditCardsForm } from "./Cards/Components/EditCardsForm";
 // Category
 export { default as Categories } from "./Categories/Categories";
 export { default as AddCategoryForm } from "./Categories/Components/AddCategoryForm";
+export { default as EditCategoryFrom } from "./Categories/Components/EditCategoryFrom";
+export { default as EditPanelFrom } from "./Categories/Components/Panels/EditPanelFrom";
+export { default as EditTopTipsFrom } from "./Categories/Components/TopTips/EditTopTipsFrom";
 // Constituents
 export { default as AddConstituentsFrom } from "./Constituents/Components/AddConstituentsFrom";
 export { default as EditConstituentsFrom } from "./Constituents/Components/EditConstituentsFrom";
@@ -46,6 +50,8 @@ export { default as EditPropertyForm } from "./Properties/Components/EditPropert
 export { default as Properties } from "./Properties/Properties";
 // Recipes
 export { default as AddRecipesForm } from "./Recipes/Components/AddRecipesForm";
+export { default as EditRecipeFrom } from "./Recipes/Components/EditRecipeFrom";
+export { default as EditRecipeIngrediant } from "./Recipes/Components/Ingrediant/EditRecipeIngrediant";
 export { default as Recipes } from "./Recipes/Recipes";
 // Remedies
 export { default as AddRemedyForm } from "./Remedies/Components/AddRemedyForm";

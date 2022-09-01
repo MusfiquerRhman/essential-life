@@ -14,9 +14,9 @@ function Cards() {
   const [showForAndroid, setShowForAndroid] = useState('--')
   // useEffect(() => {
   //   console.log(selected, contentStatus, action)
-  
+
   // }, [selected, contentStatus, action])
-  
+
   const handleSelectDeleteAll = () => {
     // TODO: Delete all selected
   }
@@ -28,31 +28,31 @@ function Cards() {
 
   return (
     <section>
-    <h1>Cards</h1>
-    <div className='search__container'>
-      <SearchBox />
-      <Button startIcon={<AddIcon />} sx={{borderRadius: '2rem'}} variant="contained">
-        <NavLink to='/card/new' className='button'>Create Card</NavLink>
-      </Button>
-    </div>
-    
-    <div className='table__card'>
-      <Table
-        selected={selected}
-        setSelectedArray={setSelected}
-        handleSelectDeleteAll={handleSelectDeleteAll}
-        visibleInRegion={visibleInRegion}
-        setVisibleInregion={setVisibleInregion}
-        showForIOS={showForIOS}
-        setShowForIOS={setShowForIOS}
-        isActive={isActive}
-        setIsActive={setIsActive}
-        showForAndroid={showForAndroid}
-        setShowForAndroid={setShowForAndroid}
-        handleClickExecuteAction={handleClickExecuteAction} 
-      />
-    </div>
-  </section>
+      <h1>Cards</h1>
+      <div className='search__container'>
+        <SearchBox />
+        <Button startIcon={<AddIcon />} sx={{ borderRadius: '2rem' }} variant="contained">
+          <NavLink to='/cards/new' className='button'>Create Card</NavLink>
+        </Button>
+      </div>
+
+      <div className='table__card'>
+        <Table
+          selected={selected}
+          setSelectedArray={setSelected}
+          handleSelectDeleteAll={handleSelectDeleteAll}
+          visibleInRegion={visibleInRegion}
+          setVisibleInregion={setVisibleInregion}
+          showForIOS={showForIOS}
+          setShowForIOS={setShowForIOS}
+          isActive={isActive}
+          setIsActive={setIsActive}
+          showForAndroid={showForAndroid}
+          setShowForAndroid={setShowForAndroid}
+          handleClickExecuteAction={handleClickExecuteAction}
+        />
+      </div>
+    </section>
   )
 }
 

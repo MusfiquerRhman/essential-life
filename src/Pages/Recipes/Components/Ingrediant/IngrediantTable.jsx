@@ -15,27 +15,47 @@ import { StyledTableCell, StyledTableRow } from '../../../../Styles/StylesTableR
 
 const headCells = [
     {
-        id: 'name',
-        label: 'Name',
+        id: 'quantity',
+        label: 'Quantity',
     },
+    {
+        id: 'measure',
+        label: 'Measure',
+    },
+    {
+        id: 'custom_name',
+        label: 'Custom name (instead of related oil/blend)',
+    },
+    {
+        id: 'related',
+        label: 'Related Oil/Blend',
+    },
+    {
+        id: 'recipe',
+        label: 'Recipe'
+    }
 ];
 
-function createData(id, name) {
+function createData(id, quantity, measure, custom_name, related, recipe) {
     return {
         id,
-        name,
+        quantity,
+        measure,
+        custom_name,
+        related,
+        recipe
     };
 }
 
 const rows = [
-    createData(1, 'DigestZen'),
-    createData(2, 'Pepperment'),
-    createData(3, 'Petitgrain'),
-    createData(4, 'Ginger'),
-    createData(5, 'DigestZen'),
+    createData(1, 3, 'drop', 'custom name', 'related date', 'White Herb bread'),
+    createData(2, 4, 'drop', 'custom name', 'related date', 'White Herb bread'),
+    createData(3, 7, 'drop', 'custom name', 'related date', 'White Herb bread'),
+    createData(4, 9, 'drop', 'custom name', 'related date', 'White Herb bread'),
+    createData(5, 1, 'drop', 'custom name', 'related date', 'White Herb bread'),
 ];
 
-const TopUsesTable = (props) => {
+const IngrediantTable = (props) => {
     const {id} = useParams()
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
@@ -107,7 +127,7 @@ const TopUsesTable = (props) => {
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <ToolBarJustDelete
-                    title="Top Uses"
+                    title="Ingredients"
                     numSelected={selected.length}
                     handleSelectDeleteAll={handleSelectDeleteAll}
                 />
@@ -152,9 +172,13 @@ const TopUsesTable = (props) => {
                                                 }}
                                             />
                                         </StyledTableCell>
-                                        <StyledTableCell>{row.name}</StyledTableCell>
+                                        <StyledTableCell>{row.quantity}</StyledTableCell>
+                                        <StyledTableCell>{row.measure}</StyledTableCell>
+                                        <StyledTableCell>{row.custom_name}</StyledTableCell>
+                                        <StyledTableCell>{row.related}</StyledTableCell>
+                                        <StyledTableCell>{row.recipe}</StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/supplements/${id}/topuses/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/recipes/${id}/ingredients/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>
@@ -189,4 +213,4 @@ const TopUsesTable = (props) => {
     );
 }
 
-export default TopUsesTable;
+export default IngrediantTable;

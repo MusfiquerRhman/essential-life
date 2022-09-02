@@ -10,30 +10,28 @@ import { StyledTableCell, StyledTableRow } from '../../Styles/StylesTableRowAndC
 import ToolBarUGC from '../TablesToolBars/ToolBarUGC';
 import QuickEditTableHead from './QuickEditTableHead';
 
-function createData(id, name, description) {
+function createData(id, name) {
     return {
         id,
         name,
-        description,
     };
 }
 
-
-export default function QuickEditTable(props) {
+export default function QuickEditNameOnly(props) {
     const [rows, setrows] = useState([
-        createData(1, 'wow1', 'Detailed Description for quick edit'),
-        createData(2, 'wow2', 'Detailed Description for quick edit'),
-        createData(3, 'wow3', 'Detailed Description for quick edit'),
-        createData(4, 'wow4', 'Detailed Description for quick edit'),
-        createData(5, 'wow5', 'Detailed Description for quick edit'),
-        createData(6, 'wow6', 'Detailed Description for quick edit'),
-        createData(7, 'wow7', 'Detailed Description for quick edit'),
-        createData(8, 'wow8', 'Detailed Description for quick edit'),
-        createData(9, 'wow9', 'Detailed Description for quick edit'),
-        createData(10, 'wow10', 'Detailed Description for quick edit'),
-        createData(11, 'wow11', 'Detailed Description for quick edit'),
-        createData(12, 'wow12', 'Detailed Description for quick edit'),
-        createData(13, 'wow13', 'Detailed Description for quick edit'),
+        createData(  1, 'wow1'),
+        createData(  2, 'wow2'),
+        createData(  3, 'wow3'),
+        createData(  4, 'wow4'),
+        createData(  5, 'wow5'),
+        createData(  6, 'wow6'),
+        createData(  7, 'wow7'),
+        createData(  8, 'wow8'),
+        createData(  9, 'wow9'),
+        createData(10, 'wow10'),
+        createData(11, 'wow11'),
+        createData(12, 'wow12'),
+        createData(13, 'wow13'),
     ])
 
     const [page, setPage] = React.useState(0);
@@ -51,7 +49,7 @@ export default function QuickEditTable(props) {
     } = props
 
 
-    const handleChangeName = (e, id, description) => {
+    const handleChangeName = (e, id) => {
         const newArr = rows.map(obj => {
             if (obj.id === id) {
                 return { ...obj, name: e.target.value }
@@ -60,23 +58,10 @@ export default function QuickEditTable(props) {
         })
         setrows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: {'name': e.target.value, 'description': description}
+            ...prevState, [id]: {'name': e.target.value}
         }))
     }
 
-
-    const handleChangeDescription = (e, id, name) => {
-        const newArr = rows.map(obj => {
-            if (obj.id === id) {
-                return { ...obj, description: e.target.value }
-            }
-            return obj;
-        })
-        setrows(newArr)
-        setmodifiedItems(prevState => ({
-            ...prevState, [id]: {'name': name, 'description': e.target.value}
-        }))
-    }
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -143,19 +128,8 @@ export default function QuickEditTable(props) {
                                                 type="text"
                                                 placeholder='Name'
                                                 className='form__input full__length'
-                                                onChange={(e) => handleChangeName(e, row.id, row.description)}
+                                                onChange={(e) => handleChangeName(e, row.id)}
                                                 style={{marginLeft: '1rem'}}
-                                            />
-
-                                        </StyledTableCell>
-                                        <StyledTableCell align="left">
-                                            <textarea value={row.description}
-                                                type="text"
-                                                placeholder='Name'
-                                                className='form__input full__length'
-                                                rows={10}
-                                                style={{marginLeft: '1rem'}}
-                                                onChange={(e) => handleChangeDescription(e, row.id, row.name)}
                                             />
                                         </StyledTableCell>
                                         <StyledTableCell align='right'>

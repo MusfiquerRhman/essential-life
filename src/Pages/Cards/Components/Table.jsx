@@ -221,7 +221,7 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <span className='table__name'>{row.title}</span>
+                                            <NavLink to={`/cards/${row.id}`}><span className='table__name'>{row.title}</span></NavLink>
                                         </StyledTableCell>
                                         <StyledTableCell align="center"><div className='activity__balls' style={row.ios ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>
                                         <StyledTableCell align="center"><div className='activity__balls' style={row.android ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>

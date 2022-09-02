@@ -229,7 +229,7 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <span className='table__name'>{row.name}</span>
+                                            <NavLink to={`/users/${row.id}`}><span className='table__name'>{row.name}</span></NavLink>
                                         </StyledTableCell>
                                         <StyledTableCell align="left">{row.email}</StyledTableCell>
                                         <StyledTableCell align="left">{row.subscription_type}</StyledTableCell>

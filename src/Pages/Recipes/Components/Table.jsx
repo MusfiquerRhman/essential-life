@@ -229,7 +229,7 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <span className='table__name'>{row.name}</span>
+                                            <NavLink to={`/recipes/${row.id}`}><span className='table__name'>{row.name}</span></NavLink>
                                         </StyledTableCell>
                                         <StyledTableCell align="left">{row.method}</StyledTableCell>
                                         <StyledTableCell align="center"><div className='activity__balls' style={row.featured ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>

@@ -208,8 +208,7 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <span className='table__name'>{row.name}</span>
-
+                                            <NavLink to={`/remedies/${row.id}`}><span className='table__name'>{row.name}</span></NavLink>
                                         </StyledTableCell>
                                         <StyledTableCell align="left">{row.method}</StyledTableCell>
                                         <StyledTableCell align="left">{row.user} </StyledTableCell>

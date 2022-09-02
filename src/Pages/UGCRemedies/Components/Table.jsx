@@ -226,7 +226,7 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <span className='table__name'>{row.name}</span>
+                                            <NavLink to={`/ugcremedy/${row.id}`}><span className='table__name'>{row.name}</span></NavLink>
                                         </StyledTableCell>
                                         <StyledTableCell align="left">{row.public_recipe}</StyledTableCell>
                                         <StyledTableCell align="left"><span className='table__userName'>{row.user}</span> </StyledTableCell>

@@ -203,8 +203,7 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <span className='table__name'>{row.name}</span>
-
+                                            <NavLink to={`/categories/${row.id}`}><span className='table__name'>{row.name}</span></NavLink>
                                         </StyledTableCell>
                                         <StyledTableCell align="left">{row.short_description}</StyledTableCell>
                                         <StyledTableCell align='right'>

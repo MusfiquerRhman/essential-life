@@ -1,39 +1,45 @@
 import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import React, { useEffect, useState } from 'react';
+import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import { NavLink } from 'react-router-dom';
+import IOSSwitch from '../../Styles/iOSSwitch';
 import { StyledTableCell, StyledTableRow } from '../../Styles/StylesTableRowAndCell';
 import ToolBarUGC from '../TablesToolBars/ToolBarUGC';
 import QuickEditTableHead from './QuickEditTableHead';
 
-function createData(id, name, description) {
+function createData(id, name, description, featured) {
     return {
         id,
         name,
         description,
+        featured
     };
 }
 
 
-export default function QuickEditTable(props) {
+export default function QuickEditTableWithSwitch(props) {
     const [rows, setrows] = useState([
-        createData(1, 'wow1', 'Detailed Description for quick edit'),
-        createData(2, 'wow2', 'Detailed Description for quick edit'),
-        createData(3, 'wow3', 'Detailed Description for quick edit'),
-        createData(4, 'wow4', 'Detailed Description for quick edit'),
-        createData(5, 'wow5', 'Detailed Description for quick edit'),
-        createData(6, 'wow6', 'Detailed Description for quick edit'),
-        createData(7, 'wow7', 'Detailed Description for quick edit'),
-        createData(8, 'wow8', 'Detailed Description for quick edit'),
-        createData(9, 'wow9', 'Detailed Description for quick edit'),
-        createData(10, 'wow10', 'Detailed Description for quick edit'),
-        createData(11, 'wow11', 'Detailed Description for quick edit'),
-        createData(12, 'wow12', 'Detailed Description for quick edit'),
-        createData(13, 'wow13', 'Detailed Description for quick edit'),
+        createData(1, 'wow1', 'Detailed Description for quick edit', true),
+        createData(2, 'wow2', 'Detailed Description for quick edit', true),
+        createData(3, 'wow3', 'Detailed Description for quick edit', true),
+        createData(4, 'wow4', 'Detailed Description for quick edit', true),
+        createData(5, 'wow5', 'Detailed Description for quick edit', true),
+        createData(6, 'wow6', 'Detailed Description for quick edit', true),
+        createData(7, 'wow7', 'Detailed Description for quick edit', true),
+        createData(8, 'wow8', 'Detailed Description for quick edit', true),
+        createData(9, 'wow9', 'Detailed Description for quick edit', true),
+        createData(10, 'wow10', 'Detailed Description for quick edit', true),
+        createData(11, 'wow11', 'Detailed Description for quick edit', true),
+        createData(12, 'wow12', 'Detailed Description for quick edit', true),
+        createData(13, 'wow13', 'Detailed Description for quick edit', true),
     ])
 
     const [page, setPage] = React.useState(0);
@@ -51,7 +57,7 @@ export default function QuickEditTable(props) {
     } = props
 
 
-    const handleChangeName = (e, id, description) => {
+    const handleChangeName = (e, id, description, featured) => {
         const newArr = rows.map(obj => {
             if (obj.id === id) {
                 return { ...obj, name: e.target.value }
@@ -60,12 +66,12 @@ export default function QuickEditTable(props) {
         })
         setrows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: {'name': e.target.value, 'description': description}
+            ...prevState, [id]: { 'name': e.target.value, 'description': description, 'featured': featured }
         }))
     }
 
 
-    const handleChangeDescription = (e, id, name) => {
+    const handleChangeDescription = (e, id, name, featured) => {
         const newArr = rows.map(obj => {
             if (obj.id === id) {
                 return { ...obj, description: e.target.value }
@@ -74,7 +80,20 @@ export default function QuickEditTable(props) {
         })
         setrows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: {'name': name, 'description': e.target.value}
+            ...prevState, [id]: { 'name': name, 'description': e.target.value, 'featured': featured }
+        }))
+    }
+
+    const handleChangeCheck = (e, id, name, description) => {
+        const newArr = rows.map(obj => {
+            if (obj.id === id) {
+                return { ...obj, featured: e.target.checked }
+            }
+            return obj;
+        })
+        setrows(newArr)
+        setmodifiedItems(prevState => ({
+            ...prevState, [id]: { 'name': name, 'description': description, 'featured': e.target.checked }
         }))
     }
 
@@ -143,8 +162,8 @@ export default function QuickEditTable(props) {
                                                 type="text"
                                                 placeholder='Name'
                                                 className='form__input full__length'
-                                                onChange={(e) => handleChangeName(e, row.id, row.description)}
-                                                style={{marginLeft: '1rem'}}
+                                                onChange={(e) => handleChangeName(e, row.id, row.description, row.featured)}
+                                                style={{ marginLeft: '1rem' }}
                                             />
 
                                         </StyledTableCell>
@@ -154,8 +173,17 @@ export default function QuickEditTable(props) {
                                                 placeholder='Name'
                                                 className='form__input full__length'
                                                 rows={10}
-                                                style={{marginLeft: '1rem'}}
-                                                onChange={(e) => handleChangeDescription(e, row.id, row.name)}
+                                                style={{ marginLeft: '1rem' }}
+                                                onChange={(e) => handleChangeDescription(e, row.id, row.name, row.featured)}
+                                            />
+                                        </StyledTableCell>
+                                        <StyledTableCell align="center">
+                                            <FormControlLabel
+                                                control={<IOSSwitch sx={{ m: 1 }}
+                                                    onChange={(e) => handleChangeCheck(e, row.id, row.name, row.description)}
+                                                    name="make_featured"
+                                                    checked={row.featured}
+                                                />}
                                             />
                                         </StyledTableCell>
                                         <StyledTableCell align='right'>

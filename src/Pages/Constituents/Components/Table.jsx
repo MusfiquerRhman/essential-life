@@ -183,7 +183,7 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <span className='table__name'>{row.name}</span>
+                                            <NavLink to={`/constituents/${row.id}`}><span className='table__name'>{row.name}</span></NavLink>
                                         </StyledTableCell>
                                         <StyledTableCell align='right'>
                                             <NavLink to={`/constituents/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>

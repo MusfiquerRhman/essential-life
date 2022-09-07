@@ -1,6 +1,11 @@
-.search__box {
+.search {
     width: 25%;
     height: 80%;
+}
+
+.search__box {
+    width: 100%;
+    height: 100%;
     border-radius: 10rem;
     background-color: var(--color-content);
     display: flex;
@@ -19,6 +24,36 @@
         width: 10%;
         font-size: 1.2rem;
         color: var(--color-text--light);
+    }
+}
+
+.search__results {
+    width: 20%;
+    background-color: var(--color-content);
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+    position: fixed;
+    z-index: 1;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
+    line-height: 2.3;
+    max-height: 25rem;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 0.25rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--color-sidebar);
+        border-radius: 10px;
+    }
+
+    .search_item {
+        padding: 0 1rem;
+        &:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
     }
 }
 

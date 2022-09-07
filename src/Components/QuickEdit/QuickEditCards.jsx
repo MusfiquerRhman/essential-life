@@ -65,7 +65,14 @@ export default function QuickEditCards(props) {
         })
         setrows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: { 'title': e.target.value, 'ios': ios, 'android': android,  'active': active, 'region': region }
+            ...prevState, 
+            [id]: { 
+                'title': e.target.value, 
+                'ios': ios, 
+                'android': android,  
+                'active': active, 
+                'region': region 
+            }
         }))
     }
 
@@ -79,7 +86,14 @@ export default function QuickEditCards(props) {
         })
         setrows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: { 'title': title, 'ios': e.target.checked, 'android': android,  'active': active, 'region': region}
+            ...prevState, 
+            [id]: { 
+                'title': title, 
+                'ios': e.target.checked, 
+                'android': android,  
+                'active': active, 
+                'region': region
+            }
         }))
     }
 
@@ -92,7 +106,14 @@ export default function QuickEditCards(props) {
         })
         setrows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: { 'title': title, 'ios': ios, 'android': e.target.checked,  'active': active, 'region': region}
+            ...prevState, 
+            [id]: { 
+                'title': title, 
+                'ios': ios, 
+                'android': e.target.checked,  
+                'active': active, 
+                'region': region
+            }
         }))
     }
 
@@ -106,7 +127,14 @@ export default function QuickEditCards(props) {
         })
         setrows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: { 'title': title, 'ios': ios, 'android': android,  'active': e.target.checked, 'region': region}
+            ...prevState, 
+            [id]: { 
+                'title': title, 
+                'ios': ios, 
+                'android': android,  
+                'active': e.target.checked, 
+                'region': region
+            }
         }))
     }
 
@@ -126,11 +154,17 @@ export default function QuickEditCards(props) {
         })
         setrows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: { 'title': title, 'ios': ios, 'android': android,  'active': active, 'region': [
-                region.indexOf(selectedRegion) === -1 
-                    ? [...region, selectedRegion]
-                    : [...region.filter(currRegion => currRegion !== selectedRegion)]
-            ]}
+            ...prevState, 
+            [id]: { 
+                'title': title, 
+                'ios': ios, 
+                'android': android,  
+                'active': active, 
+                'region': [ region.indexOf(selectedRegion) === -1 
+                        ? [...region, selectedRegion]
+                        : [...region.filter(currRegion => currRegion !== selectedRegion)]
+                    ]
+            }
         }))
     }
 
@@ -200,7 +234,7 @@ export default function QuickEditCards(props) {
                                                 placeholder='Name'
                                                 className='form__input full__length'
                                                 onChange={(e) => handleChangeName(e, row.id, row.ios, row.android, row.active, row.region)}
-                                                style={{ marginLeft: '1rem' }}
+                                                style={{ marginLeft: '1rem', minWidth: '20rem' }}
                                             />
 
                                         </StyledTableCell>

@@ -42,7 +42,7 @@
         .cards__value {
             font-size: 2.5rem;
             font-weight: 400;
-            padding: 0rem 1.5rem;
+            padding: 0 1.5rem;
         }
 
         .card__title--box {
@@ -81,15 +81,13 @@
     }
 
     select {
-        margin: 0;
-        margin-bottom: 0.75rem;
+        margin: 0 0 0.75rem 0;
         background-color: transparent;
         border: none;
         font-family: inherit;
         font-size: inherit;
         cursor: inherit;
         line-height: inherit;
-        border: none;
         width: fit-content;
     }
 }

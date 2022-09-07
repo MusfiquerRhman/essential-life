@@ -1,4 +1,3 @@
-// Sorted in Ascending order of path name
 // Ailments
 export { default as Ailments } from "./Ailments/Ailments";
 export { default as AddAilmentsForm } from "./Ailments/Components/AddAilmentsForm";
@@ -51,7 +50,6 @@ export { default as Oil } from "./Oil/Oil";
 export { default as AddPropertiesForm } from "./Properties/Components/AddPropertiesForm";
 export { default as EditPropertyForm } from "./Properties/Components/EditPropertyForm";
 export { default as Properties } from "./Properties/Properties";
-
 // Recipes
 export { default as AddRecipesForm } from "./Recipes/Components/AddRecipesForm";
 export { default as EditRecipeFrom } from "./Recipes/Components/EditRecipeFrom";
@@ -86,7 +84,7 @@ export { default as AddUGCRemedyForm } from "./UGCRemedies/Components/AddUGCReme
 export { default as EditUGCRemedyForm } from "./UGCRemedies/Components/EditUGCRemedyForm";
 export { default as UGCRemedies } from "./UGCRemedies/Remedies";
 export { default as UGCRemediesPrivate } from "./UGCRemedies/RemediesPrivate";
-//user
+// user
 export { default as AddUserForm } from "./Users/Components/AddUserForm";
 export { default as EditUserForm } from "./Users/Components/EditUserForm";
 export { default as EditUserFavourite } from "./Users/Components/Favourites/EditUserFavourite";

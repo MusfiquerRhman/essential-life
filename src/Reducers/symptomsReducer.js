@@ -22,8 +22,7 @@ export const symptomsReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
         case ACTION_TYPE.CHANGE_INPUT: 
             return {
-                ...state,
-                [action.payload.name]:action.payload.value
+                ...state, [action.payload.name]:action.payload.value
             }
 
         // BODY SYSTEM
@@ -37,8 +36,7 @@ export const symptomsReducer = (state = INITIAL_STATE, action) => {
                 newtBodySystemArray = state.bodySystem
             }
             return {
-                ...state,
-                bodySystem: newtBodySystemArray
+                ...state, bodySystem: newtBodySystemArray
             }
 
         case ACTION_TYPE.DELETE_BODY_SYSTEM:
@@ -59,8 +57,7 @@ export const symptomsReducer = (state = INITIAL_STATE, action) => {
                 newReletedBodySystemArray = state.relatedBodySystem
             }
             return {
-                ...state,
-                relatedBodySystem: newReletedBodySystemArray
+                ...state, relatedBodySystem: newReletedBodySystemArray
             }
 
         case ACTION_TYPE.DELETE_RELETED_BODY_SYSTEM:
@@ -80,8 +77,7 @@ export const symptomsReducer = (state = INITIAL_STATE, action) => {
                 newAilmentArray = state.ailments
             }
             return {
-                ...state,
-                ailments: newAilmentArray
+                ...state, ailments: newAilmentArray
             }
 
         case ACTION_TYPE.DELETE_SOURCHING_METHOD:

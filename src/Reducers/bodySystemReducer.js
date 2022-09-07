@@ -76,26 +76,26 @@ export const bodySystemReducer = (state = INITIAL_STATE, action) => {
             }
 
         // Property
-    case ACTION_TYPE.ADD_PROPERTY: 
-        let newPropertyArray = [];
-        let propertisExist = state.associatedProperties.indexOf(action.payload.value)
-        if(propertisExist === -1){
-            newPropertyArray = [...state.associatedProperties, action.payload.value]
-        }
-        else {
-            newPropertyArray = state.associatedProperties
-        }
-        return {
-            ...state, associatedProperties: newPropertyArray
-        }
+        case ACTION_TYPE.ADD_PROPERTY: 
+            let newPropertyArray = [];
+            let propertisExist = state.associatedProperties.indexOf(action.payload.value)
+            if(propertisExist === -1){
+                newPropertyArray = [...state.associatedProperties, action.payload.value]
+            }
+            else {
+                newPropertyArray = state.associatedProperties
+            }
+            return {
+                ...state, associatedProperties: newPropertyArray
+            }
 
-    case ACTION_TYPE.DELETE_PROPERTY:
-        return {
-            ...state,
-            associatedProperties: state.associatedProperties.filter(
-                name => name !== action.payload.value
-            )
-        }
+        case ACTION_TYPE.DELETE_PROPERTY:
+            return {
+                ...state,
+                associatedProperties: state.associatedProperties.filter(
+                    name => name !== action.payload.value
+                )
+            }
         default:
             return state;
 

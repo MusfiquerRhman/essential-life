@@ -40,7 +40,7 @@ function CardWithLineChart({text}) {
             <div className='card__title--box'>
                 <p className='cards__text chart__text'>{text}</p>
                 <select name="Days" id="days">
-                    <option disabled selected value="30">Days</option>
+                    <option disabled value="30">Days</option>
                     <option value="30">30 Days</option>
                     <option value="60">60 Days</option>
                     <option value="90">90 Days</option>

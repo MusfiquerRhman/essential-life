@@ -39,9 +39,9 @@ export const cardReducer = (state = INITIAL_STATE, action) => {
                 newRegion = [...state.regionsVisible, action.payload.region]
             }
             else {
-                newRegion = [...state.regionsVisible.filter(
+                newRegion = state.regionsVisible.filter(
                     currRegion => currRegion !== action.payload.region
-                )]
+                )
             }
             return {
                 ...state, regionsVisible: newRegion

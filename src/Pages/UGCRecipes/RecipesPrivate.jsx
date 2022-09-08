@@ -29,7 +29,7 @@ const RecipesPrivate = () => {
       <div className='search__container'>
         <SearchBox />
         <Button startIcon={<AddIcon />} sx={{borderRadius: '2rem'}} variant="contained">
-          <NavLink to='/ugcrecipes/new/private' className='button'>Create Recipe</NavLink>
+          <NavLink to='/ugcrecipes/private/new' className='button'>Create Recipe</NavLink>
         </Button>
       </div>
       

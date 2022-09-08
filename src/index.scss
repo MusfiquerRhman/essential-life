@@ -4,6 +4,7 @@
 @import './Styles/ailmentsStyles.scss';
 @import './Styles/dashboard.scss';
 @import './Styles/globalStatusStyle.scss';
+@import './Styles/loginStyles.scss';
 
 :root {
   --color-sidebar: #2e2f41;
@@ -14,6 +15,7 @@
   --color-text: #000000;
   --color--highlight--text: #3D44F6;
   --color-text-note: #455a64;
+  --color-blue: #1565c0;
 
   --transition: all 400ms ease;
 
@@ -110,6 +112,14 @@ input::placeholder {
 textarea::placeholder {
   font-family: "Poppins", sans-serif;
   color: var(--color-sidebar)
+}
+
+input[type="text"]:disabled {
+  cursor: not-allowed;
+}
+
+textarea[type="text"]:disabled {
+  cursor: not-allowed;
 }
 
 

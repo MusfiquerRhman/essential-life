@@ -28,10 +28,10 @@ function Sidebar({ children }) {
                     <CustomNavLinks link='/' text="Dashboard"/>
 
                     <Divider text="User Generated Contents"/>
-                    <CustomNavLinks link="/ugcrecipes-private" text="UGC Recipes (private)"/>
-                    <CustomNavLinks link="/ugcrecipes" text="UGC Recipes" />
-                    <CustomNavLinks link="/ugcremedies-private" text="UGC Remedies (private)" />
-                    <CustomNavLinks link="/ugcremedies" text="UGC Remedies" />
+                    <CustomNavLinks link="/ugcrecipes/private" text="UGC Recipes (private)"/>
+                    <CustomNavLinks link="/ugcrecipes/public" text="UGC Recipes" />
+                    <CustomNavLinks link="/ugcremedies/private" text="UGC Remedies (private)" />
+                    <CustomNavLinks link="/ugcremedies/public" text="UGC Remedies" />
                     <CustomNavLinks link="/content-suggestion" text="Content Suggestion" />
 
                     <Divider text="Body System"/>

@@ -174,7 +174,6 @@ function EditOil() {
                 <h1 className='header__title'>Found In</h1>
                 <div className='solutions__form' style={{ alignItems: 'center', justifyContent: 'space-between' }}>
                     <div className='supportive__container'>
-
                         <SolutionType
                             setSolution={setSolution}
                             setOil={setOil}
@@ -187,7 +186,7 @@ function EditOil() {
                         />
                     </div>
 
-                    <Button startIcon={<AddIcon />} sx={{ borderRadius: '2rem' }} variant="contained" className='bottom__button' onClick={createFoundIn}>
+                    <Button startIcon={<AddIcon />} sx={{ borderRadius: '2rem', width: '20%' }} variant="contained" className='bottom__button' onClick={createFoundIn}>
                         Create Found In
                     </Button>
                 </div>

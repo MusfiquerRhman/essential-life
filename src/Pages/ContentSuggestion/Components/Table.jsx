@@ -250,7 +250,7 @@ export default function EnhancedTable(props) {
 
                                         </StyledTableCell>
                                         <StyledTableCell align="left"><span className='table__userName'>{row.name}</span> </StyledTableCell>
-                                        <StyledTableCell align="left">{row.content}</StyledTableCell>
+                                        <StyledTableCell sx={{minWidth: '20rem'}} align="left">{row.content}</StyledTableCell>
                                         <StyledTableCell align="left">{row.association}</StyledTableCell>
                                         <StyledTableCell align="left">{row.user}</StyledTableCell>
                                         <StyledTableCell align="left">{row.created_at}</StyledTableCell>
@@ -284,6 +284,7 @@ export default function EnhancedTable(props) {
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
+                    sx={{ borderTop: '1px solid rgba(0,0,0,0.1)'}}
                 />
             </Paper>
         </Box>

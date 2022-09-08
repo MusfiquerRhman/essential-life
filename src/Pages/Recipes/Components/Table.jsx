@@ -231,7 +231,7 @@ export default function EnhancedTable(props) {
                                         >
                                             <NavLink to={`/recipes/${row.id}`}><span className='table__name'>{row.name}</span></NavLink>
                                         </StyledTableCell>
-                                        <StyledTableCell align="left">{row.method}</StyledTableCell>
+                                        <StyledTableCell sx={{minWidth: '20rem'}} align="left">{row.method}</StyledTableCell>
                                         <StyledTableCell align="center"><div className='activity__balls' style={row.featured ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>
                                         <StyledTableCell align="left">{row.user}</StyledTableCell>
                                         <StyledTableCell align="left">{row.created_at}</StyledTableCell>
@@ -266,6 +266,7 @@ export default function EnhancedTable(props) {
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
+                    sx={{ borderTop: '1px solid rgba(0,0,0,0.1)'}}
                 />
             </Paper>
         </Box>

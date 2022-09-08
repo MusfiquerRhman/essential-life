@@ -9,6 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { default as React, useState } from 'react';
+import IngediantTable from './IngediantTable';
 
 function createData(quantity, measure, ingrediant) {
     return { quantity, measure, ingrediant };
@@ -106,18 +107,18 @@ function EditUGCRemedyForm(props) {
                     <input type="text" placeholder='Name' id='#name' className='form__input' />
 
                     <label htmlFor="method" className='form__label'>Method</label>
-                    <textarea type="text" placeholder='Method' id='#method' className='form__input' rows="10" />
+                    <textarea disabled type="text" placeholder='Method' id='#method' className='form__input' rows="10" />
 
                     <label htmlFor="Category" className='form__label'>Remedy Category</label>
-                    <input type="text" placeholder='Remedy Category' id='#Category' className='form__input' />
+                    <input disabled type="text" placeholder='Remedy Category' id='#Category' className='form__input' />
                 </div>
 
                 <div className='form__container container__small'  style={{marginLeft: '1rem'}}>
                     <label htmlFor="Status" className='form__label'>Status</label>
-                    <input type="text" placeholder='Status' id='#Status' className='form__input' />
+                    <input disabled type="text" placeholder='Status' id='#Status' className='form__input' />
 
                     <label htmlFor="user" className='form__label'>Added by user</label>
-                    <input type="text" placeholder='Added by user' id='#user' className='form__input' />
+                    <input disabled type="text" placeholder='Added by user' id='#user' className='form__input' />
 
                     <label className='form__label' htmlFor="myfile">Select an Image:</label>
                     <input className='file__input' type="file" id="myfile" name="myfile" onChange={(e) => {
@@ -129,61 +130,13 @@ function EditUGCRemedyForm(props) {
             <div className='form__table--box'>
                 <h1 className='header__title'>Ingredients</h1>
 
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <StyledTableRow>
-                                <StyledTableCell>QUANTITY</StyledTableCell>
-                                <StyledTableCell align="left">MEASURE</StyledTableCell>
-                                <StyledTableCell align="left">INGREDIENT</StyledTableCell>
-                            </StyledTableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row, index) => (
-                                <StyledTableRow
-                                    key={index}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <StyledTableCell component="th" scope="row">
-                                        {row.quantity}
-                                    </StyledTableCell>
-                                    <StyledTableCell align="left">{row.measure}</StyledTableCell>
-                                    <StyledTableCell align="left">{row.ingrediant}</StyledTableCell>
-                                </StyledTableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                <IngediantTable />
             </div>
 
             <div className='form__table--box'>
                 <h1 className='header__title'>Custom Ingredients</h1>
 
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <StyledTableRow>
-                                <StyledTableCell>QUANTITY</StyledTableCell>
-                                <StyledTableCell align="left">MEASURE</StyledTableCell>
-                                <StyledTableCell align="left">INGREDIENT</StyledTableCell>
-                            </StyledTableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row, index) => (
-                                <StyledTableRow
-                                    key={index}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <StyledTableCell component="th" scope="row">
-                                        {row.quantity}
-                                    </StyledTableCell>
-                                    <StyledTableCell align="left">{row.measure}</StyledTableCell>
-                                    <StyledTableCell align="left">{row.ingrediant}</StyledTableCell>
-                                </StyledTableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                <IngediantTable />
             </div>
         </section>
     )

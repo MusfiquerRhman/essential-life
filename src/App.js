@@ -1,3 +1,5 @@
+import { SnackbarProvider } from 'notistack';
+import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import NavBar from "./Components/NavBar/NavBar";
@@ -9,30 +11,43 @@ import {
   Constituents, ContentSuggestion, Dashboard, EditAilmentForm, EditAilmentSolution, EditAilmentSupportiveSolution, EditAvaterForm, EditBlends, EditBlendsRegionalData, EditBlendsTopUses,
   EditBodySystem, EditBodySystemSolution, EditCardsForm, EditCategoryFrom, EditConstituentsFrom, EditIngrediantFrom, EditOil, EditOilFoundIn, EditOilTopUses, EditPanelFrom,
   EditPropertyForm, EditRecipeFrom, EditRecipeIngrediant, EditRecomendedSolutionSymptoms, EditRegionalData, EditRemedyForm, EditRemedyIngrediantFrom, EditSupplementsForm, EditSymptoms,
-  EditTopTipsFrom, EditTopUses, EditUGCRecipeForm, EditUGCRemedyForm, EditUserFavourite, EditUserForm, GlobalStatus, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements,
+  EditTopTipsFrom, EditTopUses, EditUGCRecipeForm, EditUGCRemedyForm, EditUserFavourite, EditUserForm, ForgotPassword, GlobalStatus, Login, Oil, Properties, Recipes, Remedies, SeedDownload, Supplements,
   Symptoms, UGCRecipes, UGCRecipesPrivate, UGCRemedies, UGCRemediesPrivate, Users
 } from "./Pages";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
+
   return (
     <BrowserRouter>
-      <Sidebar>
-        <NavBar />
+    <SnackbarProvider maxSnack={3}>
+      {!isLoggedIn && (
+        <>
           <Routes>
-          {/* Dashboard -----*/}
+            <Route path="/" element = {<Login />} />
+            <Route path="/forgot" element = {<ForgotPassword />} />
+          </Routes>
+        </>
+      )}
+      {
+        isLoggedIn && (
+        <Sidebar>
+          <NavBar />
+          <Routes>
+            {/* Dashboard -----*/}
             <Route exact path="/" element={<Dashboard />} />
 
             {/* UGC Recipes -----*/}
-            <Route exact path="/ugcrecipes-private" element={<UGCRecipesPrivate />} />
-            <Route exact path="/ugcrecipes/new/:status" element={<AddUGCRecipeForm />} />
+            <Route exact path="/ugcrecipes/:status/new" element={<AddUGCRecipeForm />} />
             <Route exact path="/ugcrecipes/:id" element={<EditUGCRecipeForm />} />
-            <Route exact path="/ugcrecipes" element={<UGCRecipes />} />
+            <Route exact path="/ugcrecipes/private" element={<UGCRecipesPrivate />} />
+            <Route exact path="/ugcrecipes/public" element={<UGCRecipes />} />
 
             {/* UGC remedies -----*/}
-            <Route exact path="/ugcremedies-private" element={<UGCRemediesPrivate />} />
-            <Route exact path="/ugcremedy/new/:status" element={<AddUGCRemedyForm />} />
-            <Route exact path="/ugcremedy/:id" element={<EditUGCRemedyForm />} />
-            <Route exact path="/ugcremedies" element={<UGCRemedies />} />
+            <Route exact path="/ugcremedies/:status/new" element={<AddUGCRemedyForm />} />
+            <Route exact path="/ugcremedies/:id" element={<EditUGCRemedyForm />} />
+            <Route exact path="/ugcremedies/private" element={<UGCRemediesPrivate />} />
+            <Route exact path="/ugcremedies/public" element={<UGCRemedies />} />
 
             {/* Content Suggestion -----*/}
             <Route exact path="/content-suggestion/new/" element={<AddContentSuggestion />}  />
@@ -131,6 +146,9 @@ function App() {
             <Route exact path="/seed-download" element={<SeedDownload />} />
         </Routes>
       </Sidebar>
+        )
+      }
+      </SnackbarProvider>
     </BrowserRouter>
   );
 }

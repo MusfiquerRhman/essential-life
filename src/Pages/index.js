@@ -40,6 +40,9 @@ export { default as ContentSuggestion } from "./ContentSuggestion/ContentSuggest
 export { default as Dashboard } from "./Dashboard/Dashboard";
 // Global Status
 export { default as GlobalStatus } from "./GlobalStatus/GlobalStatus";
+// Login
+export { default as ForgotPassword } from "./Login/ForgotPassword";
+export { default as Login } from "./Login/Login";
 // Oil
 export { default as AddOilForm } from "./Oil/Components/AddOilForm";
 export { default as EditOil } from "./Oil/Components/EditOil";

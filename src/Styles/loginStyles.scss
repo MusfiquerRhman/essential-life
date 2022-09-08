@@ -1,0 +1,51 @@
+.login {
+    margin: 10rem auto;
+    border-radius: 1rem;
+    width: 40%;
+    max-width: 30rem;
+    background: var(--color-content);
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+
+    .form__input {
+        width: 100%;
+    }
+
+    .login__actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+        .forgot__button {
+            background: var(--color-content);
+            color: var(--color-blue);
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        input[type='checkbox'] {
+            margin: 0 1rem 0 0;
+        }
+    }
+}
+
+.Login__divider {
+    width: 25%;
+    height: 2px;
+    background: var(--color-text--light);
+    margin: 0.5rem;
+}

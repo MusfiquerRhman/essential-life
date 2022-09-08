@@ -31,7 +31,7 @@ function Recipes() {
       <div className='search__container'>
         <SearchBox />
         <Button startIcon={<AddIcon />} sx={{borderRadius: '2rem'}} variant="contained">
-          <NavLink to='/ugcrecipes/new/public' className='button'>Create Recipe</NavLink>
+          <NavLink to='/ugcrecipes/public/new' className='button'>Create Recipe</NavLink>
         </Button>
       </div>
       

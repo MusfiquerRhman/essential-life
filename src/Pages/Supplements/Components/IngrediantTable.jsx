@@ -201,6 +201,7 @@ const IngrediantTable = (props) => {
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
+                    sx={{ borderTop: '1px solid rgba(0,0,0,0.1)'}}
                 />
             </Paper>
         </Box>

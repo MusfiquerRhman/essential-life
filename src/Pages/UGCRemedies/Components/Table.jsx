@@ -226,7 +226,7 @@ export default function EnhancedTable(props) {
                                                 fontWaight: '500'
                                             }}
                                         >
-                                            <NavLink to={`/ugcremedy/${row.id}`}><span className='table__name'>{row.name}</span></NavLink>
+                                            <NavLink to={`/ugcremedies/${row.id}`}><span className='table__name'>{row.name}</span></NavLink>
                                         </StyledTableCell>
                                         <StyledTableCell align="left">{row.public_recipe}</StyledTableCell>
                                         <StyledTableCell align="left"><span className='table__userName'>{row.user}</span> </StyledTableCell>
@@ -234,7 +234,7 @@ export default function EnhancedTable(props) {
                                         <StyledTableCell align="left">{row.rejection_reason}</StyledTableCell>
                                         <StyledTableCell align="left">{row.created_at}</StyledTableCell>
                                         <StyledTableCell align='right'>
-                                            <NavLink to={`/ugcremedy/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
+                                            <NavLink to={`/ugcremedies/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
                                     </StyledTableRow>
@@ -263,6 +263,7 @@ export default function EnhancedTable(props) {
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
+                    sx={{ borderTop: '1px solid rgba(0,0,0,0.1)'}}
                 />
             </Paper>
         </Box>

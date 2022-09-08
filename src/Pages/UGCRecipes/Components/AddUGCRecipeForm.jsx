@@ -62,6 +62,8 @@ function AddUGCRecipeForm() {
                     id='method' 
                     className='form__input' 
                     rows="10" 
+                    readOnly
+                    disabled
                 />
 
                 <label htmlFor="Category" 
@@ -75,6 +77,8 @@ function AddUGCRecipeForm() {
                     placeholder='Recipe Category' 
                     id='Category' 
                     className='form__input' 
+                    readOnly
+                    disabled
                 />
 
                 <label htmlFor="Status" 
@@ -88,6 +92,8 @@ function AddUGCRecipeForm() {
                     placeholder='Status' 
                     id='Status' 
                     className='form__input' 
+                    readOnly
+                    disabled
                 />
 
                 <label htmlFor="user" 
@@ -101,6 +107,8 @@ function AddUGCRecipeForm() {
                     placeholder='Added by user' 
                     id='user' 
                     className='form__input'
+                    readOnly
+                    disabled
                 />
 
                 <label className='form__label' 

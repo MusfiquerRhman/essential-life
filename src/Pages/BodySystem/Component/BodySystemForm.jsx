@@ -68,59 +68,26 @@ function BodySystemForm(props) {
         })
     }
 
-    const handleDeleteRemedyTips = (value) => {
+    const handleDeleteChips = (value, name) => {
         dispatch({
-            type: ACTION_TYPE.DELETE_REMEDIES,
+            type: ACTION_TYPE.DELETE_CHIPS,
             payload: {
-                value: value
+                value: value,
+                name: name
             }
         })
     }
 
-    const handleChangeRemedyTips = (value) => {
+    const handleChangeAddChips = (value, name) => {
         dispatch({
-            type: ACTION_TYPE.ADD_REMEDIES,
+            type: ACTION_TYPE.ADD_CHIPS,
             payload: {
-                value: value
+                value: value,
+                name: name
             }
         })
     }
 
-    const handleDeleteAilmentAndSymptoms = (value) => {
-        dispatch({
-            type: ACTION_TYPE.DELETE_AILMENT,
-            payload: {
-                value: value
-            }
-        })
-    }
-
-    const handleChangeAilmentAndSymptoms = (value) => {
-        dispatch({
-            type: ACTION_TYPE.ADD_AILMENT,
-            payload: {
-                value: value
-            }
-        })
-    }
-
-    const handleDeleteAssociatedProperties = (value) => {
-        dispatch({
-            type: ACTION_TYPE.DELETE_PROPERTY,
-            payload: {
-                value: value
-            }
-        })
-    }
-
-    const handleChangeAssociatedProperties = (value) => {
-        dispatch({
-            type: ACTION_TYPE.ADD_PROPERTY,
-            payload: {
-                value: value
-            }
-        })  
-    }
 
     const imageSelectHandeler = (event) => {
         dispatch({
@@ -191,7 +158,7 @@ function BodySystemForm(props) {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
-                            onDelete={() => handleDeleteRemedyTips(value)}
+                            onDelete={() => handleDeleteChips(value, 'remedies')}
                         />
                     ))}
                 </div>
@@ -217,7 +184,7 @@ function BodySystemForm(props) {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeRemedyTips(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'remedies')}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>
@@ -231,7 +198,7 @@ function BodySystemForm(props) {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
-                            onDelete={() => handleDeleteAilmentAndSymptoms(value)}
+                            onDelete={() => handleDeleteChips(value, 'ailmentAndSymptoms')}
                         />
                     ))}
                 </div>
@@ -257,7 +224,7 @@ function BodySystemForm(props) {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAilmentAndSymptoms(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'ailmentAndSymptoms')}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>
@@ -270,7 +237,7 @@ function BodySystemForm(props) {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
-                            onDelete={() => handleDeleteAssociatedProperties(value)}
+                            onDelete={() => handleDeleteChips(value, 'associatedProperties')}
                         />
                     ))}
                 </div>
@@ -296,7 +263,7 @@ function BodySystemForm(props) {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAssociatedProperties(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'associatedProperties')}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>

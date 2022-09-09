@@ -92,42 +92,26 @@ const RecipeForm = (props) => {
         })
     }
 
-    const handleChangeAddCategories = (value) => {
+    const handleChangeAddChips = (value, name) => {
         dispatch({
-            type: ACTION_TYPE.ADD_CATEGORY,
+            type: ACTION_TYPE.ADD_CHIPS,
             payload: {
-                value: value
+                value: value,
+                name: name
             }
         })
     }
 
-    const handleDeleteCategories = (value) => {
+    const handleDeleteChips = (value, name) => {
         dispatch({
-            type: ACTION_TYPE.DELETE_CATEGORY,
+            type: ACTION_TYPE.DELETE_CHIPS,
             payload: {
-                value: value
+                value: value,
+                name: name
             }
         })
     }
 
-    const handleChangeAddRecipes = (value) => {
-        dispatch({
-            type: ACTION_TYPE.ADD_RELETED_RECIPES,
-            payload: {
-                value: value
-            }
-        })
-    }
-
-
-    const handleDeleteRecips = (value) => {
-        dispatch({
-            type: ACTION_TYPE.DELETE_RELETED_RECIPES,
-            payload: {
-                value: value
-            }
-        })
-    }
 
     const [displayImage, setDisplayImage] = useState("");
 
@@ -208,7 +192,7 @@ const RecipeForm = (props) => {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
-                            onDelete={() => handleDeleteCategories(value)}
+                            onDelete={() => handleDeleteChips(value, 'categories')}
                         />
                     ))}
                 </div>
@@ -234,7 +218,7 @@ const RecipeForm = (props) => {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddCategories(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'categories')}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>
@@ -247,7 +231,7 @@ const RecipeForm = (props) => {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
-                            onDelete={() => handleDeleteRecips(value)}
+                            onDelete={() => handleDeleteChips(value, 'related_recipes')}
                         />
                     ))}
                 </div>
@@ -273,7 +257,7 @@ const RecipeForm = (props) => {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddRecipes(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'related_recipes')}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>

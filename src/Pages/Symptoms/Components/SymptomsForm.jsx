@@ -69,60 +69,26 @@ function SymptomsForm(props) {
         })
     }
 
-    const handleDeleteBodySystem = (value) => {
+    const handleDeleteChips = (value, name) => {
         dispatch({
-            type: ACTION_TYPE.DELETE_BODY_SYSTEM,
+            type: ACTION_TYPE.DELETE_CHIPS,
             payload: {
-                value: value
+                value: value,
+                name: name
             }
         })
     }
 
-    const handleChangeBodySystem = (value) => {
+
+    const handleChangeAddChips = (value, name) => {
         dispatch({
-            type: ACTION_TYPE.ADD_BODY_SYSTEM,
+            type: ACTION_TYPE.ADD_CHIPS,
             payload: {
-                value: value
+                value: value,
+                name: name
             }
         })
     }
-
-    const handleDeleteRelatedBodySystem = (value) => {
-        dispatch({
-            type: ACTION_TYPE.DELETE_RELETED_BODY_SYSTEM,
-            payload: {
-                value: value
-            }
-        })
-    }
-
-    const handleChangeRelatedBodySystem = (value) => {
-        dispatch({
-            type: ACTION_TYPE.ADD_RELETED_BODY_SYSTEM,
-            payload: {
-                value: value
-            }
-        })
-    }
-
-    const handleDeleteAilments = (value) => {
-        dispatch({
-            type: ACTION_TYPE.DELETE_AILMENT,
-            payload: {
-                value: value
-            }
-        })
-    }
-
-    const handleChangeAilments = (value) => {
-        dispatch({
-            type: ACTION_TYPE.ADD_AILMENT,
-            payload: {
-                value: value
-            }
-        })
-    }
-
 
 
     return (
@@ -172,7 +138,7 @@ function SymptomsForm(props) {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }} 
                             key={value} 
                             label={value} 
-                            onDelete={() => handleDeleteBodySystem(value)}
+                            onDelete={() => handleDeleteChips(value, 'bodySystem')}
                         />
                     ))}
                 </div>
@@ -198,7 +164,7 @@ function SymptomsForm(props) {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeBodySystem(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'bodySystem')}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>
@@ -217,7 +183,7 @@ function SymptomsForm(props) {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }} 
                             key={value} 
                             label={value} 
-                            onDelete={() => handleDeleteRelatedBodySystem(value)}
+                            onDelete={() => handleDeleteChips(value, 'relatedBodySystem')}
                         />
                     ))}
                 </div>
@@ -243,7 +209,7 @@ function SymptomsForm(props) {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeRelatedBodySystem(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'relatedBodySystem')}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>
@@ -261,7 +227,7 @@ function SymptomsForm(props) {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }} 
                             key={value} 
                             label={value} 
-                            onDelete={() => handleDeleteAilments(value)} 
+                            onDelete={() => handleDeleteChips(value, 'ailments')} 
                         />
                     ))}
                 </div>
@@ -287,7 +253,7 @@ function SymptomsForm(props) {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAilments(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'ailments')}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>

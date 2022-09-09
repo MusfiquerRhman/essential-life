@@ -23,17 +23,10 @@ export const remedyReducer = (state = INITIAL_STATE, action) => {
 
         // TOP PROPERTIES
         case ACTION_TYPE.ADD_REMEDY: 
-            let newtopRemediesArray = [];
-            let remedyExist = state.remedies.indexOf(action.payload.value)
-            if(remedyExist === -1){
-                newtopRemediesArray = [...state.remedies, action.payload.value]
-            }
-            else {
-                newtopRemediesArray = state.remedies
-            }
+            let newtopRemediesArray = new Set([...state.remedies, action.payload.value]);
             return {
                 ...state,
-                remedies: newtopRemediesArray
+                remedies: [...newtopRemediesArray]
             }
 
         case ACTION_TYPE.DELETE_REMEDY:

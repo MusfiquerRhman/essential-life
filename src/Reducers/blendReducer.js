@@ -17,7 +17,6 @@ export const ACTION_TYPE = {
     LOAD_DATA: "LOAD_DATA",
 }
 
-
 export const blendReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
         case ACTION_TYPE.CHANGE_INPUT: 
@@ -27,18 +26,11 @@ export const blendReducer = (state = INITIAL_STATE, action) => {
             }
 
         case ACTION_TYPE.ADD_INGRIDIANT: 
-            let newingredientsArray = [];
-            let ingredientsExist = state.ingredients.indexOf(action.payload.value)
-            if(ingredientsExist === -1){
-                newingredientsArray = [...state.ingredients, action.payload.value]
-            }
-            else {
-                newingredientsArray = state.ingredients
-            }
-            return {
-                ...state,
-                ingredients: newingredientsArray
-            }
+        let newingredientsArray = new Set([...state.ingredients, action.payload.value]);
+        return {
+            ...state,
+            ingredients: [...newingredientsArray]
+        }
 
         case ACTION_TYPE.DELETE_INGRIDIANT:
             return {

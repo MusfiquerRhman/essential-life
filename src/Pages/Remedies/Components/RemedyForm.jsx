@@ -39,7 +39,6 @@ function RemedyForm(props) {
     } = props;
 
     const [displayImage, setDisplayImage] = useState("");
-    const [relatedRemedies, setRelatedRemedies] = React.useState([]);
     const [anchorElRelatedRemedies, setAnchorElRelatedRemedies] = useState(null);
     const openRelatedRemedies = Boolean(anchorElRelatedRemedies);
 
@@ -54,7 +53,7 @@ function RemedyForm(props) {
 
     const handleChangeRelatedRemedies = (value) => {
         dispatch({
-            type: ACTION_TYPE.DELETE_REMEDY,
+            type: ACTION_TYPE.ADD_REMEDY,
             payload: {
                 value: value
             }
@@ -63,7 +62,7 @@ function RemedyForm(props) {
 
     const handleDeleteRelatedRemedies = (value) => {
         dispatch({
-            type: ACTION_TYPE.ADD_REMEDY,
+            type: ACTION_TYPE.DELETE_REMEDY,
             payload: {
                 value: value
             }

@@ -92,75 +92,23 @@ const OilForm = (props) => {
         })
     }
 
-    const handleChangeAddTopProperties = (value) => {
+    const handleChangeAddChips = (value, name) => {
         dispatch({
-            type: ACTION_TYPE.ADD_TOP_PROPERTIES,
+            type: ACTION_TYPE.ADD_CHIPS,
             payload: {
-                value: value
-            }
-        })
-    }
-
-    const handleDeleteTopProperties = (value) => {
-        dispatch({
-            type: ACTION_TYPE.DELETE_TOP_PROPERTIES,
-            payload: {
-                value: value
-            }
-        })
-    }
-
-    const handleChangeAddMainConstitunts = (value) => {
-        dispatch({
-            type: ACTION_TYPE.ADD_MAIN_CONSTITUENTS,
-            payload: {
-                value: value
-            }
-        })
-    }
-
-    const handleDeleteMainConstitunts = (value) => {
-        dispatch({
-            type: ACTION_TYPE.DELETE_MAIN_CONSTITUENTS,
-            payload: {
-                value: value
-            }
-        })
-    }
-
-    const handleChangeAddSourchingMethod = (value) => {
-        dispatch({
-            type: ACTION_TYPE.ADD_SOURCHING_METHOD,
-            payload: {
-                value: value
-            }
-        })
-    }
-
-    const handleDeleteSourchingMethod = (value) => {
-        dispatch({
-            type: ACTION_TYPE.DELETE_SOURCHING_METHOD,
-            payload: {
-                value: value
+                value: value,
+                name: name
             }
         })
     }
 
 
-    const handleChangeAddBlendsWith = (value) => {
+    const handleDeleteChips = (value, name) => {
         dispatch({
-            type: ACTION_TYPE.ADD_BLENDS_WITH,
+            type: ACTION_TYPE.DELETE_CHIPS,
             payload: {
-                value: value
-            }
-        })
-    }
-
-    const handleDeleteBlendsWith = (value) => {
-        dispatch({
-            type: ACTION_TYPE.DELETE_BLENDS_WITH,
-            payload: {
-                value: value
+                value: value,
+                name: name
             }
         })
     }
@@ -301,7 +249,7 @@ const OilForm = (props) => {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
-                            onDelete={() => handleDeleteTopProperties(value)}
+                            onDelete={() => handleDeleteChips(value, 'top_properties')}
                         />
                     ))}
                 </div>
@@ -327,7 +275,7 @@ const OilForm = (props) => {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddTopProperties(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'top_properties')}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>
@@ -342,7 +290,7 @@ const OilForm = (props) => {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
-                            onDelete={() => handleDeleteMainConstitunts(value)}
+                            onDelete={() => handleDeleteChips(value, 'main_constituents')}
                         />
                     ))}
                 </div>
@@ -368,7 +316,7 @@ const OilForm = (props) => {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddMainConstitunts(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'main_constituents')}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>
@@ -405,7 +353,7 @@ const OilForm = (props) => {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
-                            onDelete={() => handleDeleteSourchingMethod(value)}
+                            onDelete={() => handleDeleteChips(value, 'sourching_methods')}
                         />
                     ))}
                 </div>
@@ -431,7 +379,7 @@ const OilForm = (props) => {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddSourchingMethod(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'sourching_methods')}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>
@@ -447,7 +395,7 @@ const OilForm = (props) => {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
-                            onDelete={() => handleDeleteBlendsWith(value)}
+                            onDelete={() => handleDeleteChips(value, 'blends_with')}
                         />
                     ))}
                 </div>
@@ -473,7 +421,7 @@ const OilForm = (props) => {
                         }}
                     >
                         {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddBlendsWith(item)}>{item}</MenuItem>
+                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'blends_with')}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </div>

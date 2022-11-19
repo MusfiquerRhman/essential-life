@@ -6,7 +6,7 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useTransition } from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import IOSSwitch from '../../Styles/iOSSwitch';
 import { StyledTableCell, StyledTableRow } from '../../Styles/StylesTableRowAndCell';
@@ -14,37 +14,23 @@ import ToolBarUGC from '../TablesToolBars/ToolBarUGC';
 import QuickEditTableHead from './QuickEditTableHead';
 
 function createData(id, title, ios, android, active, region) {
-    return {
-        id,
-        title,
-        ios,
-        android,
-        active,
-        region
-    };
+    return { id, title, ios, android, active, region };
 }
 
+const RegionButton = (props) => {
+    return (
+        <Button onClick={() => props.handleChangeRegion(props.row, props.selectedRegion)}
+            variant={props.row.region.indexOf(props.selectedRegion) === -1 ? 'text' : 'contained'}
+            sx={{ marginRight: '0.75rem', marginBottom: '0.75rem' }}
+        >
+            {props.selectedRegion}
+        </Button>
+    )
+}
 
 export default function QuickEditCards(props) {
-    const [rows, setrows] = useState([
-        createData(1, 'Detailed Description for quick edit', true, false, true,  ['US', 'Canada', 'EU']),
-        createData(2, 'Detailed Description for quick edit', true, false, true,  ['US', 'Canada', 'EU']),
-        createData(3, 'Detailed Description for quick edit', true, false, true,  ['US', 'Canada', 'EU']),
-        createData(4, 'Detailed Description for quick edit', true, false, true,  ['US', 'Canada', 'EU']),
-        createData(5, 'Detailed Description for quick edit', true, false, true,  ['US', 'Canada', 'EU']),
-        createData(6, 'Detailed Description for quick edit', true, false, true,  ['US', 'Canada', 'EU']),
-        createData(7, 'Detailed Description for quick edit', true, false, true,  ['US', 'Canada', 'EU']),
-        createData(8, 'Detailed Description for quick edit', true, false, true,  ['US', 'Canada', 'EU']),
-        createData(9, 'Detailed Description for quick edit', true, false, true,  ['US', 'Canada', 'EU']),
-        createData(10, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
-        createData(11, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
-        createData(12, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
-        createData(13, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
-    ])
-
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(15);
-
+    const [isPending, startTransition] = useTransition();
+    
     const {
         headCells,
         handleSelectDeleteAll,
@@ -56,116 +42,204 @@ export default function QuickEditCards(props) {
         setmodifiedItems,
     } = props
 
-    const handleChangeName = (e, id, ios, android, active, region) => {
-        const newArr = rows.map(obj => {
-            if (obj.id === id) {
+    const [rows, setRows] = useState([
+        createData(1, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(2, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(3, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(4, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(5, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(6, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(7, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(8, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(9, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(10, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(11, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(12, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(13, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(14, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(15, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(16, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(17, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(18, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(19, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(21, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(22, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(23, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+        createData(24, 'Detailed Description for quick edit', true, false, true, ['US', 'Canada', 'EU']),
+    ])
+
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsOnPage, setRowsOnPage] = useState(rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
+
+    useEffect(() => {
+        setRowsOnPage(rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
+    }, [page, rows, rowsPerPage]);
+
+
+    const handleChangeTitle = (e, row) => {
+        const newArr = rowsOnPage.map(obj => {
+            if (obj.id === row.id) {
                 return { ...obj, title: e.target.value }
             }
             return obj;
         })
-        setrows(newArr)
-        setmodifiedItems(prevState => ({
-            ...prevState, 
-            [id]: { 
-                'title': e.target.value, 
-                'ios': ios, 
-                'android': android,  
-                'active': active, 
-                'region': region 
-            }
-        }))
+        setRowsOnPage(newArr);
+        
+        startTransition(() => {
+            let rowIndex = rows.findIndex(obj => obj.id === row.id);
+            let copyOfRow = [...rows];
+            let selectedItem = {...copyOfRow[rowIndex]};
+            selectedItem.title = e.target.value;
+            copyOfRow[rowIndex] = selectedItem;
+            setRows(copyOfRow);
+
+            setmodifiedItems(prevState => ({
+                ...prevState,
+                [row.id]: {
+                    'title': e.target.value,
+                    'ios': row.ios,
+                    'android': row.android,
+                    'active': row.active,
+                    'region': row.region
+                }
+            }))
+        })
     }
 
-
-    const handleChangeIos = (e, id, title, android, active, region)=> {
-        const newArr = rows.map(obj => {
-            if (obj.id === id) {
+    const handleChangeIos = (e, row) => {
+        const newArr = rowsOnPage.map(obj => {
+            if (obj.id === row.id) {
                 return { ...obj, ios: e.target.checked }
             }
             return obj;
         })
-        setrows(newArr)
-        setmodifiedItems(prevState => ({
-            ...prevState, 
-            [id]: { 
-                'title': title, 
-                'ios': e.target.checked, 
-                'android': android,  
-                'active': active, 
-                'region': region
-            }
-        }))
+        setRowsOnPage(newArr);
+
+        startTransition(() => {
+            let rowIndex = rows.findIndex(obj => obj.id === row.id);
+            let copyOfRow = [...rows];
+            let selectedItem = {...copyOfRow[rowIndex]};
+            selectedItem.ios = e.target.checked;
+            copyOfRow[rowIndex] = selectedItem;
+            setRows(copyOfRow);
+
+            setmodifiedItems(prevState => ({
+                ...prevState,
+                [row.id]: {
+                    'title': row.title,
+                    'ios': e.target.checked,
+                    'android': row.android,
+                    'active': row.active,
+                    'region': row.region
+                }
+            }))
+        })
     }
 
-    const handleChangeAndroid = (e, id, title, ios, active, region)=> {
-        const newArr = rows.map(obj => {
-            if (obj.id === id) {
+    const handleChangeAndroid = (e, row) => {
+        const newArr = rowsOnPage.map(obj => {
+            if (obj.id === row.id) {
                 return { ...obj, android: e.target.checked }
             }
             return obj;
         })
-        setrows(newArr)
-        setmodifiedItems(prevState => ({
-            ...prevState, 
-            [id]: { 
-                'title': title, 
-                'ios': ios, 
-                'android': e.target.checked,  
-                'active': active, 
-                'region': region
-            }
-        }))
+        setRowsOnPage(newArr);
+
+        startTransition(() => {
+            let rowIndex = rows.findIndex(obj => obj.id === row.id);
+            let copyOfRow = [...rows];
+            let selectedItem = {...copyOfRow[rowIndex]};
+            selectedItem.android = e.target.checked;
+            copyOfRow[rowIndex] = selectedItem;
+            setRows(copyOfRow);
+
+            setmodifiedItems(prevState => ({
+                ...prevState,
+                [row.id]: {
+                    'title': row.title,
+                    'ios': row.ios,
+                    'android': e.target.checked,
+                    'active': row.active,
+                    'region': row.region
+                }
+            }))
+        })
     }
 
-
-    const handleChangeActive = (e, id, title, ios, android, region)=> {
-        const newArr = rows.map(obj => {
-            if (obj.id === id) {
+    const handleChangeActive = (e, row) => {
+        const newArr = rowsOnPage.map(obj => {
+            if (obj.id === row.id) {
                 return { ...obj, active: e.target.checked }
             }
             return obj;
         })
-        setrows(newArr)
-        setmodifiedItems(prevState => ({
-            ...prevState, 
-            [id]: { 
-                'title': title, 
-                'ios': ios, 
-                'android': android,  
-                'active': e.target.checked, 
-                'region': region
-            }
-        }))
+        setRowsOnPage(newArr);
+
+        startTransition(() => {
+            let rowIndex = rows.findIndex(obj => obj.id === row.id);
+            let copyOfRow = [...rows];
+            let selectedItem = {...copyOfRow[rowIndex]};
+            selectedItem.active = e.target.checked;
+            copyOfRow[rowIndex] = selectedItem;
+            setRows(copyOfRow);
+
+            setmodifiedItems(prevState => ({
+                ...prevState,
+                [row.id]: {
+                    'title': row.title,
+                    'ios': row.ios,
+                    'android': row.android,
+                    'active': e.target.checked,
+                    'region': row.region
+                }
+            }))
+        })
     }
 
-    const handleChangeRegion = (id, title, ios, android, active, region, selectedRegion) => {
-        const newArr = rows.map(obj => {
-            if (obj.id === id) {
-                if(obj.region.indexOf(selectedRegion) === -1){
+    const handleChangeRegion = (row, selectedRegion) => {
+        const newArr = rowsOnPage.map(obj => {
+            if (obj.id === row.id) {
+                if (obj.region.indexOf(selectedRegion) === -1) {
                     return { ...obj, region: [...obj.region, selectedRegion] }
                 }
                 else {
-                    return { ...obj, region: [...obj.region.filter(
-                        currRegion => currRegion !== selectedRegion
-                    )]}
+                    return {
+                        ...obj, region: [...obj.region.filter(
+                            currRegion => currRegion !== selectedRegion
+                        )]
+                    }
                 }
             }
             return obj;
         })
-        setrows(newArr)
-        setmodifiedItems(prevState => ({
-            ...prevState, 
-            [id]: { 
-                'title': title, 
-                'ios': ios, 
-                'android': android,  
-                'active': active, 
-                'region': [ region.indexOf(selectedRegion) === -1 
-                        ? [...region, selectedRegion]
-                        : [...region.filter(currRegion => currRegion !== selectedRegion)]
-                    ]
-            }
-        }))
+        setRowsOnPage(newArr);
+        
+        startTransition(() => {
+            let rowIndex = rows.findIndex(obj => obj.id === row.id);
+            let copyOfRow = [...rows];
+            let selectedItem = {...copyOfRow[rowIndex]};
+            
+            let region = selectedItem.region.indexOf(selectedRegion) === -1
+                        ? [...selectedItem.region, selectedRegion]
+                        : [...selectedItem.region.filter(currRegion => currRegion !== selectedRegion)]
+
+            selectedItem.region = region
+
+            copyOfRow[rowIndex] = selectedItem;
+            setRows(copyOfRow);
+
+            setmodifiedItems(prevState => ({
+                ...prevState,
+                [row.id]: {
+                    'title': row.title,
+                    'ios': row.ios,
+                    'android': row.android,
+                    'active': row.active,
+                    'region': region
+                }
+            }))
+        })
     }
 
     const handleChangePage = (event, newPage) => {
@@ -208,7 +282,7 @@ export default function QuickEditCards(props) {
                         />
 
                         <TableBody>
-                            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+                            {rowsOnPage.map((row, index) => {
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
                                 return (
@@ -233,25 +307,25 @@ export default function QuickEditCards(props) {
                                                 type="text"
                                                 placeholder='Name'
                                                 className='form__input full__length'
-                                                onChange={(e) => handleChangeName(e, row.id, row.ios, row.android, row.active, row.region)}
+                                                onChange={(e) => handleChangeTitle(e, row)}
                                                 style={{ marginLeft: '1rem', minWidth: '20rem' }}
                                             />
 
                                         </StyledTableCell>
-                                        <StyledTableCell align="center"> 
+                                        <StyledTableCell align="center">
                                             <FormControlLabel
                                                 control={<IOSSwitch sx={{ m: 1 }}
-                                                    onChange={(e) => handleChangeIos(e, row.id, row.title, row.android,  row.active, row.region)}
+                                                    onChange={(e) => handleChangeIos(e, row)}
                                                     name="make_featured"
                                                     checked={row.ios}
                                                 />}
-                                                sx={{marginLeft: '1rem'}}
+                                                sx={{ marginLeft: '1rem' }}
                                             />
                                         </StyledTableCell>
                                         <StyledTableCell align="center">
                                             <FormControlLabel
                                                 control={<IOSSwitch sx={{ m: 1 }}
-                                                    onChange={(e) => handleChangeAndroid(e, row.id, row.title, row.ios, row.active, row.region)}
+                                                    onChange={(e) => handleChangeAndroid(e, row)}
                                                     name="make_featured"
                                                     checked={row.android}
                                                 />}
@@ -260,7 +334,7 @@ export default function QuickEditCards(props) {
                                         <StyledTableCell align="center">
                                             <FormControlLabel
                                                 control={<IOSSwitch sx={{ m: 1 }}
-                                                    onChange={(e) => handleChangeActive(e, row.id, row.title, row.ios, row.android, row.region)}
+                                                    onChange={(e) => handleChangeActive(e, row)}
                                                     name="make_featured"
                                                     checked={row.active}
                                                 />}
@@ -268,95 +342,21 @@ export default function QuickEditCards(props) {
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             <div className='switch__box'>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "Australia")}
-                                                    variant={row.region.indexOf('Australia') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    Australia
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "Canada")}
-                                                    variant={row.region.indexOf('Canada') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    Canada
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "China")}
-                                                    variant={row.region.indexOf('China') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    China
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "Costa Rica")}
-                                                    variant={row.region.indexOf('Costa Rica') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    Costa Rica
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "EU")}
-                                                    variant={row.region.indexOf('EU') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    EU
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "Guatemala")}
-                                                    variant={row.region.indexOf('Guatemala') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    Guatemala
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "Hong Kong")}
-                                                    variant={row.region.indexOf('Hong Kong') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    Hong Kong
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "Japan")}
-                                                    variant={row.region.indexOf('Japan') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    Japan
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "Korea")}
-                                                    variant={row.region.indexOf('Korea') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    Korea
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "Malaysia")}
-                                                    variant={row.region.indexOf('Malaysia') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    Malaysia
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "Mexico")}
-                                                    variant={row.region.indexOf('Mexico') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    Mexico
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "New Zealand")}
-                                                    variant={row.region.indexOf('New Zealand') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    New Zealand
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "Singapore")}
-                                                    variant={row.region.indexOf('Singapore') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    Singapore
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "Taiwan")}
-                                                    variant={row.region.indexOf('Taiwan') === -1 ? 'text' : 'contained'}
-                                                    sx={{ marginRight: '1rem' }}
-                                                >
-                                                    Taiwan
-                                                </Button>
-                                                <Button onClick={() => handleChangeRegion(row.id, row.title, row.ios, row.android, row.active, row.region, "US")}
-                                                    variant={row.region.indexOf('US') === -1 ? 'text' : 'contained'}
-                                                >
-                                                    US
-                                                </Button>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='Australia'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='Canada'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='China'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='Costa Rica'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='EU'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='Guatemala'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='Hong Kong'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='Japan'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='Korea'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='Malaysia'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='Mexico'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='New Zealand'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='Singapore'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='Taiwan'/>
+                                                <RegionButton handleChangeRegion={handleChangeRegion} row={row} selectedRegion='US'/>
                                             </div>
                                         </StyledTableCell>
                                         <StyledTableCell align='right'>
@@ -380,15 +380,22 @@ export default function QuickEditCards(props) {
                     </Table>
                 </TableContainer>
 
-                <TablePagination
-                    rowsPerPageOptions={[15, 25, 40]}
-                    component="div"
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
+                {isPending && (
+                    <h5 style={{padding: '1rem'}}>Processing...</h5>
+                )}
+
+                {!isPending && (
+                    <TablePagination
+                        rowsPerPageOptions={[5, 10, 15]}
+                        component="div"
+                        count={rows.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
+                )}
+                
             </Paper>
         </Box>
     );

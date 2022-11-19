@@ -223,9 +223,15 @@ export default function EnhancedTable(props) {
                                         >
                                             <NavLink to={`/cards/${row.id}`}><span className='table__name'>{row.title}</span></NavLink>
                                         </StyledTableCell>
-                                        <StyledTableCell align="center"><div className='activity__balls' style={row.ios ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>
-                                        <StyledTableCell align="center"><div className='activity__balls' style={row.android ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>
-                                        <StyledTableCell align="center"><div className='activity__balls' style={row.active ? {background: "#3Ac073"} : {background: '#E74444'} }/></StyledTableCell>
+                                        <StyledTableCell align="center">
+                                            <div className='activity__balls' style={row.ios ? {background: "#3Ac073"} : {background: '#E74444'} }/>
+                                        </StyledTableCell>
+                                        <StyledTableCell align="center">
+                                            <div className='activity__balls' style={row.android ? {background: "#3Ac073"} : {background: '#E74444'} }/>
+                                        </StyledTableCell>
+                                        <StyledTableCell align="center">
+                                            <div className='activity__balls' style={row.active ? {background: "#3Ac073"} : {background: '#E74444'} }/>
+                                        </StyledTableCell>
                                         <StyledTableCell align="left">{row.regions}</StyledTableCell>
                                         <StyledTableCell align='right'>
                                             <NavLink to={`/cards/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>

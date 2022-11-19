@@ -40,6 +40,10 @@ function Cards() {
   const [quickEdit, setQuickEdit] = useState(false);
   const [modifiedItems, setmodifiedItems] = useState({}); // Modified in quick edit
 
+  useEffect(() => {
+    console.log(modifiedItems)
+  }, [modifiedItems])
+
   // useEffect(() => {
   //   console.log(selected, contentStatus, action)
 

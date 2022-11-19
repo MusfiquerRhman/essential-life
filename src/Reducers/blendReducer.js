@@ -26,11 +26,11 @@ export const blendReducer = (state = INITIAL_STATE, action) => {
             }
 
         case ACTION_TYPE.ADD_INGRIDIANT: 
-        let newingredientsArray = new Set([...state.ingredients, action.payload.value]);
-        return {
-            ...state,
-            ingredients: [...newingredientsArray]
-        }
+            let newIngredientsArray = new Set([...state.ingredients, action.payload.value]);
+            return {
+                ...state,
+                ingredients: [...newIngredientsArray]
+            }
 
         case ACTION_TYPE.DELETE_INGRIDIANT:
             return {

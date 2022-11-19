@@ -5,13 +5,7 @@ import IOSSwitch from '../../../Styles/iOSSwitch';
 
 
 function CardForm(props) {
-
-    const {
-        state,
-        dispatch,
-        ACTION_TYPE,
-    } = props;
-
+    const { state, dispatch, ACTION_TYPE } = props;
 
     const handleChangeCheck = (event) => {
         dispatch({

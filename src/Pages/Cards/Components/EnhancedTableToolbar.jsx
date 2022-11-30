@@ -1,16 +1,10 @@
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import Button from '@mui/material/Button';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import { alpha } from '@mui/material/styles';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import * as React from 'react';
+import DeleteDropdownMenu from '../../../Components/TablesToolBars/UI Components/DeleteDropdownMenu';
+import DropDownMenuWrapper from '../../../Components/TablesToolBars/UI Components/DropDownMenuWrapper';
+import FilterButton from '../../../Components/TablesToolBars/UI Components/FilterButton';
+import ToolBarWrapper from '../../../Components/TablesToolBars/UI Components/ToolBarWrapper';
 
 function EnhancedTableToolbar(props) {
     const {
@@ -53,91 +47,24 @@ function EnhancedTableToolbar(props) {
         setIsActive(event.target.value);
     };
 
-    const [anchorElSelect, setAnchorElSelect] = React.useState(null);
-    const openSelect = Boolean(anchorElSelect);
-
-    const handleClickSelect = (event) => {
-        setAnchorElSelect(event.currentTarget);
-    };
-
-    const handleCloseSelect = () => {
-        setAnchorElSelect(null);
-    };
-
     return (
-        <Toolbar
-            sx={{
-                pl: { sm: 2 },
-                pr: { xs: 1, sm: 1 },
-                ...(numSelected > 0 && {
-                    bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-                }),
-            }}
+        <ToolBarWrapper
+            numSelected={numSelected}
+            title='Cards'
         >
-            {numSelected > 0 ? (
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    color="inherit"
-                    variant="subtitle1"
-                    component="div"
-                >
-                    {numSelected} selected
-                </Typography>
-            ) : (
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    variant="h6"
-                    id="tableTitle"
-                    component="div"
-                >
-                    Cards
-                </Typography>
-            )}
-
             <div className='action__group'>
                 {numSelected > 0 && (
                     <div className='selected__actions'>
-
-                        {/* Delete DropDown */}
-
-                        <Button
-                            id="action-button"
-                            aria-controls={openSelect ? 'basic-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={openSelect ? 'true' : undefined}
-                            onClick={handleClickSelect}
-                            sx={{
-                                margin: 0
-                            }}
-                        >
-                            <DeleteForeverIcon />
-                            <ExpandMoreIcon />
-                        </Button>
-                        <Menu
-                            id="action-menu"
-                            anchorEl={anchorElSelect}
-                            open={openSelect}
-                            onClose={handleCloseSelect}
-                            MenuListProps={{
-                                'aria-labelledby': 'basic-button',
-                            }}
-                        >
-                            <MenuItem onClick={handleSelectDeleteAll}> Delete All Selected</MenuItem>
-                        </Menu>
+                        <DeleteDropdownMenu handleSelectDeleteAll={handleSelectDeleteAll} />
                     </div>
                 )}
                 <div className='table__filters'>
                     {/* filter dropdown */}
-                    <Button
-                        id="4-button"
-                        aria-controls={openFilter ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openFilter ? 'true' : undefined}
-                        onClick={handleClickFilter}
-                    >
-                        <FilterAltIcon />
-                        <ExpandMoreIcon />
-                    </Button>
+                    <FilterButton
+                        openFilter={openFilter}
+                        handleClickFilter={handleClickFilter}
+                    />
+
                     <Menu
                         id="3-menu"
                         anchorEl={anchorElFilter}
@@ -148,75 +75,55 @@ function EnhancedTableToolbar(props) {
                         }}
                     >
                         <MenuItem >
-                            <FormControl fullWidth sx={{ minWidth: '10rem' }}>
-                                <InputLabel id="demo-simple-select-label">Visible in Regions</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={visibleInRegion}
-                                    label="Visible in Regions"
-                                    onChange={handleChangeVisibleInRegion}
-                                >
-                                    <MenuItem value={'--'}>--</MenuItem>
-                                    <MenuItem value={'US'}>US</MenuItem>
-                                    <MenuItem value={'Canada'}>Canada</MenuItem>
-                                    <MenuItem value={'Japan'}>Japan</MenuItem>
-                                    <MenuItem value={'Mars'}>In Mars</MenuItem>
-                                </Select>
-                            </FormControl>
+                            <DropDownMenuWrapper
+                                value={visibleInRegion}
+                                handleChange={handleChangeVisibleInRegion} 
+                                label='Visible in Regions'
+                            >
+                                <MenuItem value={'--'}>--</MenuItem>
+                                <MenuItem value={'US'}>US</MenuItem>
+                                <MenuItem value={'Canada'}>Canada</MenuItem>
+                                <MenuItem value={'Japan'}>Japan</MenuItem>
+                                <MenuItem value={'Mars'}>In Mars</MenuItem>
+                            </DropDownMenuWrapper>
                         </MenuItem>
                         <MenuItem >
-                            <FormControl fullWidth sx={{ minWidth: '10rem' }}>
-                                <InputLabel id="demo-simple-select-label">Show on iOS</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={showForIOS}
-                                    label="Show on iOS"
-                                    onChange={handleChangeiOS}
-                                >
-                                    <MenuItem value={'--'}>--</MenuItem>
-                                    <MenuItem value={1}>Yes</MenuItem>
-                                    <MenuItem value={0}>No</MenuItem>
-                                </Select>
-                            </FormControl>
+                            <DropDownMenuWrapper
+                                value={showForIOS}
+                                handleChange={handleChangeiOS} 
+                                label='Show on iOS'
+                            >
+                                <MenuItem value={'--'}>--</MenuItem>
+                                <MenuItem value={1}>Yes</MenuItem>
+                                <MenuItem value={0}>No</MenuItem>
+                            </DropDownMenuWrapper>
                         </MenuItem>
                         <MenuItem >
-                            <FormControl fullWidth sx={{ minWidth: '10rem' }}>
-                                <InputLabel id="demo-simple-select-label">Show on Android</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={showForAndroid}
-                                    label="Show on Android"
-                                    onChange={handleChangeAndroid}
-                                >
-                                    <MenuItem value={'--'}>--</MenuItem>
-                                    <MenuItem value={1}>Yes</MenuItem>
-                                    <MenuItem value={0}>No</MenuItem>
-                                </Select>
-                            </FormControl>
+                            <DropDownMenuWrapper
+                                value={showForAndroid}
+                                handleChange={handleChangeAndroid} 
+                                label='Show on Android'
+                            >
+                                <MenuItem value={'--'}>--</MenuItem>
+                                <MenuItem value={1}>Yes</MenuItem>
+                                <MenuItem value={0}>No</MenuItem>
+                            </DropDownMenuWrapper>
                         </MenuItem>
                         <MenuItem >
-                            <FormControl fullWidth sx={{ minWidth: '10rem' }}>
-                                <InputLabel id="demo-simple-select-label">Is Active</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={isActive}
-                                    label="Is Active"
-                                    onChange={handleChangeIsActive}
-                                >
-                                    <MenuItem value={'--'}>--</MenuItem>
-                                    <MenuItem value={1}>Yes</MenuItem>
-                                    <MenuItem value={0}>No</MenuItem>
-                                </Select>
-                            </FormControl>
+                            <DropDownMenuWrapper
+                                value={isActive}
+                                handleChange={handleChangeIsActive} 
+                                label='Is Active'
+                            >
+                                <MenuItem value={'--'}>--</MenuItem>
+                                <MenuItem value={1}>Yes</MenuItem>
+                                <MenuItem value={0}>No</MenuItem>
+                            </DropDownMenuWrapper>
                         </MenuItem>
                     </Menu>
                 </div>
             </div>
-        </Toolbar>
+        </ToolBarWrapper>
     );
 }
 

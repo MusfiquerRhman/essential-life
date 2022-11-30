@@ -1,17 +1,13 @@
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import DoneIcon from '@mui/icons-material/Done';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Button from '@mui/material/Button';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import { alpha } from '@mui/material/styles';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import * as React from 'react';
+import DeleteDropdownMenu from '../../../Components/TablesToolBars/UI Components/DeleteDropdownMenu';
+import DoneButton from '../../../Components/TablesToolBars/UI Components/DoneButton';
+import DropDownMenuWrapper from '../../../Components/TablesToolBars/UI Components/DropDownMenuWrapper';
+import FilterButton from '../../../Components/TablesToolBars/UI Components/FilterButton';
+import FilterDropDownWrapper from '../../../Components/TablesToolBars/UI Components/FilterDropDownWrapper';
+import ToolBarWrapper from '../../../Components/TablesToolBars/UI Components/ToolBarWrapper';
 
 function ToolBar(props) {
     const {
@@ -24,8 +20,7 @@ function ToolBar(props) {
         setAction,
         handleClickExecuteAction,
         onChangeAdminSelect,
-    } = props
-
+    } = props;
 
     const [anchorElFilter, setAnchorElFilter] = React.useState(null);
     const openFilter = Boolean(anchorElFilter);
@@ -53,123 +48,36 @@ function ToolBar(props) {
         setcontentStatus(event.target.value);
     };
 
-    const [anchorElSelect, setAnchorElSelect] = React.useState(null);
-    const openSelect = Boolean(anchorElSelect);
-
-    const handleClickSelect = (event) => {
-        setAnchorElSelect(event.currentTarget);
-    };
-
-    const handleCloseSelect = () => {
-        setAnchorElSelect(null);
-    };
-
     const handleChangeAction = (event) => {
         setAction(event.target.value);
     };
 
     return (
-        <Toolbar
-            sx={{
-                pl: { sm: 2 },
-                pr: { xs: 1, sm: 1 },
-                ...(numSelected > 0 && {
-                    bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-                }),
-            }}
+        <ToolBarWrapper
+            numSelected={numSelected}
+            title={title}
         >
-            {numSelected > 0 ? (
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    color="inherit"
-                    variant="subtitle1"
-                    component="div"
-                >
-                    {numSelected} selected
-                </Typography>
-            ) : (
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    variant="h6"
-                    id="tableTitle"
-                    component="div"
-                >
-                    {title}
-                </Typography>
-            )}
-
             <div className='action__group'>
                 {numSelected > 0 && (
                     <div className='selected__actions'>
-
-                        {/* Action functions */}
-                        <FormControl variant="standard" fullWidth sx={{ minWidth: '10rem' }}>
-                            <InputLabel id="demo-simple-select-label" sx={{ border: 'none' }}>Select An Action</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={action}
-                                label="Select An Action"
-                                onChange={handleChangeAction}
-                                sx={{ margin: '0' }}
-                            >
-                                <MenuItem value={'force-update'}>Force Update</MenuItem>
-                            </Select>
-                        </FormControl>
-
-                        <Button
-                            id="action-button"
-                            aria-haspopup="true"
-                            onClick={handleClickExecuteAction}
-                            variant='contained'
-                            sx={{
-                                marginLeft: '1rem',
-                                marginRight: '1rem',
-                                padding: '0.5rem',
-                                borderRadius: '2rem'
-
-                            }}
-                            disabled={action === '' ? true : false}
+                        <DropDownMenuWrapper
+                            value={action}
+                            handleChange={handleChangeAction}
+                            label='Select An Action'
                         >
-                            <DoneIcon />
-                        </Button>
-
-
-                        {/* Delete DropDown */}
-
-                        <Button
-                            id="action-button"
-                            aria-controls={openSelect ? 'basic-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={openSelect ? 'true' : undefined}
-                            onClick={handleClickSelect}
-                            sx={{
-                                margin: 0
-                            }}
-                        >
-                            <DeleteForeverIcon />
-                            <ExpandMoreIcon />
-                        </Button>
-                        <Menu
-                            id="action-menu"
-                            anchorEl={anchorElSelect}
-                            open={openSelect}
-                            onClose={handleCloseSelect}
-                            MenuListProps={{
-                                'aria-labelledby': 'basic-button',
-                            }}
-                        >
-                            <MenuItem onClick={handleSelectDeleteAll}> Delete All Selected</MenuItem>
-                        </Menu>
+                            <MenuItem value={'force-update'}>Force Update</MenuItem>
+                        </DropDownMenuWrapper>
+                        
+                        <DoneButton
+                            action={action}
+                            handleClickExecuteAction={handleClickExecuteAction}
+                        />
+                        <DeleteDropdownMenu handleSelectDeleteAll={handleSelectDeleteAll} />
                     </div>
                 )}
+
                 <div className='table__filters'>
-
-                    {/* Lens */}
-
-
                     <div className='flex__row'>
-
                         <Button
                             id="4-button"
                             aria-controls={openLens ? 'basic-menu' : undefined}
@@ -191,50 +99,29 @@ function ToolBar(props) {
                             <MenuItem onClick={onChangeAdminSelect} value={'admin'}>Select Admin Users</MenuItem>
                         </Menu>
 
-                        {/* filter dropdown */}
-                        <Button
-                            id="4-button"
-                            aria-controls={openFilter ? 'basic-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={openFilter ? 'true' : undefined}
-                            onClick={handleClickFilter}
-                        >
-                            <FilterAltIcon />
-                            <ExpandMoreIcon />
-                        </Button>
-                        <Menu
-                            id="3-menu"
-                            anchorEl={anchorElFilter}
-                            open={openFilter}
-                            onClose={handleCloseFilter}
-                            MenuListProps={{
-                                'aria-labelledby': 'basic-button',
-                            }}
-                        >
-                            <MenuItem >
-                                <FormControl fullWidth sx={{ minWidth: '10rem' }}>
-                                    <InputLabel id="demo-simple-select-label">User Subscription Type</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={contentStatus}
-                                        label="IS USER GENERATED"
-                                        onChange={handleChangeContentStatus}
-                                    >
-                                        <MenuItem value={'--'}>--</MenuItem>
-                                        <MenuItem value={'none'}>None</MenuItem>
-                                        <MenuItem value={'legacy'}>Legacy</MenuItem>
-                                        <MenuItem value={'annual'}>Annual</MenuItem>
-                                        <MenuItem value={'Trail'}>Trail</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </MenuItem>
-                        </Menu>
-                    </div>
+                        <FilterButton
+                            openFilter={openFilter}
+                            handleClickFilter={handleClickFilter}
+                        />
 
+                        <FilterDropDownWrapper
+                            anchorElFilter={anchorElFilter}
+                            openFilter={openFilter}
+                            handleCloseFilter={handleCloseFilter}
+                            contentStatus={contentStatus}
+                            handleChangeContentStatus={handleChangeContentStatus}
+                            title="User Subscription Type"
+                        >
+                            <MenuItem value={'--'}>--</MenuItem>
+                            <MenuItem value={'none'}>None</MenuItem>
+                            <MenuItem value={'legacy'}>Legacy</MenuItem>
+                            <MenuItem value={'annual'}>Annual</MenuItem>
+                            <MenuItem value={'Trail'}>Trail</MenuItem>
+                        </FilterDropDownWrapper>
+                    </div>
                 </div>
             </div>
-        </Toolbar>
+        </ToolBarWrapper>
     );
 }
 

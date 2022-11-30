@@ -2,15 +2,16 @@ import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import TableBodyWrapper from '../../../Components/table/TableBodyWrapper';
+import TableRow from '../../../Components/table/TableRow';
 import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
 import ToolBarForceUpdateUGC from '../../../Components/TablesToolBars/ToolBarForceUpdateUGC';
-import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
+import { StyledTableCell } from '../../../Styles/StylesTableRowAndCell';
 
 import * as React from 'react';
 
@@ -107,27 +108,6 @@ export default function EnhancedTable(props) {
         setSelectedArray([]);
     };
 
-    const handleClick = (event, id) => {
-        const selectedIndex = selected.indexOf(id);
-        let newSelected = [];
-
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
-
-        setSelected(newSelected);
-        setSelectedArray(newSelected);
-    };
-
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -139,10 +119,6 @@ export default function EnhancedTable(props) {
 
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
-
-    // Avoid a layout jump when reaching the last page with empty rows.
-    const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -173,21 +149,18 @@ export default function EnhancedTable(props) {
                             onRequestSort={handleRequestSort}
                             headCells={headCells}
                         />
-
-                        <TableBody>
+                        <TableBodyWrapper rows={rows} page={page} rowsPerPage={rowsPerPage}>
                             {rows.slice().sort(getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                                 const isItemSelected = isSelected(row.id);
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
                                 return (
-                                    <StyledTableRow
-                                        hover
-                                        onClick={(event) => handleClick(event, row.id)}
-                                        role="checkbox"
-                                        aria-checked={isItemSelected}
-                                        tabIndex={-1}
-                                        key={row.id}
-                                        selected={isItemSelected}
+                                    <TableRow
+                                        isItemSelected={isItemSelected}
+                                        id={row.id}
+                                        selected={selected}
+                                        setSelected={setSelected}
+                                        setSelectedArray={setSelectedArray}
                                     >
                                         <StyledTableCell padding="checkbox">
                                             <Checkbox
@@ -218,20 +191,10 @@ export default function EnhancedTable(props) {
                                             <NavLink to={`/remedies/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
-                                    </StyledTableRow>
+                                    </TableRow>
                                 );
                             })}
-                            {emptyRows > 0 && (
-                                <StyledTableRow
-                                    style={{
-                                        height: 53 * emptyRows,
-                                    }}
-                                >
-                                    <StyledTableCell colSpan={7} />
-                                </StyledTableRow>
-                            )}
-                        </TableBody>
-
+                        </TableBodyWrapper>
                     </Table>
                 </TableContainer>
 

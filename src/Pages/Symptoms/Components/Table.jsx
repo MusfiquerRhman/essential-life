@@ -8,6 +8,7 @@ import TablePagination from '@mui/material/TablePagination';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import TableBodyWrapper from '../../../Components/table/TableBodyWrapper';
 import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
 import ToolBarForceUpdate from '../../../Components/TablesToolBars/ToolBarForceUpdate';
 import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
@@ -164,7 +165,7 @@ export default function EnhancedTable(props) {
                             headCells={headCells}
                         />
 
-                        <TableBody>
+                        <TableBodyWrapper rows={rows} page={page} rowsPerPage={rowsPerPage}>
                             {rows.slice().sort(getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                                 const isItemSelected = isSelected(row.id);
                                 const labelId = `enhanced-table-checkbox-${index}`;
@@ -208,18 +209,7 @@ export default function EnhancedTable(props) {
                                     </StyledTableRow>
                                 );
                             })}
-
-                            {emptyRows > 0 && (
-                                <StyledTableRow
-                                    style={{
-                                        height: 53 * emptyRows,
-                                    }}
-                                >
-                                    <StyledTableCell colSpan={7} />
-                                </StyledTableRow>
-                            )}
-                        </TableBody>
-
+                        </TableBodyWrapper>
                     </Table>
                 </TableContainer>
 

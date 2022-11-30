@@ -9,9 +9,11 @@ import * as React from 'react';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import TableBodyWrapper from '../../../Components/table/TableBodyWrapper';
 import TableHeadWithPhoto from '../../../Components/TableHeads/TableHeadWithPhoto';
 import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
 import ToolBar from './ToolBar';
+
 
 const headCells = [
     {
@@ -189,7 +191,7 @@ export default function EnhancedTable(props) {
                             headCells={headCells}
                         />
 
-                        <TableBody>
+                        <TableBodyWrapper rows={rows} page={page} rowsPerPage={rowsPerPage}>
                             {rows.slice().sort(getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                                 const isItemSelected = isSelected(row.id);
                                 const labelId = `enhanced-table-checkbox-${index}`;
@@ -242,18 +244,7 @@ export default function EnhancedTable(props) {
                                     </StyledTableRow>
                                 );
                             })}
-
-                            {emptyRows > 0 && (
-                                <StyledTableCell
-                                    style={{
-                                        height: 53 * emptyRows,
-                                    }}
-                                >
-                                    <StyledTableCell colSpan={7} />
-                                </StyledTableCell>
-                            )}
-                        </TableBody>
-
+                        </TableBodyWrapper>
                     </Table>
                 </TableContainer>
 

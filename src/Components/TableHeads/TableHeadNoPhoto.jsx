@@ -4,11 +4,16 @@ import TableHead from '@mui/material/TableHead';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import { StyledTableCell, StyledTableRow } from '../../Styles/StylesTableRowAndCell';
 
+const isChildNull = children => {
+    return !Boolean(ReactDOMServer.renderToStaticMarkup(children));
+};
 
 function TableHeadNoPhoto(props) {
     const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headCells } = props;
+    const isChildrenNull = isChildNull(props.children)
 
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
@@ -34,6 +39,11 @@ function TableHeadNoPhoto(props) {
                         }}
                     />
                 </StyledTableCell>
+                {!isChildrenNull && (
+                    <>
+                        {props.children}
+                    </>
+                )}
                 {headCells.map((headCell) => (
                     <StyledTableCell
                         key={headCell.id}

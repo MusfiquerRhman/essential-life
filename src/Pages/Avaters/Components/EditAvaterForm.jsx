@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import { nose } from "../../../assests";
 
 
-function EditAvaterForm(props) {
+function EditAvaterForm() {
     const [displayImage, setDisplayImage] = useState(nose);
     const [image, setImage] = useState('');
 
-    const imageSelectHandeler = (event) => {
+    const imageSelectHandler = (event) => {
         setImage(event.target.files[0]);
         const reader = new FileReader();
         reader.onload = () => {
@@ -21,11 +21,11 @@ function EditAvaterForm(props) {
         }
     };
 
-    const updateAvater = () => {
+    const updateAvatar = () => {
 
     }
 
-    const onClickDeleteAvater = () => {
+    const onClickDeleteAvatar = () => {
 
     }
 
@@ -38,7 +38,7 @@ function EditAvaterForm(props) {
                     <Button className='form__button' 
                         variant='contained' 
                         sx={{ borderRadius: '5rem' }}
-                        onClick={updateAvater}
+                        onClick={updateAvatar}
                     >
                         Update Avater
                     </Button>
@@ -52,14 +52,14 @@ function EditAvaterForm(props) {
                     <Button startIcon={<DeleteForeverIcon />}
                         className='form__button'
                         sx={{ borderRadius: '5rem', width: 'fit-content' }}
-                        onClick={onClickDeleteAvater}
+                        onClick={onClickDeleteAvatar}
                     >
                         <b>Delete</b>
                     </Button>
                 </div>
 
                 <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
-                    imageSelectHandeler(e);
+                    imageSelectHandler(e);
                 }} />
             </div>
         </section>

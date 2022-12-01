@@ -50,7 +50,7 @@ const rows = [
     createData(13 ,'Abdominal Cramps', 'Constrictive intermittent abdominal discomfort resulting from the spasm of an internal organ.'),
 ];
 
-export default function EnhancedTable(props) {
+const EnhancedTable = React.memo((props) => {
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(15);
@@ -182,4 +182,6 @@ export default function EnhancedTable(props) {
             </Paper>
         </Box>
     );
-}
+})
+
+export default EnhancedTable;

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledTableRow } from "../../Styles/StylesTableRowAndCell";
 
-const TableRow = (props) => {
+const TableRow = React.memo((props) => {
     const { isItemSelected, id, selected, setSelected, setSelectedArray } = props;
 
     const handleClick = (event, id) => {
@@ -38,6 +38,6 @@ const TableRow = (props) => {
             {props.children}
         </StyledTableRow>
     )
-}
+})
 
 export default TableRow;

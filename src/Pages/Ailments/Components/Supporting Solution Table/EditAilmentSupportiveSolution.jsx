@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import { default as React, useState } from 'react';
 import SolutionType from '../../../../Components/Common/SolutionType';
 
-function EditAilmentSupportiveSolution() {
+const EditAilmentSupportiveSolution = React.memo(() => {
     const [solution, setSolution] = useState('')
     const [oil, setOil] = useState('')
     const [blend, setBlend] = useState('')
@@ -52,6 +52,6 @@ function EditAilmentSupportiveSolution() {
             </div>
         </section>
     )
-}
+})
 
-export default EditAilmentSupportiveSolution
+export default EditAilmentSupportiveSolution;

@@ -14,6 +14,7 @@ import ToolBarJustDelete from '../../../../Components/TablesToolBars/ToolBarJust
 import { StyledTableCell } from '../../../../Styles/StylesTableRowAndCell';
 
 import * as React from 'react';
+import { useCallback } from 'react';
 
 const headCells = [
     {
@@ -41,18 +42,18 @@ const rows = [
 ];
 
 
-export default function SupportingEnhancedTable(props) {
+const SupportingEnhancedTable = React.memo((props)=> {
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(15);
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
 
-    const handleRequestSort = (event, property) => {
+    const handleRequestSort = useCallback((event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
-    };
+    }, [order, orderBy]);
 
     const {
         setSupportiveSelectedArray,
@@ -60,7 +61,7 @@ export default function SupportingEnhancedTable(props) {
     } = props
 
 
-    const handleSelectAllClick = (event) => {
+    const handleSelectAllClick = useCallback((event) => {
         if (event.target.checked) {
             const newSelected = rows.map((n) => n.id);
             setSelected(newSelected);
@@ -69,7 +70,7 @@ export default function SupportingEnhancedTable(props) {
         }
         setSelected([]);
         setSupportiveSelectedArray([]);
-    };
+    }, [setSupportiveSelectedArray]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -112,7 +113,6 @@ export default function SupportingEnhancedTable(props) {
                             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
                                 const isItemSelected = isSelected(row.id);
                                 const labelId = `enhanced-table-checkbox-${index}`;
-
                                 return (
                                     <TableRow
                                         isItemSelected={isItemSelected}
@@ -138,7 +138,7 @@ export default function SupportingEnhancedTable(props) {
                                             padding="none"
                                             align="left"
                                             sx={{
-                                                fontWaight: '500'
+                                                fontWeight: '500'
                                             }}
                                         >
                                             <span className='table__name'>{`${row.type}: ${row.name}`}</span>
@@ -151,7 +151,6 @@ export default function SupportingEnhancedTable(props) {
                                 );
                             })}
                         </TableBodyWrapper>
-
                     </Table>
                 </TableContainer>
 
@@ -168,4 +167,7 @@ export default function SupportingEnhancedTable(props) {
             </Paper>
         </Box>
     );
-}
+})
+
+
+export default SupportingEnhancedTable;

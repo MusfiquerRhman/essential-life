@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { default as React, useEffect, useState } from 'react';
+import { default as React, useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBox from '../../Components/Common/SearchBox';
 import Table from './Components/Table';
@@ -14,17 +14,17 @@ function Avaters() {
 
   // }, [selected, contentStatus, action])
 
-  const handleSelectDeleteAll = () => {
+  const handleSelectDeleteAll = useCallback(() => {
     // TODO: Delete all selected
-  }
+  }, [])
   
   return (
     <section>
-    <h1>Avaters</h1>
+    <h1>Avatars</h1>
     <div className='search__container'>
       <SearchBox />
       <Button startIcon={<AddIcon />} sx={{ borderRadius: '2rem' }} variant="contained">
-        <NavLink to='/avaters/new' className='button'>Create Avaters</NavLink>
+        <NavLink to='/avaters/new' className='button'>Create Avatars</NavLink>
       </Button>
     </div>
 

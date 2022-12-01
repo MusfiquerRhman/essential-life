@@ -6,7 +6,7 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
-import React, { useEffect, useState, useTransition } from 'react';
+import React, { useCallback, useEffect, useState, useTransition } from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import IOSSwitch from '../../Styles/iOSSwitch';
 import { StyledTableCell, StyledTableRow } from '../../Styles/StylesTableRowAndCell';
@@ -28,7 +28,7 @@ const RegionButton = (props) => {
     )
 }
 
-export default function QuickEditCards(props) {
+const QuickEditCards = (props) => {
     const [isPending, startTransition] = useTransition();
     
     const {
@@ -77,7 +77,7 @@ export default function QuickEditCards(props) {
     }, [page, rows, rowsPerPage]);
 
 
-    const handleChangeTitle = (e, row) => {
+    const handleChangeTitle = useCallback((e, row) => {
         const newArr = rowsOnPage.map(obj => {
             if (obj.id === row.id) {
                 return { ...obj, title: e.target.value }
@@ -105,9 +105,9 @@ export default function QuickEditCards(props) {
                 }
             }))
         })
-    }
+    }, [rows, rowsOnPage, setmodifiedItems]);
 
-    const handleChangeIos = (e, row) => {
+    const handleChangeIos = useCallback((e, row) => {
         const newArr = rowsOnPage.map(obj => {
             if (obj.id === row.id) {
                 return { ...obj, ios: e.target.checked }
@@ -135,9 +135,9 @@ export default function QuickEditCards(props) {
                 }
             }))
         })
-    }
+    }, [rows, rowsOnPage, setmodifiedItems]);
 
-    const handleChangeAndroid = (e, row) => {
+    const handleChangeAndroid = useCallback((e, row) => {
         const newArr = rowsOnPage.map(obj => {
             if (obj.id === row.id) {
                 return { ...obj, android: e.target.checked }
@@ -165,9 +165,9 @@ export default function QuickEditCards(props) {
                 }
             }))
         })
-    }
+    }, [rows, rowsOnPage, setmodifiedItems]);
 
-    const handleChangeActive = (e, row) => {
+    const handleChangeActive = useCallback((e, row) => {
         const newArr = rowsOnPage.map(obj => {
             if (obj.id === row.id) {
                 return { ...obj, active: e.target.checked }
@@ -195,9 +195,9 @@ export default function QuickEditCards(props) {
                 }
             }))
         })
-    }
+    }, [rows, rowsOnPage, setmodifiedItems]);
 
-    const handleChangeRegion = (row, selectedRegion) => {
+    const handleChangeRegion = useCallback((row, selectedRegion) => {
         const newArr = rowsOnPage.map(obj => {
             if (obj.id === row.id) {
                 if (obj.region.indexOf(selectedRegion) === -1) {
@@ -240,17 +240,16 @@ export default function QuickEditCards(props) {
                 }
             }))
         })
-    }
+    }, [rows, rowsOnPage, setmodifiedItems])
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
 
-    const handleChangeRowsPerPage = (event) => {
+    const handleChangeRowsPerPage = useCallback((event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
-    };
-
+    }, []);
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -300,7 +299,7 @@ export default function QuickEditCards(props) {
                                             padding="none"
                                             align="left"
                                             sx={{
-                                                fontWaight: '500'
+                                                fontWeight: '500'
                                             }}
                                         >
                                             <input value={row.title}
@@ -400,3 +399,5 @@ export default function QuickEditCards(props) {
         </Box>
     );
 }
+
+export default QuickEditCards;

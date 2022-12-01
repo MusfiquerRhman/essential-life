@@ -1,6 +1,6 @@
 import Chip from '@mui/material/Chip';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { default as React } from 'react';
+import { default as React, useCallback } from 'react';
 import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 import IOSSwitch from '../../../Styles/iOSSwitch';
 
@@ -17,7 +17,7 @@ const names = [
     'Kelly Snyder',
 ];
 
-const BlendsForm = (props) => {
+const BlendsForm = React.memo((props) => {
     const {
         state,
         dispatch,
@@ -27,13 +27,13 @@ const BlendsForm = (props) => {
     const [anchorElCategories, setAnchorElCategories] = React.useState(null);
     const openCategories = Boolean(anchorElCategories);
 
-    const handleClickCategories = (event) => {
+    const handleClickCategories = useCallback((event) => {
         setAnchorElCategories(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseCategories = () => {
+    const handleCloseCategories = useCallback(() => {
         setAnchorElCategories(null);
-    };
+    }, []);
 
     const handleChangeCheck = (event) => {
         dispatch({
@@ -55,14 +55,14 @@ const BlendsForm = (props) => {
         })
     }
 
-    const handleChangeAddIngredient = (value) => {
+    const handleChangeAddIngredient = useCallback((value) => {
         dispatch({
             type: ACTION_TYPE.ADD_INGRIDIANT,
             payload: {
                 value: value
             }
         })
-    }
+    }, [ACTION_TYPE.ADD_INGRIDIANT, dispatch])
 
     const handleDeleteIngredient = (value) => {
         dispatch({
@@ -195,6 +195,6 @@ const BlendsForm = (props) => {
             }} />
         </>
     )
-}
+})
 
-export default BlendsForm
+export default BlendsForm;

@@ -1,13 +1,13 @@
 import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button';
-import { default as React, useState } from 'react';
+import { default as React, useCallback, useState } from 'react';
 import { cup, hand, nose } from '../../../assests';
 import SolutionType from '../../../Components/Common/SolutionType';
 import AilmentForm from './AilmentForm';
 import EnhancedTable from './Solutions Table/EnhancedTable';
 import SupportingEnhancedTable from "./Supporting Solution Table/SupportingEnhancedTable";
 
-function EditAilmentForm() {
+const EditAilmentForm = React.memo(() => {
     const [action, setAction] = useState('');
     const [name, setName] = useState('');
     const [type, setType] = useState('ailment');
@@ -32,45 +32,45 @@ function EditAilmentForm() {
         // TODO
     }
 
-    const handleChangeRelatedBodySystem = (value) => {
+    const handleChangeRelatedBodySystem = useCallback((value) => {
         let exist = relatedBodySystemChip.indexOf(value);
 
         if (exist === -1) {
             setRelatedBodySystemChip(oldValues => [...oldValues, value]);
         }
-    };
+    }, [relatedBodySystemChip]);
 
-    const handleDeleteRelatedBodySystem = (selectedName) => {
+    const handleDeleteRelatedBodySystem = useCallback((selectedName) => {
         setRelatedBodySystemChip(previousChips => previousChips.filter(name => name !== selectedName))
-    };
+    }, []);
 
-    const handleChangeBodySystem = (value) => {
+    const handleChangeBodySystem = useCallback((value) => {
         let exist = bodySystemChip.indexOf(value);
 
         if (exist === -1) {
             setBodySystemChip(oldValues => [...oldValues, value]);
         }
-    };
+    }, [bodySystemChip]);
 
-    const handleDeleteBodySystem = (selectedName) => {
+    const handleDeleteBodySystem = useCallback((selectedName) => {
         setBodySystemChip(previousChips => previousChips.filter(name => name !== selectedName))
-    };
+    }, []);
 
-    const handleChangeSymptoms = (value) => {
+    const handleChangeSymptoms = useCallback((value) => {
         let exist = symptoms.indexOf(value);
 
         if (exist === -1) {
             setSymptoms(oldValues => [...oldValues, value]);
         }
-    };
+    }, [symptoms]);
 
-    const handleDeleteSymptoms = (selectedName) => {
+    const handleDeleteSymptoms = useCallback((selectedName) => {
         setSymptoms(previousChips => previousChips.filter(name => name !== selectedName))
-    };
+    }, []);
 
 
     const onChangeSolutionDescription = (e) => {
-        setSolutionDescription(e.targer.value)
+        setSolutionDescription(e.target.value)
     }
 
     const handleClickCup = () => {
@@ -265,7 +265,7 @@ function EditAilmentForm() {
 
         </section>
     )
-}
+})
 
 
 export default EditAilmentForm

@@ -1,7 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button';
-import { default as React, useReducer, useState } from 'react';
+import { default as React, useCallback, useReducer, useState } from 'react';
 import { ACTION_TYPE, blendReducer, INITIAL_STATE } from '../../../Reducers/blendReducer';
 import RegionalDataTable from '../../Supplements/Components/RegionalDataTable/RegionalDataTable';
 import BlendsForm from './BlendsForm';
@@ -12,7 +12,7 @@ import TopUsesTable from './TopUsesTable/TopUsesTable';
 const EditBlends = () => {
     const [state, dispatch] = useReducer(blendReducer, INITIAL_STATE)
     const [region, setRegion] = useState('');
-    const [ragionalName, setRagionalName] = useState('');
+    const [regionalName, setRegionalName] = useState('');
 
     const [selectedRegions, setSelectedRegions] = useState([]);
     const [selectedTopUses, setSelectedTopUses] = useState([]);
@@ -30,13 +30,13 @@ const EditBlends = () => {
 
     }
 
-    const handleSelectDeleteAllRegions = () => {
+    const handleSelectDeleteAllRegions = useCallback(() => {
         // TODO: Delete all selected
-    }
+    }, [])
 
-    const handleSelectDeleteAllTopUses = () => {
+    const handleSelectDeleteAllTopUses = useCallback(() => {
         // TODO: Delete all selected
-    }
+    }, [])
 
     const addTopUses = () => {
 
@@ -56,7 +56,7 @@ const EditBlends = () => {
     return (
         <section>
             <div className='form__header'>
-                <h1 className='header__title'>Edit Oil</h1>
+                <h1 className='header__title'>Edit Blend</h1>
                 <div className='header__actions'>
                     <Button className='form__button'
                         variant='contained'
@@ -101,8 +101,8 @@ const EditBlends = () => {
                 <RegionalNameFrom
                     region={region}
                     setRegion={setRegion}
-                    setRagionalName={setRagionalName}
-                    ragionalName={ragionalName}
+                    setRagionalName={setRegionalName}
+                    ragionalName={regionalName}
                 />
                 <div className='third__length'>
                     <Button className='form__button'
@@ -130,8 +130,8 @@ const EditBlends = () => {
                     <TopUsesForm
                         name={topUsesName}
                         setName={setTopUsesName}
-                        setDescription={topUsesDescription}
-                        description={setTopUsesDescription}
+                        description={topUsesDescription}
+                        setDescription={setTopUsesDescription}
                         ailment={topUsesAilment}
                         setAilment={setTopUsesAilment}
                     />

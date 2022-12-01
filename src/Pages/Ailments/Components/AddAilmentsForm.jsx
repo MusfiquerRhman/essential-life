@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { default as React, useState } from 'react';
+import { default as React, useCallback, useState } from 'react';
 import AilmentForm from './AilmentForm';
 
 function AddAilmentsForm() {
@@ -11,41 +11,41 @@ function AddAilmentsForm() {
     const [relatedBodySystemChip, setRelatedBodySystemChip] = React.useState([]);
     const [symptoms, setSymptoms] = React.useState([]);
 
-    const handleChangeRelatedBodySystem = (value) => {
+    const handleChangeRelatedBodySystem = useCallback((value) => {
         let exist = relatedBodySystemChip.indexOf(value);
 
         if (exist === -1) {
             setRelatedBodySystemChip(oldValues => [...oldValues, value]);
         }
-    };
+    }, [relatedBodySystemChip]);
 
-    const handleDeleteRelatedBodySystem = (selectedName) => {
+    const handleDeleteRelatedBodySystem = useCallback((selectedName) => {
         setRelatedBodySystemChip(previousChips => previousChips.filter(name => name !== selectedName))
-    };
+    }, []);
 
-    const handleChangeBodySystem = (value) => {
+    const handleChangeBodySystem = useCallback((value) => {
         let exist = bodySystemChip.indexOf(value);
 
         if (exist === -1) {
             setBodySystemChip(oldValues => [...oldValues, value]);
         }
-    };
+    }, [bodySystemChip]);
 
-    const handleDeleteBodySystem = (selectedName) => {
+    const handleDeleteBodySystem = useCallback((selectedName) => {
         setBodySystemChip(previousChips => previousChips.filter(name => name !== selectedName))
-    };
+    }, []);
 
-    const handleChangeSymptoms = (value) => {
+    const handleChangeSymptoms = useCallback((value) => {
         let exist = symptoms.indexOf(value);
 
         if (exist === -1) {
             setSymptoms(oldValues => [...oldValues, value]);
         }
-    };
+    }, [symptoms]);
 
-    const handleDeleteSymptoms = (selectedName) => {
+    const handleDeleteSymptoms = useCallback((selectedName) => {
         setSymptoms(previousChips => previousChips.filter(name => name !== selectedName))
-    };
+    }, []);
 
     return (
         <section>

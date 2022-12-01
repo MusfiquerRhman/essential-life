@@ -2,7 +2,7 @@ import TableBody from '@mui/material/TableBody';
 import React from "react";
 import { StyledTableCell, StyledTableRow } from '../../Styles/StylesTableRowAndCell';
 
-const TableBodyWrapper = (props) => {
+const TableBodyWrapper = React.memo((props) => {
     const { rows, page, rowsPerPage } = props;
 
     // Avoid a layout jump when reaching the last page with empty rows.
@@ -23,6 +23,6 @@ const TableBodyWrapper = (props) => {
             )}
         </TableBody>
     )
-}
+})
 
 export default TableBodyWrapper;

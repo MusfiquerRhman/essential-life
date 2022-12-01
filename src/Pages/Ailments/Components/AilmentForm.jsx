@@ -1,5 +1,5 @@
 import Chip from '@mui/material/Chip';
-import { default as React, useState } from 'react';
+import { default as React, useCallback, useState } from 'react';
 import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 
 const names = [
@@ -15,7 +15,7 @@ const names = [
     'Kelly Snyder',
 ];
 
-function AilmentForm(props) {
+const AilmentForm = React.memo((props) => {
     const {
         bodySystemChip,
         handleChangeBodySystem,
@@ -37,35 +37,35 @@ function AilmentForm(props) {
     const [anchorElBodySystem, setAnchorElBodySystem] = React.useState(null);
     const openBodySystem = Boolean(anchorElBodySystem);
 
-    const handleClickBodySystem = (event) => {
+    const handleClickBodySystem = useCallback((event) => {
         setAnchorElBodySystem(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseBodySystem = () => {
+    const handleCloseBodySystem = useCallback(() => {
         setAnchorElBodySystem(null);
-    };
+    }, []);
 
     const [anchorElRelatedBodySystem, setAnchorElRelatedBodySystem] = useState(null);
     const openRelatedBodySystem = Boolean(anchorElRelatedBodySystem);
 
-    const handleClickRelatedBodySystem = (event) => {
+    const handleClickRelatedBodySystem = useCallback((event) => {
         setAnchorElRelatedBodySystem(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseRelatedBodySystem = () => {
+    const handleCloseRelatedBodySystem = useCallback(() => {
         setAnchorElRelatedBodySystem(null);
-    };
+    }, []);
 
     const [anchorElSymptoms, setAnchorElSymptoms] = React.useState(null);
     const openSymptoms = Boolean(anchorElSymptoms);
 
-    const handleClickSymptoms = (event) => {
+    const handleClickSymptoms = useCallback((event) => {
         setAnchorElSymptoms(event.currentTarget);
-    };
+    }, []);
     
-    const handleCloseSymptoms = () => {
+    const handleCloseSymptoms = useCallback(() => {
         setAnchorElSymptoms(null);
-    };
+    }, []);
 
     const onChangeName = (e) => {
         setName(e.target.value)
@@ -167,6 +167,6 @@ function AilmentForm(props) {
             </div>
         </React.Fragment>
     )
-}
+})
 
 export default AilmentForm

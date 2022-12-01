@@ -1,12 +1,12 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { default as React, useEffect, useState } from 'react';
+import { default as React, useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBox from '../../Components/Common/SearchBox';
 import QuickEditTable from '../../Components/QuickEdit/QuickEditTable';
 import Table from './Components/Table';
 
-const QucikHeadCells = [
+const QuickHeadCells = [
   {
       id: 'name',
       label: 'Name',
@@ -21,20 +21,20 @@ function Ailments() {
   const [selected, setSelected] = useState([]);
   const [action, setAction] = React.useState('');
   const [quickEdit, setQuickEdit] = useState(false);
-  const [modifiedItems, setmodifiedItems] = useState({}); // Modified in quick edit
+  const [modifiedItems, setModifiedItems] = useState({}); // Modified in quick edit
 
   // useEffect(() => {
   //   console.log(selected, contentStatus, action)
 
   // }, [selected, contentStatus, action])
 
-  const handleSelectDeleteAll = () => {
+  const handleSelectDeleteAll = useCallback(() => {
     // TODO: Delete all selected
-  }
+  }, [])
 
-  const handleClickExecuteAction = () => {
+  const handleClickExecuteAction = useCallback(() => {
     // TODO: Execute action
-  }
+  }, [])
 
   const onClickQuickEdit = () => {
     setQuickEdit(true);
@@ -46,7 +46,7 @@ function Ailments() {
 
   const updateQuickEdit = () => {
 
-  }
+  };
 
   return (
     <section>
@@ -105,8 +105,8 @@ function Ailments() {
 
         {quickEdit && (
           <QuickEditTable 
-            headCells={QucikHeadCells}
-            setmodifiedItems={setmodifiedItems}
+            headCells={QuickHeadCells}
+            setmodifiedItems={setModifiedItems}
           />
         )}
 

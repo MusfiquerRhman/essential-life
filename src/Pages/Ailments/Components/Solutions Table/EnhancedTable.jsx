@@ -54,7 +54,7 @@ const rows = [
 ];
 
 
-export default function EnhancedTable(props) {
+const EnhancedTable = React.memo((props) => {
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(15);
@@ -150,7 +150,7 @@ export default function EnhancedTable(props) {
                                             padding="none"
                                             align="left"
                                             sx={{
-                                                fontWaight: '500'
+                                                fontWeight: '500'
                                             }}
                                         >
                                             <span className='table__name'>{`${row.type}: ${row.name}`}</span>
@@ -197,4 +197,6 @@ export default function EnhancedTable(props) {
             </Paper>
         </Box>
     );
-}
+})
+
+export default EnhancedTable;

@@ -8,20 +8,14 @@ function EditBodySystemSolution() {
     const [oil, setOil] = useState('')
     const [blend, setBlend] = useState('')
     const [supplement, setSupplement] = useState('')
-    const [ailment, setAilment] = useState('')
 
     const onChangeSolutionDescription = (e) => {
-        setSolutionDescription(e.targer.value)
+        setSolutionDescription(e.target.value)
     }
 
     const updateEffectiveSolution = () => {
-        // TODO
+        // TODO:
     }
-
-    const onChangeAilment = (e) => {
-        setAilment(e.targer.value)
-    }
-
 
     return (
         <section>
@@ -57,7 +51,6 @@ function EditBodySystemSolution() {
                     </div>
                 </div>
             </div>
-
         </section>
     )
 }

@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
-import * as React from 'react';
+import React, { useCallback, useState } from 'react';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink, useParams } from 'react-router-dom';
@@ -54,12 +54,12 @@ const rows = [
 ];
 
 
-export default function TopUsesTable(props) {
-    const [selected, setSelected] = React.useState([]);
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(15);
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
+const TopUsesTable = React.memo((props) => {
+    const [selected, setSelected] = useState([]);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(15);
+    const [order, setOrder] = useState('asc');
+    const [orderBy, setOrderBy] = useState('calories');
     const {id} = useParams();
 
     const handleRequestSort = (event, property) => {
@@ -74,7 +74,7 @@ export default function TopUsesTable(props) {
     } = props
 
 
-    const handleSelectAllClick = (event) => {
+    const handleSelectAllClick = useCallback((event) => {
         if (event.target.checked) {
             const newSelected = rows.map((n) => n.id);
             setSelected(newSelected);
@@ -83,7 +83,7 @@ export default function TopUsesTable(props) {
         }
         setSelected([]);
         setSelectedArray([]);
-    };
+    }, [setSelectedArray]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -197,4 +197,6 @@ export default function TopUsesTable(props) {
             </Paper>
         </Box>
     );
-}
+})
+
+export default TopUsesTable;

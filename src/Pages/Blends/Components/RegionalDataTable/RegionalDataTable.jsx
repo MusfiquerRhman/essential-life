@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
+import React, { useCallback, useState } from 'react';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink, useParams } from 'react-router-dom';
@@ -12,8 +13,6 @@ import TableRow from '../../../../Components/table/TableRow';
 import TableHeadNoPhoto from '../../../../Components/TableHeads/TableHeadNoPhoto';
 import ToolBarJustDelete from '../../../../Components/TablesToolBars/ToolBarJustDelete';
 import { StyledTableCell } from '../../../../Styles/StylesTableRowAndCell';
-
-import * as React from 'react';
 
 const headCells = [
     {
@@ -42,19 +41,19 @@ const rows = [
     createData(5, 'Bangladesh', 'DigestZen'),
 ];
 
-const RegionalDataTable = (props) => {
+const RegionalDataTable = React.memo((props) => {
     const {id} = useParams()
-    const [selected, setSelected] = React.useState([]);
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(15);
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
+    const [selected, setSelected] = useState([]);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(15);
+    const [order, setOrder] = useState('asc');
+    const [orderBy, setOrderBy] = useState('calories');
 
-    const handleRequestSort = (event, property) => {
+    const handleRequestSort = useCallback((event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
-    };
+    }, [order, orderBy]);
 
     const {
         setSupportiveSelectedArray,
@@ -62,7 +61,7 @@ const RegionalDataTable = (props) => {
     } = props
 
 
-    const handleSelectAllClick = (event) => {
+    const handleSelectAllClick = React.useCallback((event) => {
         if (event.target.checked) {
             const newSelected = rows.map((n) => n.id);
             setSelected(newSelected);
@@ -71,7 +70,7 @@ const RegionalDataTable = (props) => {
         }
         setSelected([]);
         setSupportiveSelectedArray([]);
-    };
+    }, [setSupportiveSelectedArray]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -169,6 +168,6 @@ const RegionalDataTable = (props) => {
             </Paper>
         </Box>
     );
-}
+})
 
 export default RegionalDataTable;

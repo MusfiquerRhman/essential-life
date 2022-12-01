@@ -7,7 +7,7 @@ function AvaterForm(props) {
         ACTION_TYPE,
     } = props;
 
-    const imageSelectHandeler = (event) => {
+    const imageSelectHandler = (event) => {
         dispatch({
             type: ACTION_TYPE.FILE_CHANGE,
             payload: {
@@ -21,7 +21,7 @@ function AvaterForm(props) {
         <>
             <label className='form__label' htmlFor="photo">Photo</label>
             <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
-                imageSelectHandeler(e);
+                imageSelectHandler(e);
             }} />
         </>
     )

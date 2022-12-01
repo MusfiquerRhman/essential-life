@@ -1,6 +1,6 @@
 import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button';
-import { default as React, useReducer, useState } from 'react';
+import { default as React, useCallback, useReducer, useState } from 'react';
 import SolutionType from '../../../Components/Common/SolutionType';
 import { ACTION_TYPE, bodySystemReducer, INITIAL_STATE } from '../../../Reducers/bodySystemReducer';
 import BodySystemForm from './BodySystemForm';
@@ -16,9 +16,9 @@ function EditBodySystem() {
     const [solutionDescription, setSolutionDescription] = useState('')
     const [selectedeSolution, setSelectedSolution] = useState([]);
 
-    const handleSelectDeleteAllSolution = () => {
+    const handleSelectDeleteAllSolution = useCallback(() => {
         // TODO: Delete all selected
-    }
+    }, [])
 
 
     const onChangeSolutionDescription = (e) => {

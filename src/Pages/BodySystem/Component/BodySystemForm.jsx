@@ -1,5 +1,5 @@
 import Chip from '@mui/material/Chip';
-import { default as React, useState } from 'react';
+import { default as React, useCallback, useState } from 'react';
 import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 
 const names = [
@@ -15,7 +15,7 @@ const names = [
     'Kelly Snyder',
 ];
 
-function BodySystemForm(props) {
+const BodySystemForm = React.memo((props) => {
     const {
         state,
         dispatch,
@@ -31,29 +31,29 @@ function BodySystemForm(props) {
     const openAilmentAndSymptoms = Boolean(anchorElAilmentAndSymptoms);
     const openAssociatedProperties = Boolean(anchorElAssociatedProperties);
 
-    const handleClickRemedy = (event) => {
+    const handleClickRemedy = useCallback((event) => {
         setAnchorElRemedy(event.currentTarget);
-    };
+    }, []);
 
-    const handleClickAilmentAndSymptoms = (event) => {
+    const handleClickAilmentAndSymptoms = useCallback((event) => {
         setAnchorElAilmentAndSymptoms(event.currentTarget);
-    };
+    }, []);
 
-    const handleClickAssociatedProperties = (event) => {
+    const handleClickAssociatedProperties = useCallback((event) => {
         setAnchorElAssociatedProperties(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseRemedy = () => {
+    const handleCloseRemedy = useCallback(() => {
         setAnchorElRemedy(null);
-    };
+    }, []);
 
-    const handleCloseAilmentAndSymptoms = () => {
+    const handleCloseAilmentAndSymptoms = useCallback(() => {
         setAnchorElAilmentAndSymptoms(null);
-    };
+    }, []);
 
-    const handleCloseAssociatedProperties = () => {
+    const handleCloseAssociatedProperties = useCallback(() => {
         setAnchorElAssociatedProperties(null);
-    };
+    }, []);
 
     const onChangeInput = (event) => {
         dispatch({
@@ -226,6 +226,6 @@ function BodySystemForm(props) {
             </div>
         </>
     )
-}
+})
 
 export default BodySystemForm

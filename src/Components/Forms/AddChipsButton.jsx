@@ -4,7 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import React from "react";
 
-const AddChipsButton = props => {
+const AddChipsButton = React.memo((props) => {
     const { open, onClickAddButton, anchorEl, handleClose, handleChange, names, fieldName } = props;
     return (
         <div>
@@ -40,6 +40,6 @@ const AddChipsButton = props => {
             </Menu>
         </div>
     )
-}
+})
 
 export default AddChipsButton;

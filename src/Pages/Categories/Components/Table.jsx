@@ -7,11 +7,13 @@ import TablePagination from '@mui/material/TablePagination';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import TablePhotos from '../../../Components/Common/TablePhotos';
 import TableBodyWrapper from '../../../Components/table/TableBodyWrapper';
 import TableRow from '../../../Components/table/TableRow';
 import TableHeadWithPhoto from '../../../Components/TableHeads/TableHeadWithPhoto';
 import ToolBarForceUpdate from '../../../Components/TablesToolBars/ToolBarForceUpdate';
 import { StyledTableCell } from '../../../Styles/StylesTableRowAndCell';
+import getComparator from '../../helperFunctions';
 
 import * as React from 'react';
 
@@ -50,22 +52,6 @@ const rows = [
     createData(12,'--', 'cleaning', 'Adding essential oils to your DIY cleaning solutions makes your home smell amazing, and gives your cleaning power a boost.'),
     createData(13,'--', 'cleaning', 'Adding essential oils to your DIY cleaning solutions makes your home smell amazing, and gives your cleaning power a boost.'),
 ];
-
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
 export default function EnhancedTable(props) {
     const [selected, setSelected] = React.useState([]);
@@ -160,11 +146,7 @@ export default function EnhancedTable(props) {
                                                 }}
                                             />
                                         </StyledTableCell>
-                                        {row.photo === '--' ? (
-                                            <StyledTableCell align="center">{row.photo}</StyledTableCell>
-                                        ) : (
-                                            <StyledTableCell align="center"><img className='table__img' src={row.photo} alt='product'/></StyledTableCell>
-                                        )}
+                                        <TablePhotos row={row} />
                                         <StyledTableCell
                                             component="th"
                                             id={labelId}
@@ -172,7 +154,7 @@ export default function EnhancedTable(props) {
                                             padding="none"
                                             align="left"
                                             sx={{
-                                                fontWaight: '500'
+                                                fontWeight: '500'
                                             }}
                                         >
                                             <NavLink to={`/categories/${row.id}`}><span className='table__name'>{row.name}</span></NavLink>

@@ -12,6 +12,7 @@ import TableRow from '../../../Components/table/TableRow';
 import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
 import ToolBarJustDelete from '../../../Components/TablesToolBars/ToolBarJustDelete';
 import { StyledTableCell } from '../../../Styles/StylesTableRowAndCell';
+import getComparator from '../../helperFunctions';
 
 import * as React from 'react';
 
@@ -46,23 +47,6 @@ const rows = [
     createData(8,'DDR Prime', 'Contracts tissues, generally of the skin; reduces minor bleeding'),
     createData(9,'DDR Prime', 'Contracts tissues, generally of the skin; reduces minor bleeding'),
 ];
-
-
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
 export default function EnhancedTable(props) {
     const [selected, setSelected] = React.useState([]);

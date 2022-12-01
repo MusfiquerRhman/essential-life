@@ -8,11 +8,14 @@ import * as React from 'react';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import TablePhotos from '../../../Components/Common/TablePhotos';
 import TableBodyWrapper from '../../../Components/table/TableBodyWrapper';
 import TableRow from '../../../Components/table/TableRow';
 import TableHeadWithPhoto from '../../../Components/TableHeads/TableHeadWithPhoto';
 import ToolBarForceUpdate from '../../../Components/TablesToolBars/ToolBarForceUpdate';
-import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
+import { StyledTableCell } from '../../../Styles/StylesTableRowAndCell';
+import getComparator from '../../helperFunctions';
+
 
 const headCells = [
     {
@@ -51,23 +54,6 @@ const rows = [
     createData(8,'--', 'DDR Prime', 'Cellular damage from free radicals is an underlying contributor to many of today’s diseases. This powerful antioxidant blend helps promote cellular health and protect long-term wellness.', true),
     createData(9,'--', 'DDR Prime', 'Cellular damage from free radicals is an underlying contributor to many of today’s diseases. This powerful antioxidant blend helps promote cellular health and protect long-term wellness.', true),
 ];
-
-
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
 export default function EnhancedTable(props) {
     const [selected, setSelected] = React.useState([]);
@@ -164,11 +150,7 @@ export default function EnhancedTable(props) {
                                             />
                                         </StyledTableCell>
                                 
-                                        {row.photo === '--' ? (
-                                            <StyledTableCell align="center">{row.photo}</StyledTableCell>
-                                        ) : (
-                                            <StyledTableCell align="center"><img className='table__img' src={row.photo} alt='product'/></StyledTableCell>
-                                        )}
+                                        <TablePhotos row={row} />
                                         
                                         <StyledTableCell
                                             component="th"

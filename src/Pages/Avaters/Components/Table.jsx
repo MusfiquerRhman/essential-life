@@ -9,11 +9,14 @@ import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
 import { hand } from "../../../assests";
+import TablePhotos from '../../../Components/Common/TablePhotos';
 import TableBodyWrapper from '../../../Components/table/TableBodyWrapper';
 import TableRow from '../../../Components/table/TableRow';
 import TableHeadWithPhoto from "../../../Components/TableHeads/TableHeadWithPhoto";
 import ToolBarJustDelete from '../../../Components/TablesToolBars/ToolBarJustDelete';
-import { StyledTableCell, StyledTableRow } from '../../../Styles/StylesTableRowAndCell';
+import { StyledTableCell } from '../../../Styles/StylesTableRowAndCell';
+import getComparator from '../../helperFunctions';
+
 
 const headCells = [
     {
@@ -42,23 +45,6 @@ const rows = [
     createData(8,hand, '22 August 2022'),
     createData(9,hand, '22 August 2022'),
 ];
-
-
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
 export default function EnhancedTable(props) {
     const [selected, setSelected] = React.useState([]);
@@ -149,7 +135,7 @@ export default function EnhancedTable(props) {
                                                 }}
                                             />
                                         </StyledTableCell>
-                                        <StyledTableCell align="center"><img className='table__img' src={row.photo} alt='product'/></StyledTableCell>
+                                        <TablePhotos row={row} />
                                         <StyledTableCell align="left">{row.created_at}</StyledTableCell>
                                         <StyledTableCell align='right'>
                                             <NavLink to={`/avaters/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>

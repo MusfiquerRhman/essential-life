@@ -13,6 +13,7 @@ import TableRow from '../../../Components/table/TableRow';
 import TableHeadWithPhoto from '../../../Components/TableHeads/TableHeadWithPhoto';
 import ToolBarForceUpdate from '../../../Components/TablesToolBars/ToolBarForceUpdate';
 import { StyledTableCell } from '../../../Styles/StylesTableRowAndCell';
+import getComparator from '../../helperFunctions';
 
 const headCells = [
     {
@@ -46,22 +47,6 @@ const rows = [
     createData(9 ,'--', 'wow9', 'Cells are the smallest units of life in all living organisms. They have three primary functions: 1) They replicate themselves. 2) They perform specialized functions (epithelial, sensory, blood, etc.). 3) And finally, they experience apoptosis, which is a healthy, normal cellular death. For optimal health, cells need to support through all three functions. Essential oils are a powerful addition to any regimen targeting cellular health because they are actually able to permeate the cell membrane and provide robust support to the structures found within the cell, including safeguarding against inside threats such as viruses.'),
 
 ];
-
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
 export default function EnhancedTable(props) {
     const [selected, setSelected] = React.useState([]);
@@ -164,7 +149,7 @@ export default function EnhancedTable(props) {
                                             padding="none"
                                             align="left"
                                             sx={{
-                                                fontWaight: '500'
+                                                fontWeight: '500'
                                             }}
                                         >
                                             <NavLink to={`/body-system/${row.id}`}><span className='table__name'>{row.name}</span></NavLink>

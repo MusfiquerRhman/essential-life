@@ -12,6 +12,7 @@ import TableRow from '../../../Components/table/TableRow';
 import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
 import ToolBarForceUpdateUGC from '../../../Components/TablesToolBars/ToolBarForceUpdateUGC';
 import { StyledTableCell } from '../../../Styles/StylesTableRowAndCell';
+import getComparator from '../../helperFunctions';
 
 import * as React from 'react';
 
@@ -56,22 +57,6 @@ const rows = [
     createData(8 ,'Allergies', 'Blend and apply one drop behind ears, temples, and thymus', '--', 'Aug 12 2022', 908),
     createData(9 ,'Allergies', 'Blend and apply one drop behind ears, temples, and thymus', '--', 'Aug 12 2022', 508),
 ];
-
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
 export default function EnhancedTable(props) {
     const [selected, setSelected] = React.useState([]);
@@ -178,7 +163,7 @@ export default function EnhancedTable(props) {
                                             padding="none"
                                             align="left"
                                             sx={{
-                                                fontWaight: '500'
+                                                fontWeight: '500'
                                             }}
                                         >
                                             <NavLink to={`/remedies/${row.id}`}><span className='table__name'>{row.name}</span></NavLink>

@@ -2,16 +2,16 @@ import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink, useParams } from 'react-router-dom';
 import TableBodyWrapper from '../../../../Components/table/TableBodyWrapper';
+import TableRow from '../../../../Components/table/TableRow';
 import TableHeadNoPhoto from '../../../../Components/TableHeads/TableHeadNoPhoto';
 import ToolBarJustDelete from '../../../../Components/TablesToolBars/ToolBarJustDelete';
-import { StyledTableCell, StyledTableRow } from '../../../../Styles/StylesTableRowAndCell';
+import { StyledTableCell } from '../../../../Styles/StylesTableRowAndCell';
 
 import * as React from 'react';
 
@@ -73,27 +73,6 @@ const RegionalDataTable = (props) => {
         setSupportiveSelectedArray([]);
     };
 
-    const handleClick = (event, id) => {
-        const selectedIndex = selected.indexOf(id);
-        let newSelected = [];
-
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
-
-        setSelected(newSelected);
-        setSupportiveSelectedArray(newSelected);
-    };
-
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -105,10 +84,6 @@ const RegionalDataTable = (props) => {
 
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
-
-    // Avoid a layout jump when reaching the last page with empty rows.
-    const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
     
     return (
         <Box sx={{ width: '100%' }}>
@@ -141,14 +116,12 @@ const RegionalDataTable = (props) => {
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
                                 return (
-                                    <StyledTableRow
-                                        hover
-                                        onClick={(event) => handleClick(event, row.id)}
-                                        role="checkbox"
-                                        aria-checked={isItemSelected}
-                                        tabIndex={-1}
-                                        key={row.id}
-                                        selected={isItemSelected}
+                                    <TableRow
+                                        isItemSelected={isItemSelected}
+                                        id={row.id}
+                                        selected={selected}
+                                        setSelected={setSelected}
+                                        setSelectedArray={setSupportiveSelectedArray}
                                     >
                                         <StyledTableCell padding="checkbox">
                                             <Checkbox
@@ -166,7 +139,7 @@ const RegionalDataTable = (props) => {
                                             padding="none"
                                             align="left"
                                             sx={{
-                                                fontWaight: '500'
+                                                fontWeight: '500'
                                             }}
                                         >
                                             <span className='table__name'>{row.region}</span>
@@ -176,7 +149,7 @@ const RegionalDataTable = (props) => {
                                             <NavLink to={`/supplements/${id}/regionname/${row.id}`} style={{color: '#000'}}><FiEdit className='table__icon' /></NavLink>
                                             <RiDeleteBinLine className='table__icon' />
                                         </StyledTableCell>
-                                    </StyledTableRow>
+                                    </TableRow>
                                 );
                             })}
                         </TableBodyWrapper>

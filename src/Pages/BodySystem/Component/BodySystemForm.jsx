@@ -89,7 +89,7 @@ function BodySystemForm(props) {
     }
 
 
-    const imageSelectHandeler = (event) => {
+    const imageSelectHandler = (event) => {
         dispatch({
             type: ACTION_TYPE.CHANGE_INPUT,
             payload: {
@@ -230,7 +230,7 @@ function BodySystemForm(props) {
                 </div>
             </div>
 
-            <label htmlFor="Systems" className='form__label'>Associated propertiesname</label>
+            <label htmlFor="Systems" className='form__label'>Associated properties names</label>
             <div className='chip__container'>
                 <div className='chips'>
                     {state.associatedProperties.map((value) => (
@@ -272,10 +272,9 @@ function BodySystemForm(props) {
                 <div>
                     <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem', marginRight: '2rem' }}>Image</label>
                     <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
-                        imageSelectHandeler(e);
+                        imageSelectHandler(e);
                     }} />
                 </div>
-
 
                 {imageSelected}
             </div>

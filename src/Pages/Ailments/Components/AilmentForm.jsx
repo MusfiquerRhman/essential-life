@@ -1,9 +1,6 @@
-import AddIcon from '@mui/icons-material/Add';
-import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import { default as React, useState } from 'react';
+import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 
 const names = [
     'Oliver Hansen',
@@ -84,7 +81,7 @@ function AilmentForm(props) {
 
 
     return (
-        <>
+        <React.Fragment>
             <label htmlFor="name" className='form__label'>Name</label>
             <input type="text" placeholder='Name' id='#name' className='form__input' onChange={onChangeName} value={name}/>
 
@@ -116,32 +113,14 @@ function AilmentForm(props) {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openBodySystem ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openBodySystem ? 'true' : undefined}
-                        onClick={handleClickBodySystem}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElBodySystem}
-                        open={openBodySystem}
-                        onClose={handleCloseBodySystem}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeBodySystem(item)}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openBodySystem}
+                    onClickAddButton={handleClickBodySystem}
+                    anchorEl={anchorElBodySystem}
+                    handleClose={handleCloseBodySystem}
+                    handleChange={handleChangeBodySystem}
+                    names={names}
+                />
             </div>
 
 
@@ -156,32 +135,14 @@ function AilmentForm(props) {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openRelatedBodySystem ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openRelatedBodySystem ? 'true' : undefined}
-                        onClick={handleClickRelatedBodySystem}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElRelatedBodySystem}
-                        open={openRelatedBodySystem}
-                        onClose={handleCloseRelatedBodySystem}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeRelatedBodySystem(item)}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openRelatedBodySystem}
+                    onClickAddButton={handleClickRelatedBodySystem}
+                    anchorEl={anchorElRelatedBodySystem}
+                    handleClose={handleCloseRelatedBodySystem}
+                    handleChange={handleChangeRelatedBodySystem}
+                    names={names}
+                />
             </div>
 
             <label htmlFor="Systems" className='form__label' style={{ marginTop: '2rem' }}>Symptoms</label>
@@ -195,34 +156,16 @@ function AilmentForm(props) {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openSymptoms ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openSymptoms ? 'true' : undefined}
-                        onClick={handleClickSymptoms}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElSymptoms}
-                        open={openSymptoms}
-                        onClose={handleCloseSymptoms}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeSymptoms(item)}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openSymptoms}
+                    onClickAddButton={handleClickSymptoms}
+                    anchorEl={anchorElSymptoms}
+                    handleClose={handleCloseSymptoms}
+                    handleChange={handleChangeSymptoms}
+                    names={names}
+                />
             </div>
-        </>
+        </React.Fragment>
     )
 }
 

@@ -11,6 +11,7 @@ import TableBodyWrapper from '../../../Components/table/TableBodyWrapper';
 import TableRow from '../../../Components/table/TableRow';
 import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
 import { StyledTableCell } from '../../../Styles/StylesTableRowAndCell';
+import getComparator from '../../helperFunctions';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 
 import * as React from 'react';
@@ -62,22 +63,6 @@ const rows = [
     createData(8 ,'Best Products Best Prices at OilLife.com', false, true, true, 'Australia, Canada, China, Costa Rica, EU, Guatemala, Hong Kong, Japan, Korea, Malaysia, Mexico, New Zealand, Singapore, Taiwan, US'),
     createData(9 ,'Best Products Best Prices at OilLife.com', true, true, true, 'Australia, Canada, China, Costa Rica, EU, Guatemala, Hong Kong, Japan, Korea, Malaysia, Mexico, New Zealand, Singapore, Taiwan, US'),
 ];
-
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
 export default function EnhancedTable(props) {
     const [selected, setSelected] = React.useState([]);
@@ -190,7 +175,7 @@ export default function EnhancedTable(props) {
                                             padding="none"
                                             align="left"
                                             sx={{
-                                                fontWaight: '500'
+                                                fontWeight: '500'
                                             }}
                                         >
                                             <NavLink to={`/cards/${row.id}`}><span className='table__name'>{row.title}</span></NavLink>

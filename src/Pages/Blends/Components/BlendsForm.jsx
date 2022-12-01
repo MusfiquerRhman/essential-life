@@ -1,10 +1,7 @@
-import AddIcon from '@mui/icons-material/Add';
-import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import { default as React } from 'react';
+import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 import IOSSwitch from '../../../Styles/iOSSwitch';
 
 const names = [
@@ -182,32 +179,14 @@ const BlendsForm = (props) => {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openCategories ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openCategories ? 'true' : undefined}
-                        onClick={handleClickCategories}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElCategories}
-                        open={openCategories}
-                        onClose={handleCloseCategories}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddIngredient(item)}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openCategories}
+                    onClickAddButton={handleClickCategories}
+                    anchorEl={anchorElCategories}
+                    handleClose={handleCloseCategories}
+                    handleChange={handleChangeAddIngredient}
+                    names={names}
+                />
             </div>
 
             <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem' }}>Image</label>

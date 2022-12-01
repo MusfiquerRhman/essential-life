@@ -10,6 +10,9 @@ import TableRow from '../../../Components/table/TableRow';
 import TableHeadWithPhoto from '../../../Components/TableHeads/TableHeadWithPhoto';
 import ToolBarJustDelete from '../../../Components/TablesToolBars/ToolBarJustDelete';
 import { StyledTableCell } from '../../../Styles/StylesTableRowAndCell';
+import getComparator from '../../helperFunctions';
+import TablePhotos from '../../../Components/Common/TablePhotos';
+
 
 import * as React from 'react';
 
@@ -97,21 +100,6 @@ const rows = [
     ),
 ];
 
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
 
 export default function EnhancedTable(props) {
     const [selected, setSelected] = React.useState([]);
@@ -200,11 +188,7 @@ export default function EnhancedTable(props) {
                                                 }}
                                             />
                                         </StyledTableCell>
-                                        {row.photo === '--' ? (
-                                            <StyledTableCell align="center">{row.photo}</StyledTableCell>
-                                        ) : (
-                                            <StyledTableCell align="center"><img className='table__img' src={row.photo} alt='product' /></StyledTableCell>
-                                        )}
+                                        <TablePhotos row={row} />
                                         <StyledTableCell
                                             component="th"
                                             id={labelId}
@@ -212,7 +196,7 @@ export default function EnhancedTable(props) {
                                             padding="none"
                                             align="left"
                                             sx={{
-                                                fontWaight: '500'
+                                                fontWeight: '500'
                                             }}
                                         >
                                             <span className='table__name'>{row.type}</span>

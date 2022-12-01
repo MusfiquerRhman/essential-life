@@ -1,10 +1,7 @@
-import AddIcon from '@mui/icons-material/Add';
-import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import { default as React, useState } from 'react';
+import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 import IOSSwitch from '../../../Styles/iOSSwitch';
 
 const names = [
@@ -28,7 +25,7 @@ const OilForm = (props) => {
     } = props;
 
     const [anchorElTopProperties, setAnchorElTopProperties] = React.useState(null);
-    const opentop_properties = Boolean(anchorElTopProperties);
+    const openTopProperties = Boolean(anchorElTopProperties);
 
     const handleClickTopProperties = (event) => {
         setAnchorElTopProperties(event.currentTarget);
@@ -49,15 +46,15 @@ const OilForm = (props) => {
         setAnchorElMainConstituents(null);
     };
 
-    const [anchorElSourchingMethods, setAnchorElSourchingMethods] = React.useState(null);
-    const openSourchingMethods = Boolean(anchorElSourchingMethods);
+    const [anchorElSourcingMethods, setAnchorElSourcingMethods] = React.useState(null);
+    const openSourcingMethods = Boolean(anchorElSourcingMethods);
 
-    const handleClickSourchingMethods = (event) => {
-        setAnchorElSourchingMethods(event.currentTarget);
+    const handleClickSourcingMethods = (event) => {
+        setAnchorElSourcingMethods(event.currentTarget);
     };
 
-    const handleCloseSourchingMethods = () => {
-        setAnchorElSourchingMethods(null);
+    const handleCloseSourcingMethods = () => {
+        setAnchorElSourcingMethods(null);
     };
 
     const [anchorElBlendsWith, setAnchorElBlendsWith] = React.useState(null);
@@ -116,7 +113,7 @@ const OilForm = (props) => {
 
     const [displayImage, setDisplayImage] = useState("");
 
-    const imageSelectHandeler = (event) => {
+    const imageSelectHandler = (event) => {
         dispatch({
             type: ACTION_TYPE.CHANGE_INPUT,
             payload: {
@@ -253,32 +250,15 @@ const OilForm = (props) => {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={opentop_properties ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={opentop_properties ? 'true' : undefined}
-                        onClick={handleClickTopProperties}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElTopProperties}
-                        open={opentop_properties}
-                        onClose={handleCloseTopProperties}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'top_properties')}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openTopProperties}
+                    onClickAddButton={handleClickTopProperties}
+                    anchorEl={anchorElTopProperties}
+                    handleClose={handleCloseTopProperties}
+                    handleChange={handleChangeAddChips}
+                    names={names}
+                    fieldName='top_properties'
+                />
             </div>
 
 
@@ -294,32 +274,15 @@ const OilForm = (props) => {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openMainConstituents ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openMainConstituents ? 'true' : undefined}
-                        onClick={handleClickMainConstituents}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElMainConstituents}
-                        open={openMainConstituents}
-                        onClose={handleCloseMainConstituents}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'main_constituents')}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openMainConstituents}
+                    onClickAddButton={handleClickMainConstituents}
+                    anchorEl={anchorElMainConstituents}
+                    handleClose={handleCloseMainConstituents}
+                    handleChange={handleChangeAddChips}
+                    names={names}
+                    fieldName='main_constituents'
+                />
             </div>
 
 
@@ -357,34 +320,16 @@ const OilForm = (props) => {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openSourchingMethods ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openSourchingMethods ? 'true' : undefined}
-                        onClick={handleClickSourchingMethods}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElSourchingMethods}
-                        open={openSourchingMethods}
-                        onClose={handleCloseSourchingMethods}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'sourching_methods')}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openSourcingMethods}
+                    onClickAddButton={handleClickSourcingMethods}
+                    anchorEl={anchorElSourcingMethods}
+                    handleClose={handleCloseSourcingMethods}
+                    handleChange={handleChangeAddChips}
+                    names={names}
+                    fieldName='sourching_methods'
+                />
             </div>
-
 
 
             {/* blends_with */}
@@ -399,41 +344,23 @@ const OilForm = (props) => {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openBlendsWith ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openBlendsWith ? 'true' : undefined}
-                        onClick={handleClickBlendsWith}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElBlendsWith}
-                        open={openBlendsWith}
-                        onClose={handleCloseBlendsWith}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'blends_with')}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openBlendsWith}
+                    onClickAddButton={handleClickBlendsWith}
+                    anchorEl={anchorElBlendsWith}
+                    handleClose={handleCloseBlendsWith}
+                    handleChange={handleChangeAddChips}
+                    names={names}
+                    fieldName='blends_with'
+                />
             </div>
             <div className='image__option flex__row'>
                 <div>
                     <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem', marginRight: '2rem' }}>Image</label>
                     <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
-                        imageSelectHandeler(e);
+                        imageSelectHandler(e);
                     }} />
                 </div>
-
 
                 {imageSelected}
             </div>

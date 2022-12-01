@@ -117,6 +117,7 @@ const RegionalDataTable = (props) => {
                                 return (
                                     <TableRow
                                         isItemSelected={isItemSelected}
+                                        key={row.id}
                                         id={row.id}
                                         selected={selected}
                                         setSelected={setSelected}

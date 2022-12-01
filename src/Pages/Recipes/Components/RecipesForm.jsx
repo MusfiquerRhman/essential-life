@@ -1,13 +1,10 @@
-import AddIcon from '@mui/icons-material/Add';
 import Autocomplete from '@mui/material/Autocomplete';
-import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { default as React, useState } from 'react';
+import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 import IOSSwitch from '../../../Styles/iOSSwitch';
 
 const names = [
@@ -115,7 +112,7 @@ const RecipeForm = (props) => {
 
     const [displayImage, setDisplayImage] = useState("");
 
-    const imageSelectHandeler = (event) => {
+    const imageSelectHandler = (event) => {
         dispatch({
             type: ACTION_TYPE.CHANGE_INPUT,
             payload: {
@@ -196,32 +193,15 @@ const RecipeForm = (props) => {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openCategories ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openCategories ? 'true' : undefined}
-                        onClick={handleClickCategories}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElCategories}
-                        open={openCategories}
-                        onClose={handleCloseCategories}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'categories')}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openCategories}
+                    onClickAddButton={handleClickCategories}
+                    anchorEl={anchorElCategories}
+                    handleClose={handleCloseCategories}
+                    handleChange={handleChangeAddChips}
+                    names={names}
+                    fieldName='categories'
+                />
             </div>
 
             <label htmlFor="Systems" className='form__label' style={{ marginTop: '2rem' }}>Related Recipes</label>
@@ -235,32 +215,15 @@ const RecipeForm = (props) => {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openRecipes ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openRecipes ? 'true' : undefined}
-                        onClick={handleClickRecipes}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElRecipes}
-                        open={openRecipes}
-                        onClose={handleCloseRecipes}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'related_recipes')}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openRecipes}
+                    onClickAddButton={handleClickRecipes}
+                    anchorEl={anchorElRecipes}
+                    handleClose={handleCloseRecipes}
+                    handleChange={handleChangeAddChips}
+                    names={names}
+                    fieldName='related_recipes'
+                />
             </div>
 
             <label htmlFor="user" className='form__label' style={{ marginTop: '2rem' }}>User</label>
@@ -285,10 +248,9 @@ const RecipeForm = (props) => {
                 <div>
                     <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem', marginRight: '2rem' }}>Image</label>
                     <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
-                        imageSelectHandeler(e);
+                        imageSelectHandler(e);
                     }} />
                 </div>
-
 
                 {imageSelected}
             </div>

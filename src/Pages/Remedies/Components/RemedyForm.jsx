@@ -1,12 +1,9 @@
-import AddIcon from '@mui/icons-material/Add';
 import Autocomplete from '@mui/material/Autocomplete';
-import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
+import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 
 const names = [
     'Oliver Hansen',
@@ -69,7 +66,7 @@ function RemedyForm(props) {
         })
     };
 
-    const imageSelectHandeler = (event) => {
+    const imageSelectHandler = (event) => {
         dispatch({
             type: ACTION_TYPE.CHANGE_INPUT,
             payload: {
@@ -152,32 +149,14 @@ function RemedyForm(props) {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openRelatedRemedies ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openRelatedRemedies ? 'true' : undefined}
-                        onClick={handleClickRelatedRemedies}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElRelatedRemedies}
-                        open={openRelatedRemedies}
-                        onClose={handleCloseRelatedRemedies}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeRelatedRemedies(item)}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openRelatedRemedies}
+                    onClickAddButton={handleClickRelatedRemedies}
+                    anchorEl={anchorElRelatedRemedies}
+                    handleClose={handleCloseRelatedRemedies}
+                    handleChange={handleChangeRelatedRemedies}
+                    names={names}
+                />
             </div>
 
             <label htmlFor="user" className='form__label' style={{ marginTop: '2rem' }}>User</label>
@@ -202,7 +181,7 @@ function RemedyForm(props) {
                 <div>
                     <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem', marginRight: '2rem' }}>Image</label>
                     <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
-                        imageSelectHandeler(e);
+                        imageSelectHandler(e);
                     }} />
                 </div>
 

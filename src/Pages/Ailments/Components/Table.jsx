@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
+import * as React from 'react';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
@@ -13,7 +14,6 @@ import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
 import ToolBarForceUpdate from '../../../Components/TablesToolBars/ToolBarForceUpdate';
 import { StyledTableCell } from '../../../Styles/StylesTableRowAndCell';
 import getComparator from '../../helperFunctions';
-import * as React from 'react';
 
 const headCells = [
     {
@@ -131,6 +131,7 @@ export default function EnhancedTable(props) {
                                     <TableRow
                                         isItemSelected={isItemSelected}
                                         id={row.id}
+                                        key={row.id}
                                         selected={selected}
                                         setSelected={setSelected}
                                         setSelectedArray={setSelectedArray}

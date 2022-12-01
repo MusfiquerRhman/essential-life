@@ -4,6 +4,7 @@ import Chip from '@mui/material/Chip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { default as React, useState } from 'react';
+import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 
 const names = [
     'Oliver Hansen',
@@ -23,16 +24,16 @@ function CategoryForm(props) {
     const [file, setImage] = useState("");
 
     const {
-        handleDeleteAilmentAndSymptoms,
         recipe,
         setShortDescription,
         shortDescription,
         handleDeleteRecipe,
         setName,
         name,
+        addRecipe
     } = props;
 
-    const imageSelectHandeler = (files) => {
+    const imageSelectHandler = (files) => {
         setImage(files[0]);
         const reader = new FileReader();
         reader.onload = () => {
@@ -45,15 +46,15 @@ function CategoryForm(props) {
         }
     };
 
-    const [anchorElReceipes, setAnchorElReceipes] = useState(null);
-    const openReceipes = Boolean(anchorElReceipes);
+    const [anchorElRecipes, setAnchorElRecipes] = useState(null);
+    const openRecipes = Boolean(anchorElRecipes);
 
-    const handleClickReceipes = (event) => {
-        setAnchorElReceipes(event.currentTarget);
+    const handleClickRecipes = (event) => {
+        setAnchorElRecipes(event.currentTarget);
     };
 
-    const handleCloseReceipes = () => {
-        setAnchorElReceipes(null);
+    const handleCloseRecipes = () => {
+        setAnchorElRecipes(null);
     };
 
     const onChangeShortDescription = (e) => {
@@ -95,43 +96,25 @@ function CategoryForm(props) {
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
                             key={value}
                             label={value}
-                            onDelete={() => handleDeleteAilmentAndSymptoms(value)}
+                            onDelete={() => handleDeleteRecipe(value)}
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openReceipes ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openReceipes ? 'true' : undefined}
-                        onClick={handleClickReceipes}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElReceipes}
-                        open={openReceipes}
-                        onClose={handleCloseReceipes}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleDeleteRecipe(item)}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openRecipes}
+                    onClickAddButton={handleClickRecipes}
+                    anchorEl={anchorElRecipes}
+                    handleClose={handleCloseRecipes}
+                    handleChange={addRecipe}
+                    names={names}
+                />
             </div>
 
             <div className='image__option flex__row'>
                 <div>
                     <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem', marginRight: '2rem' }}>Image</label>
                     <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
-                        imageSelectHandeler(e);
+                        imageSelectHandler(e);
                     }} />
                 </div>
 

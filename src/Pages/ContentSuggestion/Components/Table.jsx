@@ -5,13 +5,13 @@ import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import TablePhotos from '../../../Components/Common/TablePhotos';
 import TableBodyWrapper from '../../../Components/table/TableBodyWrapper';
 import TableRow from '../../../Components/table/TableRow';
 import TableHeadWithPhoto from '../../../Components/TableHeads/TableHeadWithPhoto';
 import ToolBarJustDelete from '../../../Components/TablesToolBars/ToolBarJustDelete';
 import { StyledTableCell } from '../../../Styles/StylesTableRowAndCell';
 import getComparator from '../../helperFunctions';
-import TablePhotos from '../../../Components/Common/TablePhotos';
 
 
 import * as React from 'react';
@@ -175,6 +175,7 @@ export default function EnhancedTable(props) {
                                     <TableRow
                                         isItemSelected={isItemSelected}
                                         id={row.id}
+                                        key={row.id}
                                         selected={selected}
                                         setSelected={setSelected}
                                         setSelectedArray={setSelectedArray}

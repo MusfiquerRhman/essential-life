@@ -1,10 +1,6 @@
-import AddIcon from '@mui/icons-material/Add';
-import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-
 import { default as React, useState } from 'react';
+import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 
 const names = [
     'Oliver Hansen',
@@ -79,7 +75,6 @@ function SymptomsForm(props) {
         })
     }
 
-
     const handleChangeAddChips = (value, name) => {
         dispatch({
             type: ACTION_TYPE.ADD_CHIPS,
@@ -89,7 +84,6 @@ function SymptomsForm(props) {
             }
         })
     }
-
 
     return (
         <>
@@ -142,34 +136,16 @@ function SymptomsForm(props) {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openBodySystem ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openBodySystem ? 'true' : undefined}
-                        onClick={handleClickBodySystem}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElBodySystem}
-                        open={openBodySystem}
-                        onClose={handleCloseBodySystem}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'bodySystem')}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openBodySystem}
+                    onClickAddButton={handleClickBodySystem}
+                    anchorEl={anchorElBodySystem}
+                    handleClose={handleCloseBodySystem}
+                    handleChange={handleChangeAddChips}
+                    names={names}
+                    fieldName='bodySystem'
+                />
             </div>
-
 
             <label htmlFor="Systems" 
                 className='form__label' 
@@ -187,32 +163,15 @@ function SymptomsForm(props) {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openRelatedBodySystem ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openRelatedBodySystem ? 'true' : undefined}
-                        onClick={handleClickRelatedBodySystem}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElRelatedBodySystem}
-                        open={openRelatedBodySystem}
-                        onClose={handleCloseRelatedBodySystem}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'relatedBodySystem')}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openRelatedBodySystem}
+                    onClickAddButton={handleClickRelatedBodySystem}
+                    anchorEl={anchorElRelatedBodySystem}
+                    handleClose={handleCloseRelatedBodySystem}
+                    handleChange={handleChangeAddChips}
+                    names={names}
+                    fieldName='relatedBodySystem'
+                />
             </div>
 
             <label htmlFor="Ailments" 
@@ -231,32 +190,15 @@ function SymptomsForm(props) {
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openSymptoms ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openSymptoms ? 'true' : undefined}
-                        onClick={handleClickSymptoms}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElSymptoms}
-                        open={openSymptoms}
-                        onClose={handleCloseSymptoms}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'ailments')}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openSymptoms}
+                    onClickAddButton={handleClickSymptoms}
+                    anchorEl={anchorElSymptoms}
+                    handleClose={handleCloseSymptoms}
+                    handleChange={handleChangeAddChips}
+                    names={names}
+                    fieldName='ailments'
+                />
             </div>
         </>
     )

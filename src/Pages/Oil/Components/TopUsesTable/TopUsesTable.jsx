@@ -131,6 +131,7 @@ export default function TopUsesTable(props) {
                                     <TableRow
                                         isItemSelected={isItemSelected}
                                         id={row.id}
+                                        key={row.id}
                                         selected={selected}
                                         setSelected={setSelected}
                                         setSelectedArray={setSelectedArray}

@@ -33,8 +33,8 @@ function NavBar() {
                 <select name="Languages" id="language" defaultValue={language} onChange={onChangeLanguage}>
                     <option value="english">English</option>
                     <option value="spanish">Spanish</option>
-                    <option value="portugese">Portugese</option>
-                    <option value="japaness">Japaness</option>
+                    <option value="portuguese">Portuguese</option>
+                    <option value="japaneses">Japaneses</option>
                 </select>
                 <div className='user'>
                     <div className='user__img--box'>

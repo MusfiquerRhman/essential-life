@@ -11,6 +11,15 @@ function AddCategoryForm() {
     const handleDeleteRecipe = (selectedName) => {
         setRecipe(previousChips => previousChips.filter(name => name !== selectedName))
     };
+
+    const addRecipe = (item) => {
+        setRecipe(previousRecipe => {
+            let recipes = new Set([...previousRecipe, item]);
+            return (
+                [...recipes]
+            )
+        })
+    }
     
     return (
         <section>
@@ -22,6 +31,7 @@ function AddCategoryForm() {
                     setShortDescription={setShortDescription}
                     shortDescription={shortDescription}
                     setName={setName}
+                    addRecipe={addRecipe}
                     name={name}
                 />
 

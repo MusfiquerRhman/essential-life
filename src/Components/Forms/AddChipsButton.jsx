@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import React from "react";
 
 const AddChipsButton = props => {
-    const { open, onClickAddButton, anchorEl, handleClose, handleChange, names } = props;
+    const { open, onClickAddButton, anchorEl, handleClose, handleChange, names, fieldName } = props;
     return (
         <div>
             <Button
@@ -28,9 +28,15 @@ const AddChipsButton = props => {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                {names.map((item, index) => (
-                    <MenuItem key={index} onClick={() => handleChange(item)}>{item}</MenuItem>
-                ))}
+                {fieldName === undefined ? (
+                    names.map((item, index) => (
+                        <MenuItem key={index} onClick={() => handleChange(item)}>{item}</MenuItem>
+                    ))
+                ) : (
+                    names.map((item, index) => (
+                        <MenuItem key={index} onClick={() => handleChange(item, fieldName)}>{item}</MenuItem>
+                    ))
+                )}
             </Menu>
         </div>
     )

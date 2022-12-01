@@ -1,9 +1,6 @@
-import AddIcon from '@mui/icons-material/Add';
-import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import { default as React, useState } from 'react';
+import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 
 const names = [
     'Oliver Hansen',
@@ -154,119 +151,68 @@ function BodySystemForm(props) {
             <label htmlFor="Systems" className='form__label'>Remedies</label>
             <div className='chip__container'>
                 <div className='chips'>
-                    {state.remedies.map((value) => (
+                    {state.remedies.map((value, index) => (
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
-                            key={value}
+                            key={index}
                             label={value}
                             onDelete={() => handleDeleteChips(value, 'remedies')}
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openRemedy ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openRemedy ? 'true' : undefined}
-                        onClick={handleClickRemedy}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElRemedy}
-                        open={openRemedy}
-                        onClose={handleCloseRemedy}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'remedies')}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openRemedy}
+                    onClickAddButton={handleClickRemedy}
+                    anchorEl={anchorElRemedy}
+                    handleClose={handleCloseRemedy}
+                    handleChange={handleChangeAddChips}
+                    names={names}
+                    fieldName='remedies'
+                />
             </div>
 
 
             <label htmlFor="Systems" className='form__label' style={{ marginTop: '2rem' }}>Ailments &amp; Symptoms</label>
             <div className='chip__container'>
                 <div className='chips'>
-                    {state.ailmentAndSymptoms.map((value) => (
+                    {state.ailmentAndSymptoms.map((value, index) => (
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
-                            key={value}
+                            key={index}
                             label={value}
                             onDelete={() => handleDeleteChips(value, 'ailmentAndSymptoms')}
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openAilmentAndSymptoms ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openAilmentAndSymptoms ? 'true' : undefined}
-                        onClick={handleClickAilmentAndSymptoms}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElAilmentAndSymptoms}
-                        open={openAilmentAndSymptoms}
-                        onClose={handleCloseAilmentAndSymptoms}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'ailmentAndSymptoms')}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openAilmentAndSymptoms}
+                    onClickAddButton={handleClickAilmentAndSymptoms}
+                    anchorEl={anchorElAilmentAndSymptoms}
+                    handleClose={handleCloseAilmentAndSymptoms}
+                    handleChange={handleChangeAddChips}
+                    names={names}
+                    fieldName='ailmentAndSymptoms'
+                />
             </div>
 
             <label htmlFor="Systems" className='form__label'>Associated properties names</label>
             <div className='chip__container'>
                 <div className='chips'>
-                    {state.associatedProperties.map((value) => (
+                    {state.associatedProperties.map((value, index) => (
                         <Chip sx={{ marginRight: '0.5rem', marginBottom: '0.5rem' }}
-                            key={value}
+                            key={index}
                             label={value}
                             onDelete={() => handleDeleteChips(value, 'associatedProperties')}
                         />
                     ))}
                 </div>
-                <div>
-                    <Button
-                        id="basic-button"
-                        aria-controls={openAssociatedProperties ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={openAssociatedProperties ? 'true' : undefined}
-                        onClick={handleClickAssociatedProperties}
-                        startIcon={<AddIcon />}
-                        sx={{ borderRadius: '2rem' }}
-                    >
-                        Add
-                    </Button>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElAssociatedProperties}
-                        open={openAssociatedProperties}
-                        onClose={handleCloseAssociatedProperties}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        {names.map((item, index) => (
-                            <MenuItem key={index} onClick={() => handleChangeAddChips(item, 'associatedProperties')}>{item}</MenuItem>
-                        ))}
-                    </Menu>
-                </div>
+                <AddChipsButton 
+                    open={openAssociatedProperties}
+                    onClickAddButton={handleClickAssociatedProperties}
+                    anchorEl={anchorElAssociatedProperties}
+                    handleClose={handleCloseAssociatedProperties}
+                    handleChange={handleChangeAddChips}
+                    names={names}
+                    fieldName='associatedProperties'
+                />
             </div>
             <div className='image__option flex__row'>
                 <div>

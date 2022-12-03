@@ -8,7 +8,6 @@ function EditTopTipsFrom() {
 
     }
 
-
     return (
         <section>
             <div className='form__header'>

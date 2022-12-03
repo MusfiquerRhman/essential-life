@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { default as React, useState } from 'react';
+import { default as React, useCallback, useState } from 'react';
 import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 
 const names = [
@@ -19,7 +19,7 @@ const names = [
     'Kelly Snyder',
 ];
 
-function CategoryForm(props) {
+const CategoryForm = React.memo((props) => {
     const [displayImage, setDisplayImage] = useState("");
     const [file, setImage] = useState("");
 
@@ -49,13 +49,13 @@ function CategoryForm(props) {
     const [anchorElRecipes, setAnchorElRecipes] = useState(null);
     const openRecipes = Boolean(anchorElRecipes);
 
-    const handleClickRecipes = (event) => {
+    const handleClickRecipes = useCallback((event) => {
         setAnchorElRecipes(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseRecipes = () => {
+    const handleCloseRecipes = useCallback(() => {
         setAnchorElRecipes(null);
-    };
+    }, []);
 
     const onChangeShortDescription = (e) => {
         setShortDescription(e.target.value)
@@ -123,6 +123,6 @@ function CategoryForm(props) {
             </div>
         </>
     )
-}
+})
 
 export default CategoryForm

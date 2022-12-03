@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { default as React, useEffect, useState } from 'react';
+import { default as React, useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBox from '../../Components/Common/SearchBox';
 import QuickEditTable from '../../Components/QuickEdit/QuickEditTable';
@@ -8,12 +8,12 @@ import Table from './Components/Table';
 
 const QucikHeadCells = [
   {
-      id: 'name',
-      label: 'Name',
+    id: 'name',
+    label: 'Name',
   },
   {
-      id: 'description',
-      label: 'Description',
+    id: 'description',
+    label: 'Description',
   },
 ];
 
@@ -21,7 +21,7 @@ const QucikHeadCells = [
 function Properties() {
   const [selected, setSelected] = useState([]);
   const [quickEdit, setQuickEdit] = useState(false);
-  const [modifiedItems, setmodifiedItems] = useState({}); // Modified in quick edit
+  const [modifiedItems, setModifiedItems] = useState({}); // Modified in quick edit
 
 
   // useEffect(() => {
@@ -29,9 +29,9 @@ function Properties() {
 
   // }, [selected, contentStatus, action])
 
-  const handleSelectDeleteAll = () => {
+  const handleSelectDeleteAll = useCallback(() => {
     // TODO: Delete all selected
-  }
+  }, [])
 
 
   const onClickQuickEdit = () => {
@@ -48,11 +48,11 @@ function Properties() {
 
   return (
     <section>
-    <h1>Properties</h1>
-    <div className='search__container'>
-      <SearchBox />
+      <h1>Properties</h1>
+      <div className='search__container'>
+        <SearchBox />
 
-      <div>
+        <div>
           {!quickEdit && (
             <div>
               <Button sx={{ borderRadius: '2rem', marginRight: '1rem' }}
@@ -63,8 +63,8 @@ function Properties() {
               </Button>
 
               <Button startIcon={<AddIcon />} sx={{ borderRadius: '2rem' }} variant="contained">
-        <NavLink to='/properties/new' className='button'>Create Properties Tag</NavLink>
-      </Button>
+                <NavLink to='/properties/new' className='button'>Create Properties Tag</NavLink>
+              </Button>
             </div>
           )}
 
@@ -87,25 +87,25 @@ function Properties() {
           )}
         </div>
 
-    </div>
+      </div>
 
-    <div className='table__card'>
-    {!quickEdit && (
-      <Table
-        selected={selected}
-        setSelectedArray={setSelected}
-        handleSelectDeleteAll={handleSelectDeleteAll}
-      />
-              )}
+      <div className='table__card'>
+        {!quickEdit && (
+          <Table
+            selected={selected}
+            setSelectedArray={setSelected}
+            handleSelectDeleteAll={handleSelectDeleteAll}
+          />
+        )}
 
-{quickEdit && (
-  <QuickEditTable 
-    headCells={QucikHeadCells}
-    setmodifiedItems={setmodifiedItems}
-  />
-)}
-    </div>
-  </section>
+        {quickEdit && (
+          <QuickEditTable
+            headCells={QucikHeadCells}
+            setmodifiedItems={setModifiedItems}
+          />
+        )}
+      </div>
+    </section>
   )
 }
 

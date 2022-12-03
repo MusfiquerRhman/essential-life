@@ -1,7 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button';
-import { default as React, useReducer, useState } from 'react';
+import { default as React, useCallback, useReducer, useState } from 'react';
 import SolutionType from '../../../Components/Common/SolutionType';
 import { ACTION_TYPE, INITIAL_STATE, oilReducer } from '../../../Reducers/oilReducer';
 import RegionalDataTable from '../../Supplements/Components/RegionalDataTable/RegionalDataTable';
@@ -41,21 +41,21 @@ function EditOil() {
 
     }
 
-    const handleSelectDeleteAllRegions = () => {
+    const handleSelectDeleteAllRegions = useCallback(() => {
         // TODO: Delete all selected
-    }
+    }, [])
 
-    const handleSelectDeleteAllTopUses = () => {
+    const handleSelectDeleteAllTopUses = useCallback(() => {
         // TODO: Delete all selected
-    }
+    }, [])
 
     const addTopUses = () => {
 
     }
 
-    const handleSelectDeleteFoundIn = () => {
+    const handleSelectDeleteFoundIn = useCallback(() => {
 
-    }
+    }, [])
 
     const [action, setAction] = useState('');
 

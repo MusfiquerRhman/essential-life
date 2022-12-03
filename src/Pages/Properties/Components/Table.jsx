@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
+import React, { useCallback, useState } from 'react';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
@@ -13,8 +14,6 @@ import TableHeadNoPhoto from '../../../Components/TableHeads/TableHeadNoPhoto';
 import ToolBarJustDelete from '../../../Components/TablesToolBars/ToolBarJustDelete';
 import { StyledTableCell } from '../../../Styles/StylesTableRowAndCell';
 import getComparator from '../../helperFunctions';
-
-import * as React from 'react';
 
 function createData(id, name, description) {
     return {
@@ -48,26 +47,22 @@ const rows = [
     createData(9,'DDR Prime', 'Contracts tissues, generally of the skin; reduces minor bleeding'),
 ];
 
-export default function EnhancedTable(props) {
+const EnhancedTable = React.memo((props) => {
+    const { setSelectedArray, handleSelectDeleteAll } = props;
+
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(15);
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
 
-    const handleRequestSort = (event, property) => {
+    const handleRequestSort = useCallback((event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
-    };
+    }, [order, orderBy]);
 
-    const {
-        setSelectedArray,
-        handleSelectDeleteAll,
-    } = props
-
-
-    const handleSelectAllClick = (event) => {
+    const handleSelectAllClick = useCallback((event) => {
         if (event.target.checked) {
             const newSelected = rows.map((n) => n.id);
             setSelected(newSelected);
@@ -76,7 +71,7 @@ export default function EnhancedTable(props) {
         }
         setSelected([]);
         setSelectedArray([]);
-    };
+    }, [setSelectedArray]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -86,7 +81,6 @@ export default function EnhancedTable(props) {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
@@ -174,4 +168,6 @@ export default function EnhancedTable(props) {
             </Paper>
         </Box>
     );
-}
+})
+
+export default EnhancedTable;

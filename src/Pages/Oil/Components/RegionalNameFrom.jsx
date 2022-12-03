@@ -1,12 +1,7 @@
 import React from 'react';
 
-function RegionalNameFrom(props) {
-    const {
-        region,
-        setRegion,
-        setRagionalName,
-        ragionalName
-    } = props;
+const RegionalNameFrom = React.memo((props) => {
+    const { region, setRegion, setRagionalName, ragionalName } = props;
 
     return (
         <>
@@ -34,6 +29,6 @@ function RegionalNameFrom(props) {
             </div>
         </>
     )
-}
+})
 
 export default RegionalNameFrom

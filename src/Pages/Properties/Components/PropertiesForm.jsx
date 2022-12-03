@@ -1,11 +1,7 @@
 import React from 'react';
 
-function PropertiesForm(props) {
-    const {
-        state,
-        dispatch,
-        ACTION_TYPE,
-    } = props;
+const PropertiesForm = React.memo((props) => {
+    const { state, dispatch, ACTION_TYPE } = props;
 
     const onChangeInput = (event) => {
         dispatch({
@@ -17,9 +13,8 @@ function PropertiesForm(props) {
         })
     }
 
-
     return (
-        <>
+        <React.Fragment>
             <label htmlFor="name" className='form__label'>Name</label>
             <input type="text"
                 placeholder='Name'
@@ -57,8 +52,8 @@ function PropertiesForm(props) {
                 <option value="property">Property</option>
                 <option value="constituents">Constituents</option>
             </select>
-        </>
+        </React.Fragment>
     )
-}
+})
 
 export default PropertiesForm

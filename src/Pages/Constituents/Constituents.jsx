@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { default as React, useEffect, useState } from 'react';
+import { default as React, useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBox from '../../Components/Common/SearchBox';
 import QuickEditNameOnly from '../../Components/QuickEdit/QuickEditNameOnly';
@@ -17,22 +17,20 @@ function Constituents() {
   const [selected, setSelected] = useState([]);
 
   const [quickEdit, setQuickEdit] = useState(false);
-  const [modifiedItems, setmodifiedItems] = useState({}); // Modified in quick edit
-
-
+  const [modifiedItems, setModifiedItems] = useState({}); // Modified in quick edit
 
   // useEffect(() => {
   //   console.log(selected, contentStatus, action)
 
   // }, [selected, contentStatus, action])
 
-  const handleSelectDeleteAll = () => {
+  const handleSelectDeleteAll = useCallback(() => {
     // TODO: Delete all selected
-  }
+  }, [])
 
-  const onClickQuickEdit = () => {
+  const onClickQuickEdit = useCallback(() => {
     setQuickEdit(true);
-  }
+  }, [])
 
   const cancelQuickEdit = () => {
     setQuickEdit(false);
@@ -41,7 +39,6 @@ function Constituents() {
   const updateQuickEdit = () => {
     console.log(modifiedItems)
   }
-
 
   return (
     <section>
@@ -97,7 +94,7 @@ function Constituents() {
         {quickEdit && (
           <QuickEditNameOnly
             headCells={QucikHeadCells}
-            setmodifiedItems={setmodifiedItems}
+            setmodifiedItems={setModifiedItems}
           />
         )}
       </div>

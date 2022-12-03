@@ -25,11 +25,7 @@ const headCells = [
 ];
 
 function createData(id, photo, created_at) {
-    return {
-        id,
-        photo,
-        created_at
-    };
+    return { id, photo, created_at};
 }
 
 const rows = [

@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { default as React, useState } from 'react';
+import { default as React, useCallback, useState } from 'react';
 import CategoryForm from './CategoryForm';
 
 function AddCategoryForm() {
@@ -8,9 +8,9 @@ function AddCategoryForm() {
     const [shortDescription, setShortDescription] = useState('')
     const [recipe, setRecipe] = useState([])
 
-    const handleDeleteRecipe = (selectedName) => {
+    const handleDeleteRecipe = useCallback((selectedName) => {
         setRecipe(previousChips => previousChips.filter(name => name !== selectedName))
-    };
+    }, []);
 
     const addRecipe = (item) => {
         setRecipe(previousRecipe => {

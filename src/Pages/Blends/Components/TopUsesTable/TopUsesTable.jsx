@@ -32,15 +32,7 @@ const headCells = [
 
 
 function createData(id, type, name, description, isCupActive, isNoseActive, isHandActive) {
-    return {
-        id,
-        type,
-        name,
-        description,
-        isCupActive,
-        isNoseActive,
-        isHandActive
-    };
+    return { id, type, name, description, isCupActive, isNoseActive, isHandActive };
 }
 
 const rows = [

@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { default as React, useEffect, useState } from 'react';
+import { default as React, useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBox from '../../Components/Common/SearchBox';
 import Table from './Components/Table';
@@ -14,13 +14,14 @@ function Oil() {
 
   // }, [selected, contentStatus, action])
 
-  const handleSelectDeleteAll = () => {
+  const handleSelectDeleteAll = useCallback(() => {
     // TODO: Delete all selected
-  }
+  }, [])
 
-  const handleClickExecuteAction = () => {
+  const handleClickExecuteAction = useCallback(() => {
     // TODO: Execute action
-  }
+  }, [])
+  
   return (
     <section>
     <h1>Oil</h1>

@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { default as React, useEffect, useState } from 'react';
+import { default as React, useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBox from '../../Components/Common/SearchBox';
 import QuickEditCards from '../../Components/QuickEdit/QuickEditCards';
@@ -32,13 +32,13 @@ const QucikHeadCells = [
 
 function Cards() {
   const [selected, setSelected] = useState([]);
-  const [visibleInRegion, setVisibleInregion] = React.useState('--');
+  const [visibleInRegion, setVisibleInRegion] = React.useState('--');
   const [isActive, setIsActive] = React.useState('--');
   const [showForIOS, setShowForIOS] = useState('--');
   const [showForAndroid, setShowForAndroid] = useState('--')
 
   const [quickEdit, setQuickEdit] = useState(false);
-  const [modifiedItems, setmodifiedItems] = useState({}); // Modified in quick edit
+  const [modifiedItems, setModifiedItems] = useState({}); // Modified in quick edit
 
   useEffect(() => {
     console.log(modifiedItems)
@@ -49,13 +49,13 @@ function Cards() {
 
   // }, [selected, contentStatus, action])
 
-  const handleSelectDeleteAll = () => {
+  const handleSelectDeleteAll = useCallback(() => {
     // TODO: Delete all selected
-  }
+  }, [])
 
-  const handleClickExecuteAction = () => {
+  const handleClickExecuteAction = useCallback(() => {
     // TODO: Execute action
-  }
+  }, [])
 
   const onClickQuickEdit = () => {
     setQuickEdit(true);
@@ -120,7 +120,7 @@ function Cards() {
           setSelectedArray={setSelected}
           handleSelectDeleteAll={handleSelectDeleteAll}
           visibleInRegion={visibleInRegion}
-          setVisibleInregion={setVisibleInregion}
+          setVisibleInregion={setVisibleInRegion}
           showForIOS={showForIOS}
           setShowForIOS={setShowForIOS}
           isActive={isActive}
@@ -134,7 +134,7 @@ function Cards() {
         {quickEdit && (
           <QuickEditCards
             headCells={QucikHeadCells}
-            setmodifiedItems={setmodifiedItems}
+            setmodifiedItems={setModifiedItems}
           />
         )}
       </div>

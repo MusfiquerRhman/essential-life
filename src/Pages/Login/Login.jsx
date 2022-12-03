@@ -28,12 +28,11 @@ const Login = () => {
         }
 
         if (password.length < 8) {
-            enqueueSnackbar("Password must be 8 charecter or long", { variant: 'error' });
+            enqueueSnackbar("Password must be 8 character or long", { variant: 'error' });
             return;
         }
 
         enqueueSnackbar("ok", { variant: 'success' });
-
     }
 
     return (

@@ -6,7 +6,7 @@ function AddContentSuggestion() {
     const [displayImage, setDisplayImage] = useState("");
     const [file, setImage] = useState("");
 
-    const imageSelectHandeler = (files) => {
+    const imageSelectHandler = (files) => {
         setImage(files[0]);
         const reader = new FileReader();
         reader.onload = () => {
@@ -33,7 +33,7 @@ function AddContentSuggestion() {
 
                 <label className='form__label' htmlFor="myfile">Select an Image:</label>
                 <input className='file__input' type="file" id="myfile" name="myfile" onChange={(e) => {
-                    imageSelectHandeler(e.target.files);
+                    imageSelectHandler(e.target.files);
                 }} />
 
                 <div className='form__actions'>

@@ -1,14 +1,7 @@
 import React from 'react';
 
-function TopUsesForm(props) {
-    const {
-        name,
-        setName,
-        setDescription,
-        description,
-        ailment,
-        setAilment,
-    } = props;
+const TopUsesForm = React.memo((props) => {
+    const { name, setName, setDescription, description, ailment, setAilment } = props;
 
     return (
         <>
@@ -56,6 +49,6 @@ function TopUsesForm(props) {
             </div>
         </>
     )
-}
+})
 
 export default TopUsesForm

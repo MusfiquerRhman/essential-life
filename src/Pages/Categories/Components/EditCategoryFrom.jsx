@@ -1,7 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button';
-import { default as React, useState } from 'react';
+import { default as React, useCallback, useState } from 'react';
 import CategoryForm from './CategoryForm';
 import PanelsTable from './Panels/PanelsTable';
 import TopTipsTable from './TopTips/TopTipsTable';
@@ -14,24 +14,24 @@ function EditCategoryFrom() {
     const [shortDescription, setShortDescription] = useState('')
     const [recipe, setRecipe] = useState([])
     const [panelName, setPanelName] = useState('')
-    const [panelDescription, setpanelDescription] = useState('')
+    const [panelDescription, setPanelDescription] = useState('')
     const [topTipsDescription, setTopTipsDescription] = useState('')
     const [displayImage, setDisplayImage] = useState("");
     const [file, setImage] = useState("");
     const [selectedPanels, setSelectedPanels] = useState([]);
     const [selectedTopTips, setSelectedTopTips] = useState([]);
 
-    const handleDeleteAllSelectedPanel = () => {
+    const handleDeleteAllSelectedPanel = useCallback(() => {
 
-    }
+    }, [])
 
-    const handleDeleteAllSelectedTopTips = () => [
+    const handleDeleteAllSelectedTopTips = useCallback(() => {
 
-    ]
+    }, [])
 
-    const handleDeleteRecipe = (selectedName) => {
+    const handleDeleteRecipe = useCallback((selectedName) => {
         setRecipe(previousChips => previousChips.filter(name => name !== selectedName))
-    };
+    }, []);
 
     const updateCategory = () => {
 
@@ -54,7 +54,7 @@ function EditCategoryFrom() {
         
     }
 
-    const imageSelectHandeler = (files) => {
+    const imageSelectHandler = (files) => {
         setImage(files[0]);
         const reader = new FileReader();
         reader.onload = () => {
@@ -139,7 +139,7 @@ function EditCategoryFrom() {
                             id='description'
                             rows="10"
                             className='form__input full__length'
-                            onChange={(e) => setpanelDescription(e.target.value)}
+                            onChange={(e) => setPanelDescription(e.target.value)}
                             value={panelDescription}
                             name='description'
                         />
@@ -147,7 +147,7 @@ function EditCategoryFrom() {
                     <div className='third__length'>
                         <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem', marginRight: '2rem' }}>Image</label>
                         <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
-                            imageSelectHandeler(e);
+                            imageSelectHandler(e);
                         }} />
                     </div>
                 </div>

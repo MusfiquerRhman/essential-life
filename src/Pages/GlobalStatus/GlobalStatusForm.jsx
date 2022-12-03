@@ -1,13 +1,9 @@
 import Button from '@mui/material/Button';
 import React from 'react';
 
-function GlobalStatusForm(props) {
-    const {
-        status,
-        handleChange,
-        onClickUpdate,
-        os
-    } = props;
+const GlobalStatusForm = React.memo((props) => {
+    const { status, handleChange, onClickUpdate, os } = props;
+    
     return (
         <div className='global-status__container'>
             <div className='flex__row globalStatus__top'>
@@ -39,6 +35,6 @@ function GlobalStatusForm(props) {
         </div>
 
     )
-}
+})
 
 export default GlobalStatusForm

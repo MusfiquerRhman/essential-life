@@ -12,7 +12,7 @@ function EditPanelFrom() {
 
     }
 
-    const imageSelectHandeler = (files) => {
+    const imageSelectHandler = (files) => {
         setImage(files[0]);
         const reader = new FileReader();
         reader.onload = () => {
@@ -93,7 +93,7 @@ function EditPanelFrom() {
                     <div>
                         <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem', marginRight: '2rem' }}>Image</label>
                         <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
-                            imageSelectHandeler(e.target.files);
+                            imageSelectHandler(e.target.files);
                         }} />
                     </div>
 

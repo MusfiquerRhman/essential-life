@@ -26,11 +26,7 @@ const headCells = [
 ];
 
 function createData(id, region, name) {
-    return {
-        id,
-        region,
-        name,
-    };
+    return { id, region, name };
 }
 
 const rows = [

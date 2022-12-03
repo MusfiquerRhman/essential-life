@@ -1,4 +1,3 @@
-import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import { default as React, useReducer } from 'react';
 import { ACTION_TYPE, constituntesReducer, INITIAL_STATE } from '../../../Reducers/constituntesReducer';

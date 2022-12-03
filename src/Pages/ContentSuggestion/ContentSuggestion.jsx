@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { default as React, useEffect, useState } from 'react';
+import { default as React, useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBox from '../../Components/Common/SearchBox';
 import Table from './Components/Table';
@@ -14,9 +14,9 @@ function ContentSuggestion() {
   
   // }, [selected, contentStatus, action])
   
-  const handleSelectDeleteAll = () => {
+  const handleSelectDeleteAll = useCallback(() => {
     // TODO: Delete all selected
-  }
+  }, [])
 
 
   return (

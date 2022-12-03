@@ -1,4 +1,3 @@
-import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button';
 import { default as React, useState } from 'react';
 import { cup, hand, nose } from '../../../../assests';

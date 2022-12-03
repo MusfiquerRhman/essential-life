@@ -1,12 +1,12 @@
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import * as React from 'react';
+import React, { useCallback, useState } from 'react';
 import DeleteDropdownMenu from '../../../Components/TablesToolBars/UI Components/DeleteDropdownMenu';
 import DropDownMenuWrapper from '../../../Components/TablesToolBars/UI Components/DropDownMenuWrapper';
 import FilterButton from '../../../Components/TablesToolBars/UI Components/FilterButton';
 import ToolBarWrapper from '../../../Components/TablesToolBars/UI Components/ToolBarWrapper';
 
-function EnhancedTableToolbar(props) {
+const EnhancedTableToolbar = React.memo((props) => {
     const {
         numSelected,
         handleSelectDeleteAll,
@@ -20,7 +20,7 @@ function EnhancedTableToolbar(props) {
         setShowForAndroid,
     } = props
 
-    const [anchorElFilter, setAnchorElFilter] = React.useState(null);
+    const [anchorElFilter, setAnchorElFilter] = useState(null);
     const openFilter = Boolean(anchorElFilter);
 
     const handleClickFilter = (event) => {
@@ -31,21 +31,21 @@ function EnhancedTableToolbar(props) {
         setAnchorElFilter(null);
     };
 
-    const handleChangeVisibleInRegion = (event) => {
+    const handleChangeVisibleInRegion = useCallback((event) => {
         setVisibleInregion(event.target.value);
-    };
+    }, []);
 
-    const handleChangeiOS = (event) => {
+    const handleChangeiOS = useCallback((event) => {
         setShowForIOS(event.target.value);
-    };
+    }, []);
 
-    const handleChangeAndroid = (event) => {
+    const handleChangeAndroid = useCallback((event) => {
         setShowForAndroid(event.target.value);
-    };
+    }, []);
 
-    const handleChangeIsActive = (event) => {
+    const handleChangeIsActive = useCallback((event) => {
         setIsActive(event.target.value);
-    };
+    }, []);
 
     return (
         <ToolBarWrapper
@@ -125,6 +125,6 @@ function EnhancedTableToolbar(props) {
             </div>
         </ToolBarWrapper>
     );
-}
+})
 
 export default EnhancedTableToolbar

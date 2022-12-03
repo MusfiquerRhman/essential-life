@@ -1,6 +1,6 @@
 import { default as React } from 'react';
 
-const ContituentsForm = (props) => {
+const ContituentsForm = React.memo((props) => {
     const {
         state,
         dispatch,
@@ -42,6 +42,6 @@ const ContituentsForm = (props) => {
             </select>
         </>
     )
-}
+})
 
 export default ContituentsForm;

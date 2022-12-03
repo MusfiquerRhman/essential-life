@@ -34,7 +34,7 @@ export const data = {
     ],
 };
 
-function CardWithLineChart({text}) {
+const CardWithLineChart = React.memo(({text}) => {
     return (
         <div className='cards__line'>
             <div className='card__title--box'>
@@ -84,7 +84,7 @@ function CardWithLineChart({text}) {
                         },
                         layout: {
                             padding: {
-                              bottom: -100
+                                bottom: -100
                             }
                         },
                     }}
@@ -92,6 +92,6 @@ function CardWithLineChart({text}) {
             </div>
         </div>
     )
-}
+})
 
 export default CardWithLineChart

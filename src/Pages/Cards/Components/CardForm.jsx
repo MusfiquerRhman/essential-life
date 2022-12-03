@@ -3,8 +3,19 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { default as React } from 'react';
 import IOSSwitch from '../../../Styles/iOSSwitch';
 
+const RegionButton = (props) => {
+    const {handleChangeRegion, state, country} = props;
+    return (
+        <Button onClick={() => handleChangeRegion()}
+            variant={state.regionsVisible.indexOf(country) === -1 ? 'text' : 'contained'}
+            sx={{marginRight: '1rem', marginBottom: '0.5rem'}}
+        >
+            {country}
+        </Button>
+    )
+}
 
-function CardForm(props) {
+const CardForm = React.memo((props) => {
     const { state, dispatch, ACTION_TYPE } = props;
 
     const handleChangeCheck = (event) => {
@@ -36,7 +47,7 @@ function CardForm(props) {
         })
     }
 
-    const imageSelectHandeler = (event) => {
+    const imageSelectHandler = (event) => {
         dispatch({
             type: ACTION_TYPE.CHANGE_INPUT,
             payload: {
@@ -47,8 +58,7 @@ function CardForm(props) {
     };
 
     return (
-        <>
-
+        <React.Fragment>
             <div className='switch__box flex__row'>
                 <span>Active</span>
                 <FormControlLabel
@@ -250,95 +260,21 @@ function CardForm(props) {
 
             <label htmlFor="Visibility" className='form__label' style={{ marginTop: '2rem' }}>Region Visibility</label>
             <div className='switch__box'>
-                <Button onClick={() => handleChangeRegion("Australia")}
-                    variant={state.regionsVisible.indexOf('Australia') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    Australia
-                </Button>
-                <Button onClick={() => handleChangeRegion("Canada")}
-                    variant={state.regionsVisible.indexOf('Canada') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    Canada
-                </Button>
-                <Button onClick={() => handleChangeRegion("China")}
-                    variant={state.regionsVisible.indexOf('China') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    China
-                </Button>
-                <Button onClick={() => handleChangeRegion("Costa Rica")}
-                    variant={state.regionsVisible.indexOf('Costa Rica') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    Costa Rica
-                </Button>
-                <Button onClick={() => handleChangeRegion("EU")}
-                    variant={state.regionsVisible.indexOf('EU') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    EU
-                </Button>
-                <Button onClick={() => handleChangeRegion("Guatemala")}
-                    variant={state.regionsVisible.indexOf('Guatemala') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    Guatemala
-                </Button>
-                <Button onClick={() => handleChangeRegion("Hong Kong")}
-                    variant={state.regionsVisible.indexOf('Hong Kong') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    Hong Kong
-                </Button>
-                <Button onClick={() => handleChangeRegion("Japan")}
-                    variant={state.regionsVisible.indexOf('Japan') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    Japan
-                </Button>
-                <Button onClick={() => handleChangeRegion("Korea")}
-                    variant={state.regionsVisible.indexOf('Korea') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    Korea
-                </Button>
-                <Button onClick={() => handleChangeRegion("Malaysia")}
-                    variant={state.regionsVisible.indexOf('Malaysia') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    Malaysia
-                </Button>
-                <Button onClick={() => handleChangeRegion("Mexico")}
-                    variant={state.regionsVisible.indexOf('Mexico') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    Mexico
-                </Button>
-                <Button onClick={() => handleChangeRegion("New Zealand")}
-                    variant={state.regionsVisible.indexOf('New Zealand') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    New Zealand
-                </Button>
-                <Button onClick={() => handleChangeRegion("Singapore")}
-                    variant={state.regionsVisible.indexOf('Singapore') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    Singapore
-                </Button>
-                <Button onClick={() => handleChangeRegion("Taiwan")}
-                    variant={state.regionsVisible.indexOf('Taiwan') === -1 ? 'text' : 'contained'}
-                    sx={{marginRight: '1rem'}}
-                >
-                    Taiwan
-                </Button>
-                <Button onClick={() => handleChangeRegion("US")}
-                    variant={state.regionsVisible.indexOf('US') === -1 ? 'text' : 'contained'}
-                >
-                    US
-                </Button>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("Australia")} state={state} country='Australia'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("Canada")} state={state} country='Canada'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("China")} state={state} country='China'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("Costa Rica")} state={state} country='Costa Rica'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("EU")} state={state} country='EU'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("Guatemala")} state={state} country='Guatemala'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("Hong Kong")} state={state} country='Hong Kong'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("Japan")} state={state} country='Japan'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("Korea")} state={state} country='Korea'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("Malaysia")} state={state} country='Malaysia'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("Mexico")} state={state} country='Mexico'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("New Zealand")} state={state} country='New Zealand'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("Singapore")} state={state} country='Singapore'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("Taiwan")} state={state} country='Taiwan'/>
+                <RegionButton handleChangeRegion={() => handleChangeRegion("US")} state={state} country='US'/>
             </div>
             <p className='light__text'>Toggle the visibility of the card for different regions. The card is visible for regions in green.</p>
 
@@ -355,19 +291,19 @@ function CardForm(props) {
 
             <label className='form__label' htmlFor="backgroundImg" style={{marginTop: '2rem'}}>Background Image</label>
             <input name='backgroundImg' className='file__input' type="file" id="backgroundImg" onChange={(e) => {
-                imageSelectHandeler(e);
+                imageSelectHandler(e);
             }} />
             <p className='light__text'>The background image fills the background of the card</p>
 
 
             <label className='headerImg' htmlFor="myfile" style={{marginTop: '2rem'}}>Header Image</label>
             <input name='headerImg' className='file__input' type="file" id="headerImg" onChange={(e) => {
-                imageSelectHandeler(e);
+                imageSelectHandler(e);
             }} />
             <p className='light__text'>The header image appears above the card text content.</p>
-        </>
+        </React.Fragment>
     )
-}
+})
 
 
 export default CardForm

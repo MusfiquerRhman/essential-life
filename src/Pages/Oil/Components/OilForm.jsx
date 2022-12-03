@@ -1,6 +1,6 @@
 import Chip from '@mui/material/Chip';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { default as React, useState } from 'react';
+import { default as React, useCallback, useState } from 'react';
 import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 import IOSSwitch from '../../../Styles/iOSSwitch';
 
@@ -18,13 +18,9 @@ const names = [
 ];
 
 const OilForm = (props) => {
-    const {
-        state,
-        dispatch,
-        ACTION_TYPE,
-    } = props;
+    const { state, dispatch, ACTION_TYPE } = props;
 
-    const [anchorElTopProperties, setAnchorElTopProperties] = React.useState(null);
+    const [anchorElTopProperties, setAnchorElTopProperties] = useState(null);
     const openTopProperties = Boolean(anchorElTopProperties);
 
     const handleClickTopProperties = (event) => {
@@ -35,38 +31,38 @@ const OilForm = (props) => {
         setAnchorElTopProperties(null);
     };
 
-    const [anchorElMainConstituents, setAnchorElMainConstituents] = React.useState(null);
+    const [anchorElMainConstituents, setAnchorElMainConstituents] = useState(null);
     const openMainConstituents = Boolean(anchorElMainConstituents);
 
-    const handleClickMainConstituents = (event) => {
+    const handleClickMainConstituents = useCallback((event) => {
         setAnchorElMainConstituents(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseMainConstituents = () => {
+    const handleCloseMainConstituents = useCallback(() => {
         setAnchorElMainConstituents(null);
-    };
+    }, []);
 
-    const [anchorElSourcingMethods, setAnchorElSourcingMethods] = React.useState(null);
+    const [anchorElSourcingMethods, setAnchorElSourcingMethods] = useState(null);
     const openSourcingMethods = Boolean(anchorElSourcingMethods);
 
-    const handleClickSourcingMethods = (event) => {
+    const handleClickSourcingMethods = useCallback((event) => {
         setAnchorElSourcingMethods(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseSourcingMethods = () => {
+    const handleCloseSourcingMethods = useCallback(() => {
         setAnchorElSourcingMethods(null);
-    };
+    }, []);
 
-    const [anchorElBlendsWith, setAnchorElBlendsWith] = React.useState(null);
+    const [anchorElBlendsWith, setAnchorElBlendsWith] = useState(null);
     const openBlendsWith = Boolean(anchorElBlendsWith);
 
-    const handleClickBlendsWith = (event) => {
+    const handleClickBlendsWith = useCallback((event) => {
         setAnchorElBlendsWith(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseBlendsWith = () => {
+    const handleCloseBlendsWith = useCallback(() => {
         setAnchorElBlendsWith(null);
-    };
+    }, []);
 
 
     const handleChangeCheck = (event) => {

@@ -1,24 +1,25 @@
-import { default as React, useState } from 'react';
+import { default as React, useCallback, useState } from 'react';
 import GlobalStatusForm from './GlobalStatusForm';
 
 function GlobalStatus() {
   const [iOSStatus, setIOSStatus] = useState('ok')
   const [androidStatus, setAndroidStatus] = useState('ok');
 
-  const handleChangeiOS = (e) => {
+  const handleChangeIOS = useCallback((e) => {
     setIOSStatus(e.target.value)
-  }
+  }, [])
 
-  const handleChangeAndroid = (e) => {
+  const handleChangeAndroid = useCallback((e) => {
     setAndroidStatus(e.target.value)
-  }
+  }, [])
 
-  const onClickUpdateiOS = () => {
+  const onClickUpdateIOS = useCallback(() => {
 
-  }
-  const onClickUpdateAndroid = () => {
+  }, [])
 
-  }
+  const onClickUpdateAndroid = useCallback(() => {
+
+  }, [])
 
   return (
     <section>
@@ -26,8 +27,8 @@ function GlobalStatus() {
 
       <GlobalStatusForm
         status={iOSStatus}
-        handleChange={handleChangeiOS}
-        onClickUpdate={onClickUpdateiOS}
+        handleChange={handleChangeIOS}
+        onClickUpdate={onClickUpdateIOS}
         os={'iOS'}
       />
 

@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { default as React, useEffect, useReducer, useState } from 'react';
+import { default as React, useCallback, useEffect, useReducer, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBox from '../../Components/Common/SearchBox';
 import QuickEditTableWithSwitch from '../../Components/QuickEdit/QuickEditTableWithSwitch';
@@ -37,13 +37,13 @@ function Recipes() {
 
   // }, [selected, contentStatus, action])
 
-  const handleSelectDeleteAll = () => {
+  const handleSelectDeleteAll = useCallback(() => {
     // TODO: Delete all selected
-  }
+  }, [])
 
-  const handleClickExecuteAction = () => {
+  const handleClickExecuteAction = useCallback(() => {
     // TODO: Execute action
-  }
+  }, [])
 
   const onClickQuickEdit = () => {
     setQuickEdit(true);

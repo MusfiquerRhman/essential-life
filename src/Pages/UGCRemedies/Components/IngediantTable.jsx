@@ -19,33 +19,33 @@ function createData(quantity, measure, ingrediant) {
 }
 
 const IngediantTable = () => {
-  return (
-    <TableContainer component={Paper}>
-    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-            <StyledTableRow>
-                <StyledTableCell>QUANTITY</StyledTableCell>
-                <StyledTableCell align="left">MEASURE</StyledTableCell>
-                <StyledTableCell align="left">INGREDIENT</StyledTableCell>
-            </StyledTableRow>
-        </TableHead>
-        <TableBody>
-            {rows.map((row, index) => (
-                <StyledTableRow
-                    key={index}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                    <StyledTableCell component="th" scope="row">
-                        {row.quantity}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">{row.measure}</StyledTableCell>
-                    <StyledTableCell align="left">{row.ingrediant}</StyledTableCell>
-                </StyledTableRow>
-            ))}
-        </TableBody>
-    </Table>
-</TableContainer>
-  )
+    return (
+        <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                    <StyledTableRow>
+                        <StyledTableCell>QUANTITY</StyledTableCell>
+                        <StyledTableCell align="left">MEASURE</StyledTableCell>
+                        <StyledTableCell align="left">INGREDIENT</StyledTableCell>
+                    </StyledTableRow>
+                </TableHead>
+                <TableBody>
+                    {rows.map((row, index) => (
+                        <StyledTableRow
+                            key={index}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <StyledTableCell component="th" scope="row">
+                                {row.quantity}
+                            </StyledTableCell>
+                            <StyledTableCell align="left">{row.measure}</StyledTableCell>
+                            <StyledTableCell align="left">{row.ingrediant}</StyledTableCell>
+                        </StyledTableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
+    )
 }
 
 export default IngediantTable

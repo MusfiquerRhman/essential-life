@@ -7,7 +7,7 @@ import SearchBox from '../Common/SearchBox';
 import './navbarStyles.scss';
 
 function NavBar() {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);

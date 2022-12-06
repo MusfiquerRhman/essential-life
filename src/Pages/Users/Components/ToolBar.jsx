@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import * as React from 'react';
+import React, { useCallback, useState } from 'react';
 import DeleteDropdownMenu from '../../../Components/TablesToolBars/UI Components/DeleteDropdownMenu';
 import DoneButton from '../../../Components/TablesToolBars/UI Components/DoneButton';
 import DropDownMenuWrapper from '../../../Components/TablesToolBars/UI Components/DropDownMenuWrapper';
@@ -22,18 +22,18 @@ function ToolBar(props) {
         onChangeAdminSelect,
     } = props;
 
-    const [anchorElFilter, setAnchorElFilter] = React.useState(null);
+    const [anchorElFilter, setAnchorElFilter] = useState(null);
     const openFilter = Boolean(anchorElFilter);
 
-    const handleClickFilter = (event) => {
+    const handleClickFilter = useCallback((event) => {
         setAnchorElFilter(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseFilter = () => {
+    const handleCloseFilter = useCallback(() => {
         setAnchorElFilter(null);
-    };
+    }, []);
 
-    const [anchorElLens, setAnchorElLens] = React.useState(null);
+    const [anchorElLens, setAnchorElLens] = useState(null);
     const openLens = Boolean(anchorElLens);
 
     const handleClickLens = (event) => {
@@ -44,13 +44,13 @@ function ToolBar(props) {
         setAnchorElLens(null);
     };
 
-    const handleChangeContentStatus = (event) => {
+    const handleChangeContentStatus = useCallback((event) => {
         setcontentStatus(event.target.value);
-    };
+    }, [setcontentStatus]);
 
-    const handleChangeAction = (event) => {
+    const handleChangeAction = useCallback((event) => {
         setAction(event.target.value);
-    };
+    }, [setAction]);
 
     return (
         <ToolBarWrapper

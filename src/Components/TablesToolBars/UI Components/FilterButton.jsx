@@ -3,7 +3,7 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Button from '@mui/material/Button';
 import React from "react";
 
-const FilterButton = (props) => {
+const FilterButton = React.memo((props) => {
     const { openFilter, handleClickFilter } = props;
 
     return (
@@ -18,6 +18,6 @@ const FilterButton = (props) => {
             <ExpandMoreIcon />
         </Button>
     )
-}
+})
 
 export default FilterButton;

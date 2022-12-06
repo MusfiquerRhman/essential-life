@@ -11,16 +11,11 @@ import ToolBarUGC from '../TablesToolBars/ToolBarUGC';
 import QuickEditTableHead from './QuickEditTableHead';
 
 function createData(id, name, description) {
-    return {
-        id,
-        name,
-        description,
-    };
+    return { id, name, description };
 }
 
-
-export default function QuickEditTable(props) {
-    const [rows, setrows] = useState([
+const QuickEditTable = React.memo((props) => {
+    const [rows, setRows] = useState([
         createData(1, 'wow1', 'Detailed Description for quick edit'),
         createData(2, 'wow2', 'Detailed Description for quick edit'),
         createData(3, 'wow3', 'Detailed Description for quick edit'),
@@ -36,8 +31,8 @@ export default function QuickEditTable(props) {
         createData(13, 'wow13', 'Detailed Description for quick edit'),
     ])
 
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(15);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(15);
 
     const {
         headCells,
@@ -58,9 +53,12 @@ export default function QuickEditTable(props) {
             }
             return obj;
         })
-        setrows(newArr)
+        setRows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: {'name': e.target.value, 'description': description}
+            ...prevState, [id]: {
+                'name': e.target.value, 
+                'description': description
+            }
         }))
     }
 
@@ -72,9 +70,12 @@ export default function QuickEditTable(props) {
             }
             return obj;
         })
-        setrows(newArr)
+        setRows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: {'name': name, 'description': e.target.value}
+            ...prevState, [id]: {
+                'name': name, 
+                'description': e.target.value
+            }
         }))
     }
 
@@ -136,7 +137,7 @@ export default function QuickEditTable(props) {
                                             padding="none"
                                             align="left"
                                             sx={{
-                                                fontWaight: '500'
+                                                fontWeight: '500'
                                             }}
                                         >
                                             <input value={row.name}
@@ -191,4 +192,7 @@ export default function QuickEditTable(props) {
             </Paper>
         </Box>
     );
-}
+})
+
+
+export default QuickEditTable;

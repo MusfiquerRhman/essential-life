@@ -1,6 +1,6 @@
 import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button';
-import { default as React, useReducer, useState } from 'react';
+import { default as React, useCallback, useReducer, useState } from 'react';
 import FavoutriteType from '../../../Components/Common/FavouriteType';
 import { favouriteTypeReducer, FAVOURITE_ACTION_TYPE, FAVOURITE_INITIAL_STATE } from '../../../Reducers/favouriteTypeReducer';
 import { ACTION_TYPE, INITIAL_STATE, userReducer } from '../../../Reducers/userReducer';
@@ -9,7 +9,7 @@ import UserForm from './UserForm';
 
 function EditUserForm() {
     const [userState, userDispatch] = useReducer(userReducer, INITIAL_STATE)
-    const [favouriteState, favuriteDispatch] = useReducer(favouriteTypeReducer, FAVOURITE_INITIAL_STATE)
+    const [favoriteState, favoriteDispatch] = useReducer(favouriteTypeReducer, FAVOURITE_INITIAL_STATE)
     const [action, setAction] = useState('');
 
 
@@ -25,10 +25,10 @@ function EditUserForm() {
         // TODO
     }
 
-    const createFavourite = () => {
+    const createFavorite = () => {
         console.log({
-            'type': favouriteState.type,
-            'item': favouriteState[favouriteState.type]
+            'type': favoriteState.type,
+            'item': favoriteState[favoriteState.type]
         })
     }
 
@@ -36,12 +36,11 @@ function EditUserForm() {
         setAction(event.target.value);
     };
 
-    const [selectedFavourite, setSelectedFavourite] = useState([]);
+    const [selectedFavorite, setSelectedFavorite] = useState([]);
 
-    const handleSelectDeleteAllFavourites = () => {
+    const handleSelectDeleteAllFavorites = useCallback(() => {
         // TODO: Delete all selected
-    }
-
+    }, [])
 
 
     return (
@@ -92,8 +91,8 @@ function EditUserForm() {
                 >
                     <div className='supportive__container'>
                         <FavoutriteType
-                            state={favouriteState}
-                            dispatch={favuriteDispatch}
+                            state={favoriteState}
+                            dispatch={favoriteDispatch}
                             ACTION_TYPE={FAVOURITE_ACTION_TYPE}
                         />
                     </div>
@@ -101,7 +100,7 @@ function EditUserForm() {
                     <Button sx={{ borderRadius: '2rem' }}
                         variant="contained"
                         className='bottom__button'
-                        onClick={createFavourite}
+                        onClick={createFavorite}
                     >
                         Create Favourite
                     </Button>
@@ -110,8 +109,8 @@ function EditUserForm() {
 
             <div className='table__card'>
                 <FavouriteTable
-                    setSelectedFavourite={setSelectedFavourite}
-                    handleSelectDeleteAllFavourites={handleSelectDeleteAllFavourites}
+                    setSelectedFavourite={setSelectedFavorite}
+                    handleSelectDeleteAllFavourites={handleSelectDeleteAllFavorites}
                 />
             </div>
 

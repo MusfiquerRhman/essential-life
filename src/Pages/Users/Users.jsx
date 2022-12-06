@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { default as React, useEffect, useState } from 'react';
+import { default as React, useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBox from '../../Components/Common/SearchBox';
 import Table from './Components/Table';
@@ -9,9 +9,9 @@ import Dashboard from "../Dashboard/Dashboard";
 
 function Users() {
   const [selected, setSelected] = useState([]);
-  const [contentStatus, setcontentStatus] = React.useState('--');
-  const [action, setAction] = React.useState('');
-  const [selectAdmin, setSelectAdmin] = React.useState(false);
+  const [contentStatus, setcontentStatus] = useState('--');
+  const [action, setAction] = useState('');
+  const [selectAdmin, setSelectAdmin] = useState(false);
 
   const onChangeAdminSelect = () => {
     setSelectAdmin(true)
@@ -22,13 +22,13 @@ function Users() {
 
   // }, [selected, contentStatus, action])
 
-  const handleSelectDeleteAll = () => {
+  const handleSelectDeleteAll = useCallback(() => {
     // TODO: Delete all selected
-  }
+  }, [])
 
-  const handleClickExecuteAction = () => {
+  const handleClickExecuteAction = useCallback(() => {
     // TODO: Execute action
-  }
+  }, [])
 
 
   return (

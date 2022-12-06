@@ -3,7 +3,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React from "react";
 
-const ToolBarWrapper = (props) => {
+const ToolBarWrapper = React.memo((props) => {
     const { numSelected, title} = props;
 
     return (
@@ -41,6 +41,6 @@ const ToolBarWrapper = (props) => {
             {props.children}
         </Toolbar>
     )
-}
+})
 
 export default ToolBarWrapper;

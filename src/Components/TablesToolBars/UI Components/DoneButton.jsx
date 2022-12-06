@@ -2,7 +2,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button';
 import React from "react";
 
-const DoneButton = (props) => {
+const DoneButton = React.memo((props) => {
     const { action, handleClickExecuteAction } = props;
 
     return (
@@ -23,6 +23,6 @@ const DoneButton = (props) => {
             <DoneIcon />
         </Button>
     )
-}
+})
 
 export default DoneButton;

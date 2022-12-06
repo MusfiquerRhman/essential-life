@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import React from "react";
 
-const FilterDropDownWrapper = props => {
+const FilterDropDownWrapper = React.memo((props) => {
     const {
         anchorElFilter,
         openFilter, 
@@ -41,6 +41,6 @@ const FilterDropDownWrapper = props => {
             </MenuItem>
         </Menu>
     )
-}
+})
 
 export default FilterDropDownWrapper;

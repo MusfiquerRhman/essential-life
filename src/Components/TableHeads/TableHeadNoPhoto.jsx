@@ -11,7 +11,7 @@ const isChildNull = children => {
     return !Boolean(ReactDOMServer.renderToStaticMarkup(children));
 };
 
-function TableHeadNoPhoto(props) {
+const TableHeadNoPhoto = React.memo((props) => {
     const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headCells } = props;
     const isChildrenNull = isChildNull(props.children)
 
@@ -73,6 +73,6 @@ function TableHeadNoPhoto(props) {
             </StyledTableRow>
         </TableHead>
     );
-}
+})
 
 export default TableHeadNoPhoto

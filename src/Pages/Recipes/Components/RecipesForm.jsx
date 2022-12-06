@@ -3,7 +3,7 @@ import Chip from '@mui/material/Chip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import { default as React, useState } from 'react';
+import { default as React, useCallback, useState } from 'react';
 import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 import IOSSwitch from '../../../Styles/iOSSwitch';
 
@@ -29,35 +29,30 @@ const top100Films = [
     { title: "Schindler's List", year: 1993 },
     { title: 'Pulp Fiction', year: 1994 },]
 
-const RecipeForm = (props) => {
-    const {
-        state,
-        dispatch,
-        ACTION_TYPE,
-    } = props;
+const RecipeForm = React.memo((props) => {
+    const { state, dispatch, ACTION_TYPE } = props;
 
-    const [anchorElCategories, setAnchorElCategories] = React.useState(null);
+    const [anchorElCategories, setAnchorElCategories] = useState(null);
     const openCategories = Boolean(anchorElCategories);
 
-    const handleClickCategories = (event) => {
+    const handleClickCategories = useCallback((event) => {
         setAnchorElCategories(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseCategories = () => {
+    const handleCloseCategories = useCallback(() => {
         setAnchorElCategories(null);
-    };
+    }, []);
 
-    const [anchorElRecipes, setAnchorElRecipes] = React.useState(null);
+    const [anchorElRecipes, setAnchorElRecipes] = useState(null);
     const openRecipes = Boolean(anchorElRecipes);
 
-    const handleClickRecipes = (event) => {
+    const handleClickRecipes = useCallback((event) => {
         setAnchorElRecipes(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseRecipes = () => {
+    const handleCloseRecipes = useCallback(() => {
         setAnchorElRecipes(null);
-    };
-
+    }, []);
 
     const handleChangeCheck = (event) => {
         dispatch({
@@ -256,6 +251,6 @@ const RecipeForm = (props) => {
             </div>
         </>
     )
-}
+})
 
 export default RecipeForm;

@@ -3,7 +3,7 @@ import React from 'react';
 import { StyledTableCell, StyledTableRow } from '../../Styles/StylesTableRowAndCell';
 
 
-function QuickEditTableHead(props) {
+const QuickEditTableHead = React.memo((props) => {
     const {headCells } = props;
 
     return (
@@ -22,6 +22,6 @@ function QuickEditTableHead(props) {
             </StyledTableRow>
         </TableHead>
     );
-}
+})
 
 export default QuickEditTableHead

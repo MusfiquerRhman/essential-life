@@ -2,7 +2,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import AddChipsButton from '../../../Components/Forms/AddChipsButton';
 
 const names = [
@@ -28,7 +28,7 @@ const top100Films = [
     { title: 'Pulp Fiction', year: 1994 }, ]
 
 
-function RemedyForm(props) {
+const RemedyForm = React.memo((props) => {
     const {
         state,
         dispatch,
@@ -39,13 +39,13 @@ function RemedyForm(props) {
     const [anchorElRelatedRemedies, setAnchorElRelatedRemedies] = useState(null);
     const openRelatedRemedies = Boolean(anchorElRelatedRemedies);
 
-    const handleClickRelatedRemedies = (event) => {
+    const handleClickRelatedRemedies = useCallback((event) => {
         setAnchorElRelatedRemedies(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseRelatedRemedies = () => {
+    const handleCloseRelatedRemedies = useCallback(() => {
         setAnchorElRelatedRemedies(null);
-    };
+    }, []);
 
 
     const handleChangeRelatedRemedies = (value) => {
@@ -191,6 +191,6 @@ function RemedyForm(props) {
 
         </>
     )
-}
+})
 
 export default RemedyForm

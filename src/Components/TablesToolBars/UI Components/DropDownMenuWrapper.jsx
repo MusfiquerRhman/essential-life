@@ -3,7 +3,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import React from "react";
 
-const DropDownMenuWrapper = (props) => {
+const DropDownMenuWrapper = React.memo((props) => {
     const { value, handleChange, label } = props;
 
     return (
@@ -23,6 +23,6 @@ const DropDownMenuWrapper = (props) => {
             </FormControl>
         </React.Fragment>
     )
-}
+})
 
 export default DropDownMenuWrapper;

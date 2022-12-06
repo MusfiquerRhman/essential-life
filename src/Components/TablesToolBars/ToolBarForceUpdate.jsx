@@ -1,5 +1,5 @@
 import MenuItem from '@mui/material/MenuItem';
-import * as React from 'react';
+import React, { useCallback } from 'react';
 import DeleteDropdownMenu from './UI Components/DeleteDropdownMenu';
 import DoneButton from './UI Components/DoneButton';
 import DropDownMenuWrapper from './UI Components/DropDownMenuWrapper';
@@ -15,9 +15,9 @@ function ToolBarForceUpdate(props) {
         handleClickExecuteAction,
     } = props
 
-    const handleChangeAction = (event) => {
+    const handleChangeAction = useCallback((event) => {
         setAction(event.target.value);
-    };
+    }, [setAction]);
 
     return (
         <ToolBarWrapper

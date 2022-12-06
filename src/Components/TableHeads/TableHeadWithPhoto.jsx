@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledTableCell } from '../../Styles/StylesTableRowAndCell';
 import TableHeadNoPhoto from './TableHeadNoPhoto';
 
-function TableHeadWithPhoto(props) {
+const TableHeadWithPhoto = React.memo((props) => {
     const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headCells } = props;
 
     return (
@@ -20,6 +20,6 @@ function TableHeadWithPhoto(props) {
             </StyledTableCell>
         </TableHeadNoPhoto>
     );
-}
+})
 
 export default TableHeadWithPhoto

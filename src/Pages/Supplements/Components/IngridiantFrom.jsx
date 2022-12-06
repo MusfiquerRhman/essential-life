@@ -1,6 +1,6 @@
 import { default as React } from 'react';
 
-function IngridiantFrom(props) {
+const IngridiantFrom = React.memo((props) => {
     const {
         quantity,
         setQuantity,
@@ -98,6 +98,6 @@ function IngridiantFrom(props) {
             }
         </>
     )
-}
+})
 
 export default IngridiantFrom

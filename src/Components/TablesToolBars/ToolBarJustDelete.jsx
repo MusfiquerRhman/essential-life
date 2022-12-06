@@ -1,13 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import DeleteDropdownMenu from './UI Components/DeleteDropdownMenu';
 import ToolBarWrapper from './UI Components/ToolBarWrapper';
 
-function ToolBarJustDelete(props) {
-    const {
-        title,
-        numSelected,
-        handleSelectDeleteAll,
-    } = props
+const ToolBarJustDelete = React.memo((props) => {
+    const { title, numSelected, handleSelectDeleteAll } = props
 
     return (
         <ToolBarWrapper
@@ -25,6 +21,6 @@ function ToolBarJustDelete(props) {
             </div>
         </ToolBarWrapper>
     );
-}
+})
 
 export default ToolBarJustDelete

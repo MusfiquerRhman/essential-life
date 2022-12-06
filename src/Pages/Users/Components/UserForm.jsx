@@ -8,12 +8,12 @@ import IOSSwitch from '../../../Styles/iOSSwitch';
 
 
 function UserForm(props) {
-    const [confrimePassword, setConfrimePassword] = useState('');
+    const { state, dispatch, ACTION_TYPE } = props;
+
+    const [confirmedPassword, setConfirmedPassword] = useState('');
     const [passwordMatched, setPasswordMatched] = useState(false);
-    const [value, setValue] = React.useState(new Date());
+    const [value, setValue] = useState(new Date());
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-
 
     useEffect(() => {
         dispatch({
@@ -23,14 +23,7 @@ function UserForm(props) {
                 value: value
             }
         })
-    }, [value])
-
-
-    const {
-        state,
-        dispatch,
-        ACTION_TYPE,
-    } = props;
+    }, [ACTION_TYPE.CHANGE_INPUT, dispatch, value])
 
     const onChangeInput = (event) => {
         dispatch({
@@ -52,21 +45,21 @@ function UserForm(props) {
         })
     };
 
-    const handleChangeConfrimPassword = (e) => {
-        setConfrimePassword(e.target.value);
+    const handleChangeConfirmPassword = (e) => {
+        setConfirmedPassword(e.target.value);
     }
 
     useEffect(() => {
-        if (state.password !== confrimePassword) {
+        if (state.password !== confirmedPassword) {
             setPasswordMatched(false);
         }
         else {
             setPasswordMatched(true);
         }
 
-    }, [confrimePassword, state.password])
+    }, [confirmedPassword, state.password])
 
-    const imageSelectHandeler = (event) => {
+    const imageSelectHandler = (event) => {
         dispatch({
             type: ACTION_TYPE.CHANGE_INPUT,
             payload: {
@@ -130,8 +123,8 @@ function UserForm(props) {
                 placeholder='Confrim Password'
                 id='confrim'
                 className='form__input'
-                onChange={handleChangeConfrimPassword}
-                value={confrimePassword}
+                onChange={handleChangeConfirmPassword}
+                value={confirmedPassword}
                 name='confrim'
             />
             {!passwordMatched &&
@@ -188,7 +181,7 @@ function UserForm(props) {
 
             <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem' }}>Custom Avatar</label>
             <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
-                imageSelectHandeler(e);
+                imageSelectHandler(e);
             }} />
 
             <label htmlFor="note"

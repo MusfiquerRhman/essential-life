@@ -1,15 +1,10 @@
 import React from 'react';
 
-function RegionalNameFrom(props) {
-    const {
-        region,
-        setRegion,
-        setRagionalName,
-        ragionalName
-    } = props;
+const RegionalNameFrom = React.memo((props) => {
+    const { region, setRegion, setRagionalName, ragionalName } = props;
 
     return (
-        <>
+        <React.Fragment>
             <div className='third__length'>
                 <label htmlFor="Region" className='form__label'>Region</label>
                 <input type="text"
@@ -32,8 +27,8 @@ function RegionalNameFrom(props) {
                     name='Name'
                 />
             </div>
-        </>
+        </React.Fragment>
     )
-}
+})
 
 export default RegionalNameFrom

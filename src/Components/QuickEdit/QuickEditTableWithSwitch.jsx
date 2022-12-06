@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box';
-import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -7,9 +6,7 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import React, { useEffect, useState } from 'react';
-import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBinLine } from 'react-icons/ri';
-import { NavLink } from 'react-router-dom';
 import IOSSwitch from '../../Styles/iOSSwitch';
 import { StyledTableCell, StyledTableRow } from '../../Styles/StylesTableRowAndCell';
 import ToolBarUGC from '../TablesToolBars/ToolBarUGC';
@@ -24,9 +21,19 @@ function createData(id, name, description, featured) {
     };
 }
 
+const QuickEditTableWithSwitch = React.memo((props) => {
+    const {
+        headCells,
+        handleSelectDeleteAll,
+        contentStatus,
+        setcontentStatus,
+        action,
+        setAction,
+        handleClickExecuteAction,
+        setmodifiedItems,
+    } = props
 
-export default function QuickEditTableWithSwitch(props) {
-    const [rows, setrows] = useState([
+    const [rows, setRows] = useState([
         createData(1, 'wow1', 'Detailed Description for quick edit', true),
         createData(2, 'wow2', 'Detailed Description for quick edit', true),
         createData(3, 'wow3', 'Detailed Description for quick edit', true),
@@ -42,20 +49,8 @@ export default function QuickEditTableWithSwitch(props) {
         createData(13, 'wow13', 'Detailed Description for quick edit', true),
     ])
 
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(15);
-
-    const {
-        headCells,
-        handleSelectDeleteAll,
-        contentStatus,
-        setcontentStatus,
-        action,
-        setAction,
-        handleClickExecuteAction,
-        setmodifiedItems,
-    } = props
-
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(15);
 
     const handleChangeName = (e, id, description, featured) => {
         const newArr = rows.map(obj => {
@@ -64,9 +59,13 @@ export default function QuickEditTableWithSwitch(props) {
             }
             return obj;
         })
-        setrows(newArr)
+        setRows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: { 'name': e.target.value, 'description': description, 'featured': featured }
+            ...prevState, [id]: { 
+                'name': e.target.value, 
+                'description': description, 
+                'featured': featured 
+            }
         }))
     }
 
@@ -78,9 +77,13 @@ export default function QuickEditTableWithSwitch(props) {
             }
             return obj;
         })
-        setrows(newArr)
+        setRows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: { 'name': name, 'description': e.target.value, 'featured': featured }
+            ...prevState, [id]: { 
+                'name': name, 
+                'description': e.target.value, 
+                'featured': featured 
+            }
         }))
     }
 
@@ -91,9 +94,13 @@ export default function QuickEditTableWithSwitch(props) {
             }
             return obj;
         })
-        setrows(newArr)
+        setRows(newArr)
         setmodifiedItems(prevState => ({
-            ...prevState, [id]: { 'name': name, 'description': description, 'featured': e.target.checked }
+            ...prevState, [id]: { 
+                'name': name, 
+                'description': description, 
+                'featured': e.target.checked 
+            }
         }))
     }
 
@@ -155,7 +162,7 @@ export default function QuickEditTableWithSwitch(props) {
                                             padding="none"
                                             align="left"
                                             sx={{
-                                                fontWaight: '500'
+                                                fontWeight: '500'
                                             }}
                                         >
                                             <input value={row.name}
@@ -219,4 +226,6 @@ export default function QuickEditTableWithSwitch(props) {
             </Paper>
         </Box>
     );
-}
+})
+
+export default QuickEditTableWithSwitch;

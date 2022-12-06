@@ -28,7 +28,7 @@ const RegionButton = (props) => {
     )
 }
 
-const QuickEditCards = (props) => {
+const QuickEditCards = React.memo((props) => {
     const [isPending, startTransition] = useTransition();
     
     const {
@@ -205,7 +205,8 @@ const QuickEditCards = (props) => {
                 }
                 else {
                     return {
-                        ...obj, region: [...obj.region.filter(
+                        ...obj, 
+                        region: [...obj.region.filter(
                             currRegion => currRegion !== selectedRegion
                         )]
                     }
@@ -246,10 +247,10 @@ const QuickEditCards = (props) => {
         setPage(newPage);
     };
 
-    const handleChangeRowsPerPage = useCallback((event) => {
+    const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
-    }, []);
+    };
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -398,6 +399,6 @@ const QuickEditCards = (props) => {
             </Paper>
         </Box>
     );
-}
+})
 
 export default QuickEditCards;

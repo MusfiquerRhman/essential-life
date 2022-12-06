@@ -1,53 +1,18 @@
 import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import { default as React, useState } from 'react';
 import IngediantTable from './IngediantTable';
 
-function createData(quantity, measure, ingrediant) {
-    return { quantity, measure, ingrediant };
-}
-
-const rows = [
-    createData(3, 'drop', 'Vanila'),
-    createData(3, 'drop', 'Vanila'),
-    createData(3, 'drop', 'Vanila'),
-    createData(3, 'drop', 'Vanila'),
-    createData(3, 'drop', 'Vanila')
-];
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-        backgroundColor: '#2e2f41',
-        color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-        fontSize: 14,
-    },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(even)': {
-        backgroundColor: "#f0f2f6",
-    },
-    // hide last border
-    '&:last-child td, &:last-child th': {
-        border: 0,
-    },
-}));
-
 
 function EditUGCRemedyForm(props) {
+    const [name, setName] = useState('')
     const [displayImage, setDisplayImage] = useState("");
     const [file, setImage] = useState("");
     const [action, setAction] = useState('')
+
+    const handleChangeName = (event) => {
+        setName(event.target.value)
+    }
 
     const handleChangeAction = (event) => {
         setAction(event.target.value);
@@ -57,7 +22,7 @@ function EditUGCRemedyForm(props) {
 
     }
 
-    const imageSelectHandeler = (files) => {
+    const imageSelectHandler = (files) => {
         setImage(files[0]);
         const reader = new FileReader();
         reader.onload = () => {
@@ -104,7 +69,7 @@ function EditUGCRemedyForm(props) {
             <div className='form__edit--container'>
                 <div className='form__container'>
                     <label htmlFor="name" className='form__label'>Name</label>
-                    <input type="text" placeholder='Name' id='#name' className='form__input' />
+                    <input type="text" placeholder='Name' id='#name' className='form__input' onChange={handleChangeName} value={name}/>
 
                     <label htmlFor="method" className='form__label'>Method</label>
                     <textarea disabled type="text" placeholder='Method' id='#method' className='form__input' rows="10" />
@@ -122,7 +87,7 @@ function EditUGCRemedyForm(props) {
 
                     <label className='form__label' htmlFor="myfile">Select an Image:</label>
                     <input className='file__input' type="file" id="myfile" name="myfile" onChange={(e) => {
-                        imageSelectHandeler(e.target.files);
+                        imageSelectHandler(e.target.files);
                     }} />
                 </div>
             </div>

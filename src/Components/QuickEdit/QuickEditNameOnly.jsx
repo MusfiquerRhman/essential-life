@@ -11,31 +11,28 @@ import ToolBarUGC from '../TablesToolBars/ToolBarUGC';
 import QuickEditTableHead from './QuickEditTableHead';
 
 function createData(id, name) {
-    return {
-        id,
-        name,
-    };
+    return { id, name };
 }
 
-export default function QuickEditNameOnly(props) {
-    const [rows, setrows] = useState([
-        createData(  1, 'wow1'),
-        createData(  2, 'wow2'),
-        createData(  3, 'wow3'),
-        createData(  4, 'wow4'),
-        createData(  5, 'wow5'),
-        createData(  6, 'wow6'),
-        createData(  7, 'wow7'),
-        createData(  8, 'wow8'),
-        createData(  9, 'wow9'),
+const QuickEditNameOnly = React.memo((props) => {
+    const [rows, setRows] = useState([
+        createData(1, 'wow1'),
+        createData(2, 'wow2'),
+        createData(3, 'wow3'),
+        createData(4, 'wow4'),
+        createData(5, 'wow5'),
+        createData(6, 'wow6'),
+        createData(7, 'wow7'),
+        createData(8, 'wow8'),
+        createData(9, 'wow9'),
         createData(10, 'wow10'),
         createData(11, 'wow11'),
         createData(12, 'wow12'),
         createData(13, 'wow13'),
     ])
 
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(15);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(15);
 
     const {
         headCells,
@@ -56,12 +53,11 @@ export default function QuickEditNameOnly(props) {
             }
             return obj;
         })
-        setrows(newArr)
+        setRows(newArr)
         setmodifiedItems(prevState => ({
             ...prevState, [id]: {'name': e.target.value}
         }))
     }
-
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -165,4 +161,6 @@ export default function QuickEditNameOnly(props) {
             </Paper>
         </Box>
     );
-}
+})
+
+export default QuickEditNameOnly;

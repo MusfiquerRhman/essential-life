@@ -10,8 +10,8 @@ function SeedDownload() {
           <select name="Languages" id="language" defaultValue={'english'} style={{background: '#fff'}}>
             <option value="english">English</option>
             <option value="spanish">Spanish</option>
-            <option value="portugese">Portugese</option>
-            <option value="japaness">Japaness</option>
+            <option value="portuguese">Portuguese</option>
+            <option value="japaneses">Japaneses</option>
           </select>
         </div>
 
@@ -26,7 +26,7 @@ function SeedDownload() {
           variant='contained'
           sx={{ borderRadius: '5rem' }}
         >
-          Download Comunity Authors Seed
+          Download Community Authors Seed
         </Button>
 
       </div>

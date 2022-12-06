@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
-import { default as React, useEffect, useState } from 'react';
+import { default as React, useCallback, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBox from '../../Components/Common/SearchBox';
 import QuickEditTableWithSwitch from '../../Components/QuickEdit/QuickEditTableWithSwitch';
@@ -25,11 +25,10 @@ const QucikHeadCells = [
 
 function Supplements() {
   const [selected, setSelected] = useState([]);
-  const [action, setAction] = React.useState('');
+  const [action, setAction] = useState('');
 
   const [quickEdit, setQuickEdit] = useState(false);
-  const [modifiedItems, setmodifiedItems] = useState({}); // Modified in quick edit
-
+  const [modifiedItems, setModifiedItems] = useState({}); // Modified in quick edit
 
 
   // useEffect(() => {
@@ -37,13 +36,13 @@ function Supplements() {
 
   // }, [selected, contentStatus, action])
 
-  const handleSelectDeleteAll = () => {
+  const handleSelectDeleteAll = useCallback(() => {
     // TODO: Delete all selected
-  }
+  }, [])
 
-  const handleClickExecuteAction = () => {
+  const handleClickExecuteAction = useCallback(() => {
     // TODO: Execute action
-  }
+  }, [])
 
   const onClickQuickEdit = () => {
     setQuickEdit(true);
@@ -115,7 +114,7 @@ function Supplements() {
         {quickEdit && (
           <QuickEditTableWithSwitch
             headCells={QucikHeadCells}
-            setmodifiedItems={setmodifiedItems}
+            setmodifiedItems={setModifiedItems}
           />
         )}
       </div>

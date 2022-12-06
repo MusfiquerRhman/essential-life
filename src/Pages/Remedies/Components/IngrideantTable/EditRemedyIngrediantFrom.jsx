@@ -5,10 +5,10 @@ import IngridiantFrom from './IngridiantFrom';
 function EditRemedyIngrediantFrom() {
     const [ingQuantity, setIngQuantity] = useState('')
     const [ingMeasure, setIngMeasure] = useState('')
-    const [customeName, setCustomeName] = useState('')
+    const [customerName, setCustomerName] = useState('')
     const [type, setType] = useState('')
     const [oil, setOil] = useState('')
-    const [blend, setblend] = useState('')
+    const [blend, setBlend] = useState('')
     const [remedy, setRemedy] = useState('')
 
     const updateIngredient = () => {
@@ -36,14 +36,14 @@ function EditRemedyIngrediantFrom() {
                     setQuantity={setIngQuantity}
                     measure={ingMeasure}
                     setMeasure={setIngMeasure}
-                    customName={customeName}
-                    setCustomName={setCustomeName}
+                    customName={customerName}
+                    setCustomName={setCustomerName}
                     type={type}
                     setType={setType}
                     oil={oil}
                     setOil={setOil}
                     blend={blend}
-                    setBlend={setblend}
+                    setBlend={setBlend}
                 />
 
             <label htmlFor="related" className='form__label' style={{ marginTop: '1rem' }}>Remedy</label>

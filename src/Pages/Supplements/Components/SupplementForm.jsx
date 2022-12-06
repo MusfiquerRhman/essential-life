@@ -2,12 +2,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { default as React, useState } from 'react';
 import IOSSwitch from '../../../Styles/iOSSwitch';
 
-const SupplementForm = (props) => {
-    const {
-        state,
-        dispatch,
-        ACTION_TYPE,
-    } = props;
+const SupplementForm = React.memo((props) => {
+    const { state, dispatch, ACTION_TYPE } = props;
 
     const handleChangeCheck = (event) => {
         dispatch({
@@ -31,7 +27,7 @@ const SupplementForm = (props) => {
 
     const [displayImage, setDisplayImage] = useState("");
 
-    const imageSelectHandeler = (event) => {
+    const imageSelectHandler = (event) => {
         dispatch({
             type: ACTION_TYPE.CHANGE_INPUT,
             payload: {
@@ -58,8 +54,6 @@ const SupplementForm = (props) => {
             </div>
         );
     }
-
-
 
     return (
         <>
@@ -135,7 +129,7 @@ const SupplementForm = (props) => {
                 <div>
                     <label className='form__label' htmlFor="photo" style={{ marginTop: '2rem', marginRight: '2rem' }}>Image</label>
                     <input name='photo' className='file__input' type="file" id="photo" onChange={(e) => {
-                        imageSelectHandeler(e);
+                        imageSelectHandler(e);
                     }} />
                 </div>
 
@@ -145,6 +139,6 @@ const SupplementForm = (props) => {
 
         </>
     )
-}
+})
 
 export default SupplementForm;

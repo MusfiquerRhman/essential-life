@@ -3,12 +3,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import React from 'react';
+import React, { useState } from 'react';
 
-const DeleteDropdownMenu = (props) => {
+const DeleteDropdownMenu = React.memo((props) => {
     const { handleSelectDeleteAll } = props;
 
-    const [anchorElSelect, setAnchorElSelect] = React.useState(null);
+    const [anchorElSelect, setAnchorElSelect] = useState(null);
     const openSelect = Boolean(anchorElSelect);
 
     const handleClickSelect = (event) => {
@@ -47,6 +47,6 @@ const DeleteDropdownMenu = (props) => {
             </Menu>
         </React.Fragment>
     )
-}
+})
 
 export default DeleteDropdownMenu;

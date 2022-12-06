@@ -1,14 +1,7 @@
 import React from 'react';
 
 function TopUsesForm(props) {
-    const {
-        name,
-        setName,
-        setDescription,
-        description,
-        ailment,
-        setAilment,
-    } = props;
+    const { name, setName, setDescription, description, ailment, setAilment } = props;
 
     return (
         <>

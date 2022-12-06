@@ -17,7 +17,7 @@ const CustomNavLinks = ({text, link}) => (
 )
 
 
-function Sidebar({ children }) {
+const Sidebar = React.memo(({ children }) => {
     return (
         <div className='container'>
             <div className='sidebar__container'>
@@ -68,6 +68,6 @@ function Sidebar({ children }) {
             <main>{children}</main>
         </div>
     )
-}
+})
 
 export default Sidebar

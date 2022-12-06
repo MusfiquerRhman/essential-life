@@ -1,5 +1,5 @@
 import MenuItem from '@mui/material/MenuItem';
-import * as React from 'react';
+import React, { useCallback, useState } from 'react';
 import DeleteDropdownMenu from './UI Components/DeleteDropdownMenu';
 import DoneButton from './UI Components/DoneButton';
 import DropDownMenuWrapper from './UI Components/DropDownMenuWrapper';
@@ -7,7 +7,7 @@ import FilterButton from './UI Components/FilterButton';
 import FilterDropDownWrapper from './UI Components/FilterDropDownWrapper';
 import ToolBarWrapper from './UI Components/ToolBarWrapper';
 
-function ToolBarUGC(props) {
+const ToolBarUGC = React.memo((props) => {
     const {
         title,
         numSelected,
@@ -17,26 +17,26 @@ function ToolBarUGC(props) {
         action,
         setAction,
         handleClickExecuteAction,
-    } = props
+    } = props;
 
-    const [anchorElFilter, setAnchorElFilter] = React.useState(null);
+    const [anchorElFilter, setAnchorElFilter] = useState(null);
     const openFilter = Boolean(anchorElFilter);
 
-    const handleClickFilter = (event) => {
+    const handleClickFilter = useCallback((event) => {
         setAnchorElFilter(event.currentTarget);
-    };
+    }, []);
 
-    const handleCloseFilter = () => {
+    const handleCloseFilter = useCallback(() => {
         setAnchorElFilter(null);
-    };
+    }, []);
 
-    const handleChangeContentStatus = (event) => {
+    const handleChangeContentStatus = useCallback((event) => {
         setcontentStatus(event.target.value);
-    };
+    }, [setcontentStatus]);
 
-    const handleChangeAction = (event) => {
+    const handleChangeAction = useCallback((event) => {
         setAction(event.target.value);
-    };
+    }, [setAction]);
 
     return (
         <ToolBarWrapper
@@ -87,6 +87,6 @@ function ToolBarUGC(props) {
             </div>
         </ToolBarWrapper>
     );
-}
+})
 
 export default ToolBarUGC
